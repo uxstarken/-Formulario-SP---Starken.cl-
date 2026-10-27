@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import SoyStarkenForm from './SoyStarkenForm';
 import Breadcrumb from './Breadcrumb';
+import { Check } from 'lucide-react';
 
 export default function Proposal1DropdownView() {
   // 'benefits' | 'api'
@@ -9,7 +10,7 @@ export default function Proposal1DropdownView() {
   return (
     <div className="w-full max-w-[1040px] mx-auto font-nunito">
       {/* 1. BREADCRUMB ARRIBA DEL BANNER */}
-      <div className="px-1 mb-1">
+      <div className="px-1 mb-2">
         <Breadcrumb
           items={[
             { label: 'Inicio', href: '#' },
@@ -18,36 +19,7 @@ export default function Proposal1DropdownView() {
         />
       </div>
 
-      {/* 2. PESTAÑAS ESTILO CARPETA SOBRE EL BANNER (UBICADAS AL LADO SUPERIOR DERECHO) */}
-      <div className="flex items-end justify-end gap-1.5 sm:gap-2 px-2 sm:px-6 relative z-20 -mb-[1px]">
-        {/* Pestaña 1: Registrarme */}
-        <button
-          type="button"
-          onClick={() => setSelectedOption('benefits')}
-          className={`relative overflow-hidden px-5 sm:px-7 py-2 sm:py-2.5 rounded-t-xl sm:rounded-t-2xl font-nunito text-[14px] sm:text-[15px] transition-all duration-200 cursor-pointer flex items-center select-none ${
-            selectedOption === 'benefits'
-              ? 'bg-gradient-to-r from-[#2D0B39] via-[#48185A] to-[#5C1E73] text-white font-bold shadow-md z-20 pt-2.5 sm:pt-3 pb-2 sm:pb-2.5 border-t-2 border-x-2 border-[#48185A]'
-              : 'bg-[#FAF5FC] hover:bg-[#F3E8F7] text-[#48185A] font-bold border-t-2 border-x-2 border-[#48185A]/30 z-10'
-          }`}
-        >
-          <span className="relative z-10">Registrarme</span>
-        </button>
-
-        {/* Pestaña 2: Registrarme + Integraciones */}
-        <button
-          type="button"
-          onClick={() => setSelectedOption('api')}
-          className={`relative overflow-hidden px-5 sm:px-7 py-2 sm:py-2.5 rounded-t-xl sm:rounded-t-2xl font-nunito text-[14px] sm:text-[15px] transition-all duration-200 cursor-pointer flex items-center select-none ${
-            selectedOption === 'api'
-              ? 'bg-gradient-to-r from-[#2D0B39] via-[#48185A] to-[#5C1E73] text-white font-bold shadow-md z-20 pt-2.5 sm:pt-3 pb-2 sm:pb-2.5 border-t-2 border-x-2 border-[#48185A]'
-              : 'bg-[#FAF5FC] hover:bg-[#F3E8F7] text-[#48185A] font-bold border-t-2 border-x-2 border-[#48185A]/30 z-10'
-          }`}
-        >
-          <span className="relative z-10">Registrarme + Integraciones</span>
-        </button>
-      </div>
-
-      {/* 3. CARD UNIFICADO: BANNER SUPERIOR + FORMULARIO DE REGISTRO EN UN SOLO CONTORNO */}
+      {/* 2. CARD UNIFICADO: BANNER SUPERIOR + FORMULARIO DE REGISTRO EN UN SOLO CONTORNO */}
       <div className="bg-white rounded-2xl sm:rounded-3xl shadow-lg border border-gray-200/90 overflow-hidden mb-10">
         {/* Cabecera: Banner con degradado morado #48185A y contenido dinámico */}
         <div className="relative overflow-hidden">
@@ -171,13 +143,60 @@ export default function Proposal1DropdownView() {
 
         {/* Cuerpo: Formulario oficial en 2 columnas con CTA naranjo #F97316 */}
         <div className="p-6 sm:p-10">
-          <div className="mb-6 pb-4 border-b border-gray-100">
-            <h2 className="font-din text-[24px] font-bold text-[#48185A] leading-snug">
-              Formulario de registro Somos Partner
-            </h2>
-            <p className="font-nunito text-[16px] text-gray-500 mt-1 font-normal">
-              Completa la información requerida para dar de alta tu negocio en Starken.
-            </p>
+          {/* Header del formulario: Título a la izquierda y Selector de opciones destacado horizontalmente a la derecha */}
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6 pb-5 border-b border-gray-100">
+            {/* Título y bajada del Formulario */}
+            <div>
+              <h2 className="font-din text-[23px] sm:text-[25px] font-bold text-[#48185A] leading-snug">
+                Formulario de registro Somos Partner
+              </h2>
+              <p className="font-nunito text-[14px] sm:text-[15px] text-gray-500 mt-0.5 font-normal">
+                Completa la información requerida para dar de alta tu negocio en Starken.
+              </p>
+            </div>
+
+            {/* Pestañas de Opciones destacadas horizontalmente a la altura del título */}
+            <div className="flex-shrink-0 flex items-center gap-2 p-1.5 bg-[#FAF5FC] rounded-2xl border-2 border-[#48185A]/25 shadow-sm">
+              {/* Opción 1: Registrarme */}
+              <button
+                type="button"
+                onClick={() => setSelectedOption('benefits')}
+                className={`px-4 sm:px-5 py-2.5 rounded-xl font-nunito text-[13.5px] sm:text-[14.5px] font-bold transition-all duration-200 cursor-pointer flex items-center gap-2.5 select-none ${
+                  selectedOption === 'benefits'
+                    ? 'bg-[#48185A] text-white shadow-md ring-2 ring-[#48185A]/20'
+                    : 'bg-white hover:bg-white/90 text-[#48185A] border border-[#48185A]/20 hover:border-[#48185A]/40'
+                }`}
+              >
+                {selectedOption === 'benefits' ? (
+                  <span className="w-5 h-5 rounded-full bg-[#F97316] text-white flex items-center justify-center flex-shrink-0 shadow-xs">
+                    <Check className="w-3.5 h-3.5 stroke-[3]" />
+                  </span>
+                ) : (
+                  <span className="w-5 h-5 rounded-full border-2 border-[#48185A]/40 flex-shrink-0" />
+                )}
+                <span>Registrarme</span>
+              </button>
+
+              {/* Opción 2: Registrarme + Integraciones */}
+              <button
+                type="button"
+                onClick={() => setSelectedOption('api')}
+                className={`px-4 sm:px-5 py-2.5 rounded-xl font-nunito text-[13.5px] sm:text-[14.5px] font-bold transition-all duration-200 cursor-pointer flex items-center gap-2.5 select-none ${
+                  selectedOption === 'api'
+                    ? 'bg-[#48185A] text-white shadow-md ring-2 ring-[#48185A]/20'
+                    : 'bg-white hover:bg-white/90 text-[#48185A] border border-[#48185A]/20 hover:border-[#48185A]/40'
+                }`}
+              >
+                {selectedOption === 'api' ? (
+                  <span className="w-5 h-5 rounded-full bg-[#F97316] text-white flex items-center justify-center flex-shrink-0 shadow-xs">
+                    <Check className="w-3.5 h-3.5 stroke-[3]" />
+                  </span>
+                ) : (
+                  <span className="w-5 h-5 rounded-full border-2 border-[#48185A]/40 flex-shrink-0" />
+                )}
+                <span>Registrarme + Integraciones</span>
+              </button>
+            </div>
           </div>
           <SoyStarkenForm optionType={selectedOption} />
         </div>
