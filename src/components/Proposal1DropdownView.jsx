@@ -37,7 +37,7 @@ export default function Proposal1DropdownView() {
           <div className="relative z-10 px-6 py-6 sm:px-9 sm:py-7 text-white grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center min-h-[195px]">
             {/* Lado Izquierdo del Banner: Título + Subtítulo + Chips (en 2 filas para opción integraciones) */}
             <div className="md:col-span-7 space-y-3">
-              <h1 className="font-din text-[24px] sm:text-[28px] font-bold text-white tracking-normal leading-tight drop-shadow-sm">
+              <h1 className="font-din text-[24px] font-bold text-white tracking-normal leading-tight drop-shadow-sm">
                 {selectedOption === 'benefits'
                   ? 'Obten hasta un 20% de descuento'
                   : 'Precios especiales por volumen'}

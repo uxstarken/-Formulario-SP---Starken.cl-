@@ -110,7 +110,7 @@ export default function Proposal2CardsView() {
             {/* 2. INFORMACIÓN CORRIDA HACIA ABAJO BAJO EL SELECTOR */}
             <div className="pt-1 flex flex-col space-y-3.5">
               {/* Título dinámico */}
-              <h2 className="font-din text-[23px] sm:text-[26px] font-bold text-white tracking-normal leading-tight drop-shadow-sm">
+              <h2 className="font-din text-[24px] font-bold text-white tracking-normal leading-tight drop-shadow-sm">
                 {!isApi ? 'Obten hasta un 20% de descuento' : 'Precios especiales por volumen'}
               </h2>
 
