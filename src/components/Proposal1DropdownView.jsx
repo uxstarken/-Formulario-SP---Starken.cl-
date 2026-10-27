@@ -9,7 +9,7 @@ export default function Proposal1DropdownView() {
   return (
     <div className="w-full max-w-[1040px] mx-auto font-nunito">
       {/* 1. BREADCRUMB ARRIBA DEL BANNER */}
-      <div className="px-1 mb-2">
+      <div className="px-1 mb-1">
         <Breadcrumb
           items={[
             { label: 'Inicio', href: '#' },
@@ -19,62 +19,32 @@ export default function Proposal1DropdownView() {
       </div>
 
       {/* 2. PESTAÑAS ESTILO CARPETA SOBRE EL BANNER (UBICADAS AL LADO SUPERIOR DERECHO) */}
-      <div className="flex flex-wrap items-end justify-end gap-2.5 sm:gap-4 px-2 sm:px-6 relative z-20 -mb-[1px]">
-        {/* Texto al lado izquierdo de las etiquetas */}
-        <span className="font-nunito text-[14px] sm:text-[15px] font-bold text-[#48185A] self-center sm:self-end pb-2 sm:pb-2.5 mr-1 sm:mr-2">
-          Selecciona tu tipo de registro
-        </span>
+      <div className="flex items-end justify-end gap-1.5 sm:gap-2 px-2 sm:px-6 relative z-20 -mb-[1px]">
+        {/* Pestaña 1: Registrarme */}
+        <button
+          type="button"
+          onClick={() => setSelectedOption('benefits')}
+          className={`relative overflow-hidden px-5 sm:px-7 py-2 sm:py-2.5 rounded-t-xl sm:rounded-t-2xl font-nunito text-[14px] sm:text-[15px] transition-all duration-200 cursor-pointer flex items-center select-none ${
+            selectedOption === 'benefits'
+              ? 'bg-gradient-to-r from-[#2D0B39] via-[#48185A] to-[#5C1E73] text-white font-bold shadow-md z-20 pt-2.5 sm:pt-3 pb-2 sm:pb-2.5 border-t-2 border-x-2 border-[#48185A]'
+              : 'bg-[#FAF5FC] hover:bg-[#F3E8F7] text-[#48185A] font-bold border-t-2 border-x-2 border-[#48185A]/30 z-10'
+          }`}
+        >
+          <span className="relative z-10">Registrarme</span>
+        </button>
 
-        {/* Pestañas estilo carpeta */}
-        <div className="flex items-end gap-1.5 sm:gap-2">
-          {/* Pestaña 1: Registrarme */}
-          <button
-            type="button"
-            onClick={() => setSelectedOption('benefits')}
-            className={`relative overflow-hidden px-5 sm:px-7 py-2.5 sm:py-3 rounded-t-xl sm:rounded-t-2xl font-nunito text-[14px] sm:text-[15px] transition-all duration-200 cursor-pointer flex items-center gap-2 select-none ${
-              selectedOption === 'benefits'
-                ? 'text-white font-bold shadow-md z-20 pt-3 sm:pt-3.5 pb-2.5 sm:pb-3 border-t-2 border-x-2 border-[#48185A]'
-                : 'bg-[#FAF5FC] hover:bg-[#F3E8F7] text-[#48185A] font-bold border-t-2 border-x-2 border-[#48185A]/30 z-10'
-            }`}
-          >
-            {/* Si está seleccionada: mismo fondo (imagen dinámica + degradado morado) que el banner */}
-            {selectedOption === 'benefits' && (
-              <>
-                <img
-                  src="/delivery-box.jpg"
-                  alt=""
-                  className="absolute inset-0 w-full h-full object-cover opacity-35 filter saturate-110 pointer-events-none"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#2D0B39]/95 via-[#48185A]/92 to-[#5C1E73]/88 pointer-events-none" />
-              </>
-            )}
-            <span className="relative z-10">Registrarme</span>
-          </button>
-
-          {/* Pestaña 2: Registrarme + Integraciones */}
-          <button
-            type="button"
-            onClick={() => setSelectedOption('api')}
-            className={`relative overflow-hidden px-5 sm:px-7 py-2.5 sm:py-3 rounded-t-xl sm:rounded-t-2xl font-nunito text-[14px] sm:text-[15px] transition-all duration-200 cursor-pointer flex items-center gap-2 select-none ${
-              selectedOption === 'api'
-                ? 'text-white font-bold shadow-md z-20 pt-3 sm:pt-3.5 pb-2.5 sm:pb-3 border-t-2 border-x-2 border-[#48185A]'
-                : 'bg-[#FAF5FC] hover:bg-[#F3E8F7] text-[#48185A] font-bold border-t-2 border-x-2 border-[#48185A]/30 z-10'
-            }`}
-          >
-            {/* Si está seleccionada: mismo fondo (imagen dinámica + degradado morado) que el banner */}
-            {selectedOption === 'api' && (
-              <>
-                <img
-                  src="/ecommerce-sales.jpg"
-                  alt=""
-                  className="absolute inset-0 w-full h-full object-cover opacity-35 filter saturate-110 pointer-events-none"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#2D0B39]/95 via-[#48185A]/92 to-[#5C1E73]/88 pointer-events-none" />
-              </>
-            )}
-            <span className="relative z-10">Registrarme + Integraciones</span>
-          </button>
-        </div>
+        {/* Pestaña 2: Registrarme + Integraciones */}
+        <button
+          type="button"
+          onClick={() => setSelectedOption('api')}
+          className={`relative overflow-hidden px-5 sm:px-7 py-2 sm:py-2.5 rounded-t-xl sm:rounded-t-2xl font-nunito text-[14px] sm:text-[15px] transition-all duration-200 cursor-pointer flex items-center select-none ${
+            selectedOption === 'api'
+              ? 'bg-gradient-to-r from-[#2D0B39] via-[#48185A] to-[#5C1E73] text-white font-bold shadow-md z-20 pt-2.5 sm:pt-3 pb-2 sm:pb-2.5 border-t-2 border-x-2 border-[#48185A]'
+              : 'bg-[#FAF5FC] hover:bg-[#F3E8F7] text-[#48185A] font-bold border-t-2 border-x-2 border-[#48185A]/30 z-10'
+          }`}
+        >
+          <span className="relative z-10">Registrarme + Integraciones</span>
+        </button>
       </div>
 
       {/* 3. CARD UNIFICADO: BANNER SUPERIOR + FORMULARIO DE REGISTRO EN UN SOLO CONTORNO */}

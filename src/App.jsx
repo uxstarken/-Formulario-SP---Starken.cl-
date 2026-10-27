@@ -29,7 +29,7 @@ export default function App() {
       />
 
       {/* Main Content: Renderiza directamente la propuesta activa */}
-      <main className={`flex-1 ${activeProposal === 1 ? 'pt-3 sm:pt-4 pb-10 sm:pb-14' : 'pt-3 sm:pt-3.5 pb-16 sm:pb-24 lg:pb-28'} bg-gradient-to-b from-gray-50/50 to-white`}>
+      <main className={`flex-1 ${activeProposal === 1 ? 'pt-1.5 sm:pt-2 pb-10 sm:pb-14' : 'pt-2 sm:pt-2.5 pb-16 sm:pb-24 lg:pb-28'} bg-gradient-to-b from-gray-50/50 to-white`}>
         <div className="max-w-[1240px] mx-auto px-4 lg:px-8">
           {activeProposal === 1 ? (
             <Proposal1DropdownView />
