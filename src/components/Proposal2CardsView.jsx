@@ -29,9 +29,9 @@ export default function Proposal2CardsView() {
       </div>
 
       {/* CONTENEDOR SPLIT: 46% PANEL IZQUIERDO CON DEGRADADO MORADO #48185A / 54% FORMULARIO */}
-      <div className="bg-white rounded-3xl shadow-xl border border-[#E2E8F0] overflow-hidden flex flex-col lg:flex-row min-h-[580px] lg:min-h-[640px] mb-6 sm:mb-10">
+      <div className="bg-white rounded-3xl shadow-xl border border-[#E2E8F0] overflow-hidden flex flex-col lg:flex-row mb-6 sm:mb-10">
         {/* PANEL IZQUIERDO: IMAGEN DIFUMINADA CON DEGRADADO MORADO #48185A + SELECTOR + CONTENIDO DINÁMICO */}
-        <div className="w-full lg:w-[46%] flex-shrink-0 relative p-6 sm:p-8 lg:p-9 text-white flex flex-col justify-between overflow-hidden min-h-[500px] lg:min-h-[640px]">
+        <div className="w-full lg:w-[46%] flex-shrink-0 relative p-6 sm:p-7 lg:p-8 text-white flex flex-col justify-start overflow-hidden">
           {/* Imagen de fondo difuminada dinámica según la opción seleccionada */}
           <img
             src={!isApi ? '/delivery-box.jpg' : '/ecommerce-sales.jpg'}
@@ -44,7 +44,7 @@ export default function Proposal2CardsView() {
           <div className="absolute inset-0 bg-gradient-to-br from-[#2D0B39]/94 via-[#48185A]/90 to-[#5C1E73]/85 z-1" />
 
           {/* Contenido en primer plano sobre el degradado morado */}
-          <div className="relative z-10 flex flex-col justify-start h-full space-y-6">
+          <div className="relative z-10 flex flex-col justify-start h-full space-y-5">
             {/* 1. SELECTOR DE OPCIÓN DE REGISTRO EN EL LADO IZQUIERDO */}
             <div>
               <label className="block text-xs sm:text-[13px] font-bold text-white/90 mb-2.5 text-left">
@@ -108,7 +108,7 @@ export default function Proposal2CardsView() {
             </div>
 
             {/* 2. INFORMACIÓN CORRIDA HACIA ABAJO BAJO EL SELECTOR */}
-            <div className="pt-1 flex flex-col space-y-4">
+            <div className="pt-1 flex flex-col space-y-3.5">
               {/* Título dinámico */}
               <h2 className="font-din text-[23px] sm:text-[26px] font-bold text-white tracking-normal leading-tight drop-shadow-sm">
                 {!isApi ? 'Obten hasta un 20% de descuento' : 'Precios especiales por volumen'}
@@ -214,11 +214,11 @@ export default function Proposal2CardsView() {
         </div>
 
         {/* PANEL DERECHO: FORMULARIO SOMOS PARTNER */}
-        <div className="w-full lg:w-[54%] flex-grow p-6 sm:p-8 lg:p-9 flex flex-col justify-between bg-white relative min-h-[460px] lg:min-h-[640px]">
+        <div className="w-full lg:w-[54%] flex-grow p-6 sm:p-7 lg:p-8 flex flex-col justify-start bg-white relative">
           <div>
             {/* TÍTULO Y BAJADA DEL FORMULARIO SOMOS PARTNER */}
             <div className="border-b border-gray-100 pb-3 mb-4">
-              <h3 className="font-din text-[24px] font-bold text-[#009D4E] leading-snug">
+              <h3 className="font-din text-[24px] font-bold text-[#48185A] leading-snug">
                 Formulario de registro Somos Partner
               </h3>
               <p className="font-nunito text-[16px] text-gray-500 mt-1 min-h-[24px]">
