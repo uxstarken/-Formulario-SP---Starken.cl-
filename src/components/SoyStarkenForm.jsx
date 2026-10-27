@@ -347,8 +347,8 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
             </div>
           </div>
 
-          {/* Botón Enviar en color Naranjo #F97316 */}
-          <div className="pt-4 flex justify-center">
+          {/* Botón Enviar en color Naranjo #F97316 alineado a la derecha */}
+          <div className="pt-4 flex justify-end">
             <button
               type="submit"
               className="w-full sm:w-56 py-3.5 px-8 bg-[#F97316] hover:bg-[#ea580c] active:bg-[#c2410c] text-white font-bold text-sm rounded-lg shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer text-center"
@@ -542,8 +542,8 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
             </div>
           </div>
 
-          {/* Botón Enviar en color Naranjo #F97316 (Baja cuando se selecciona opción 2 para compensar la línea adicional de texto de la izquierda) */}
-          <div className="pt-10 sm:pt-11 flex justify-center">
+          {/* Botón Enviar en color Naranjo #F97316 alineado a la derecha */}
+          <div className="pt-10 sm:pt-11 flex justify-end">
             <button
               type="submit"
               className="w-full sm:w-56 py-3.5 px-8 bg-[#F97316] hover:bg-[#ea580c] active:bg-[#c2410c] text-white font-bold text-sm rounded-lg shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer text-center"
