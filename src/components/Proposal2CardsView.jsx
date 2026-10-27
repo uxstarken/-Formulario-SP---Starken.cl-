@@ -19,7 +19,7 @@ export default function Proposal2CardsView() {
       />
 
       {/* SECCIÓN SUPERIOR: TÍTULO Y BAJADA */}
-      <div className="mb-8">
+      <div className="mb-6 sm:mb-7">
         <h1 className="font-din text-[30px] font-bold text-[#48185A] tracking-tight leading-tight text-left">
           Regístrate y sé parte de Somos Partner
         </h1>
