@@ -22,7 +22,7 @@ export default function Proposal1DropdownView() {
       <div className="flex flex-wrap items-end justify-end gap-2.5 sm:gap-4 px-2 sm:px-6 relative z-20 -mb-[1px]">
         {/* Texto al lado izquierdo de las etiquetas */}
         <span className="font-nunito text-[14px] sm:text-[15px] font-bold text-[#48185A] self-center sm:self-end pb-2 sm:pb-2.5 mr-1 sm:mr-2">
-          Seleccione tu tipo de registro
+          Selecciona tu tipo de registro
         </span>
 
         {/* Pestañas estilo carpeta */}
