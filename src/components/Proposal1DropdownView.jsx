@@ -61,10 +61,10 @@ export default function Proposal1DropdownView() {
           {/* Degradado morado #48185A sobre la imagen */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#2D0B39]/94 via-[#48185A]/90 to-[#5C1E73]/85 z-1" />
 
-          {/* Contenido del Banner: Información actualizada como en Propuesta 2 */}
-          <div className="relative z-10 px-6 py-7 sm:px-9 sm:py-8 text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8">
-            {/* Lado Izquierdo del Banner: Título + Subtítulo + Chips */}
-            <div className="flex-1 space-y-3">
+          {/* Contenido del Banner: Estructurado en cuadrícula fija para evitar saltos y dar espacio a la lista */}
+          <div className="relative z-10 px-6 py-6 sm:px-9 sm:py-7 text-white grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center min-h-[195px]">
+            {/* Lado Izquierdo del Banner: Título + Subtítulo + Chips (en 2 filas para opción integraciones) */}
+            <div className="md:col-span-7 space-y-3">
               <h1 className="font-din text-[24px] sm:text-[28px] font-bold text-white tracking-normal leading-tight drop-shadow-sm">
                 {selectedOption === 'benefits'
                   ? 'Obten hasta un 20% de descuento'
@@ -75,7 +75,7 @@ export default function Proposal1DropdownView() {
                 {selectedOption === 'benefits' ? 'Categorias:' : 'Plataformas disponibles:'}
               </p>
 
-              {/* Chips de Categorías o Plataformas */}
+              {/* Chips de Categorías o Plataformas (en 2 filas fijas para opción integraciones) */}
               {selectedOption === 'benefits' ? (
                 <div className="flex flex-wrap items-center gap-2">
                   {['Shopify', 'Montaña', 'Cordillera'].map((cat) => (
@@ -88,24 +88,38 @@ export default function Proposal1DropdownView() {
                   ))}
                 </div>
               ) : (
-                <div className="flex flex-wrap items-center gap-2">
-                  {['Shopify', 'WooCommerce', 'Bsale*', 'VTEX', 'Magento', 'PrestaShop', 'Jumpseller*'].map((p) => (
-                    <span
-                      key={p}
-                      className="px-3 py-1 rounded-full border border-white/35 bg-white/15 backdrop-blur-xs text-white font-nunito text-[12.5px] font-semibold shadow-xs"
-                    >
-                      {p}
+                <div className="flex flex-col gap-2">
+                  {/* Fila 1 */}
+                  <div className="flex flex-wrap items-center gap-2">
+                    {['Shopify', 'WooCommerce', 'Bsale*', 'VTEX'].map((p) => (
+                      <span
+                        key={p}
+                        className="px-3 py-1 rounded-full border border-white/35 bg-white/15 backdrop-blur-xs text-white font-nunito text-[12.5px] font-semibold shadow-xs"
+                      >
+                        {p}
+                      </span>
+                    ))}
+                  </div>
+                  {/* Fila 2 */}
+                  <div className="flex flex-wrap items-center gap-2">
+                    {['Magento', 'PrestaShop', 'Jumpseller*'].map((p) => (
+                      <span
+                        key={p}
+                        className="px-3 py-1 rounded-full border border-white/35 bg-white/15 backdrop-blur-xs text-white font-nunito text-[12.5px] font-semibold shadow-xs"
+                      >
+                        {p}
+                      </span>
+                    ))}
+                    <span className="px-3.5 py-1 rounded-full border-2 border-[#F97316] bg-[#F97316] text-white font-nunito text-[12.5px] font-bold shadow-xs">
+                      API
                     </span>
-                  ))}
-                  <span className="px-3.5 py-1 rounded-full border-2 border-[#F97316] bg-[#F97316] text-white font-nunito text-[12.5px] font-bold shadow-xs">
-                    API
-                  </span>
+                  </div>
                 </div>
               )}
             </div>
 
-            {/* Lado Derecho del Banner: Viñetas / Bullets con viñetas naranja #F97316 */}
-            <div className="flex-shrink-0 md:border-l md:border-white/20 md:pl-8">
+            {/* Lado Derecho del Banner: Viñetas / Bullets movidas más a la izquierda con ancho estable */}
+            <div className="md:col-span-5 md:border-l md:border-white/20 md:pl-8">
               <ul className="space-y-2.5 sm:space-y-3">
                 {selectedOption === 'benefits' ? (
                   <>
