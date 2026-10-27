@@ -28,153 +28,51 @@ export default function Proposal2CardsView() {
         </p>
       </div>
 
-      {/* CONTENEDOR DE CARDS: IZQUIERDA INFO DINÁMICA (42%) / DERECHA FORMULARIO (58%) */}
-      <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-stretch mb-6 sm:mb-10 pt-5">
-        {/* PANEL IZQUIERDO: INFORMACIÓN SEGÚN LA OPCIÓN SELECCIONADA */}
-        <div className="w-full lg:w-[42%] bg-white rounded-3xl shadow-xl border border-[#E2E8F0] p-6 sm:p-8 lg:p-9 pt-10 sm:pt-11 relative flex flex-col justify-start">
-          {/* Badge morado en el tope */}
-          <div className="absolute -top-5 left-1/2 -translate-x-1/2 z-20">
-            <div className="bg-[#3C1053] text-white px-7 sm:px-9 py-2.5 rounded-2xl font-din text-[17px] sm:text-[18px] font-bold shadow-md tracking-wide whitespace-nowrap">
-              {!isApi ? 'Unirme al programa' : 'Conecta tu pagina web'}
-            </div>
-          </div>
+      {/* CONTENEDOR SPLIT: 46% PANEL IZQUIERDO CON DEGRADADO MORADO #48185A / 54% FORMULARIO */}
+      <div className="bg-white rounded-3xl shadow-xl border border-[#E2E8F0] overflow-hidden flex flex-col lg:flex-row min-h-[580px] lg:min-h-[640px] mb-6 sm:mb-10">
+        {/* PANEL IZQUIERDO: IMAGEN DIFUMINADA CON DEGRADADO MORADO #48185A + SELECTOR + CONTENIDO DINÁMICO */}
+        <div className="w-full lg:w-[46%] flex-shrink-0 relative p-6 sm:p-8 lg:p-9 text-white flex flex-col justify-between overflow-hidden min-h-[500px] lg:min-h-[640px]">
+          {/* Imagen de fondo difuminada dinámica según la opción seleccionada */}
+          <img
+            src={!isApi ? '/delivery-box.jpg' : '/ecommerce-sales.jpg'}
+            alt={!isApi ? 'Persona recibiendo paquete Starken' : 'Persona realizando ventas por internet'}
+            key={selectedOption}
+            className="absolute inset-0 w-full h-full object-cover object-center z-0 opacity-40 filter saturate-110"
+          />
 
-          {/* Título de la opción */}
-          <h2 className="font-din text-[23px] sm:text-[25px] lg:text-[27px] font-bold text-[#3C1053] text-center leading-tight mt-1 mb-2">
-            {!isApi ? 'Obten hasta un 20% de descuento' : 'Precios especiales por volumen'}
-          </h2>
+          {/* Degradado Morado #48185A */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#2D0B39]/94 via-[#48185A]/90 to-[#5C1E73]/85 z-1" />
 
-          {/* Subtítulo */}
-          <p className="font-nunito text-[14px] sm:text-[15px] text-[#666666] text-center mb-5 font-normal">
-            {!isApi ? 'Categorias' : 'Plataformas disponibles:'}
-          </p>
-
-          {/* Tags / Pills de Categorías o Plataformas */}
-          {!isApi ? (
-            <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mb-7">
-              {['Shopify', 'Montaña', 'Cordillera'].map((cat) => (
-                <span
-                  key={cat}
-                  className="px-5 py-1.5 rounded-full border border-[#C9AEE2] text-[#3C1053] font-nunito text-[14px] font-semibold bg-white shadow-xs"
-                >
-                  {cat}
-                </span>
-              ))}
-            </div>
-          ) : (
-            <div className="flex flex-col items-center gap-2 mb-7">
-              {/* Fila 1 */}
-              <div className="flex flex-wrap items-center justify-center gap-2">
-                {['Shopify', 'WooCommerce', 'Bsale*', 'VTEX'].map((p) => (
-                  <span
-                    key={p}
-                    className="px-3.5 py-1 rounded-full border border-[#C9AEE2] text-[#3C1053] font-nunito text-[13px] sm:text-[13.5px] font-semibold bg-white shadow-xs"
-                  >
-                    {p}
-                  </span>
-                ))}
-              </div>
-              {/* Fila 2 */}
-              <div className="flex flex-wrap items-center justify-center gap-2">
-                {['Magento', 'PrestaShop', 'Jumpseller*'].map((p) => (
-                  <span
-                    key={p}
-                    className="px-3.5 py-1 rounded-full border border-[#C9AEE2] text-[#3C1053] font-nunito text-[13px] sm:text-[13.5px] font-semibold bg-white shadow-xs"
-                  >
-                    {p}
-                  </span>
-                ))}
-              </div>
-              {/* Fila 3: API destacada en verde */}
-              <div className="flex justify-center mt-1">
-                <span className="px-6 py-1 rounded-full border-2 border-[#009D4E] text-[#009D4E] font-nunito text-[14px] font-bold bg-[#eafaf1]/40 shadow-xs">
-                  API
-                </span>
-              </div>
-            </div>
-          )}
-
-          {/* Lista de beneficios / características */}
-          <div className="w-full max-w-md mx-auto px-2 sm:px-4">
-            <ul className="space-y-3 sm:space-y-3.5">
-              {!isApi ? (
-                <>
-                  <li className="flex items-center gap-3 font-nunito text-[15px] sm:text-[16px] text-[#262626] font-medium leading-relaxed">
-                    <span className="w-2 h-2 rounded-full bg-[#262626] flex-shrink-0" />
-                    <span>Plan de difusión</span>
-                  </li>
-                  <li className="flex items-center gap-3 font-nunito text-[15px] sm:text-[16px] text-[#262626] font-medium leading-relaxed">
-                    <span className="w-2 h-2 rounded-full bg-[#262626] flex-shrink-0" />
-                    <span>Descuentos</span>
-                  </li>
-                  <li className="flex items-center gap-3 font-nunito text-[15px] sm:text-[16px] text-[#262626] font-medium leading-relaxed">
-                    <span className="w-2 h-2 rounded-full bg-[#262626] flex-shrink-0" />
-                    <span>Atencion preferencial en canales digitales</span>
-                  </li>
-                  <li className="flex items-center gap-3 font-nunito text-[15px] sm:text-[16px] text-[#262626] font-medium leading-relaxed">
-                    <span className="w-2 h-2 rounded-full bg-[#262626] flex-shrink-0" />
-                    <span>Retiro a domicilio a $3.490</span>
-                  </li>
-                  <li className="flex items-center gap-3 font-nunito text-[15px] sm:text-[16px] text-[#262626] font-medium leading-relaxed">
-                    <span className="w-2 h-2 rounded-full bg-[#262626] flex-shrink-0" />
-                    <span>Alianzas y beneficios</span>
-                  </li>
-                </>
-              ) : (
-                <>
-                  <li className="flex items-center gap-3 font-nunito text-[15px] sm:text-[16px] text-[#262626] font-medium leading-relaxed">
-                    <span className="w-2 h-2 rounded-full bg-[#262626] flex-shrink-0" />
-                    <span>Integración vía API</span>
-                  </li>
-                  <li className="flex items-center gap-3 font-nunito text-[15px] sm:text-[16px] text-[#262626] font-medium leading-relaxed">
-                    <span className="w-2 h-2 rounded-full bg-[#262626] flex-shrink-0" />
-                    <span>Atención personalizada</span>
-                  </li>
-                  <li className="flex items-center gap-3 font-nunito text-[15px] sm:text-[16px] text-[#262626] font-medium leading-relaxed">
-                    <span className="w-2 h-2 rounded-full bg-[#262626] flex-shrink-0" />
-                    <span>Retiros en tu tienda</span>
-                  </li>
-                  <li className="flex items-center gap-3 font-nunito text-[15px] sm:text-[16px] text-[#262626] font-medium leading-relaxed">
-                    <span className="w-2 h-2 rounded-full bg-[#262626] flex-shrink-0" />
-                    <span>Personaliza tu check out</span>
-                  </li>
-                </>
-              )}
-            </ul>
-          </div>
-        </div>
-
-        {/* PANEL DERECHO: FORMULARIO SOMOS PARTNER CON EL SELECTOR EN EL TOPE */}
-        <div className="w-full lg:w-[58%] bg-white rounded-3xl shadow-xl border border-[#E2E8F0] p-6 sm:p-8 lg:p-9 flex flex-col justify-between">
-          <div>
-            {/* SELECTOR DE OPCIÓN DE REGISTRO DENTRO DE LA CARD DE FORMULARIO */}
-            <div className="mb-6">
-              <label className="block font-nunito text-[16px] font-bold text-[#333333] mb-2.5 text-left">
+          {/* Contenido en primer plano sobre el degradado morado */}
+          <div className="relative z-10 flex flex-col justify-start h-full space-y-6">
+            {/* 1. SELECTOR DE OPCIÓN DE REGISTRO EN EL LADO IZQUIERDO */}
+            <div>
+              <label className="block text-xs sm:text-[13px] font-bold text-white/90 mb-2.5 text-left">
                 Selecciona opción de registro
               </label>
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {/* Opción 1: Solo Beneficios Soy Starken */}
                 <button
                   type="button"
                   onClick={() => setSelectedOption('benefits')}
-                  className={`py-3 px-5 rounded-2xl font-bold text-xs sm:text-sm transition-all duration-200 border-2 cursor-pointer flex items-center justify-between gap-3 shadow-xs ${
-                    selectedOption === 'benefits'
-                      ? 'border-[#009239] bg-white text-[#009239] shadow-sm ring-2 ring-[#009239]/15'
-                      : 'border-gray-200 bg-gray-50/80 hover:bg-white text-gray-700 hover:border-gray-300'
+                  className={`py-3 px-3.5 rounded-xl font-bold text-xs sm:text-[13px] transition-all duration-200 border-2 cursor-pointer flex items-center justify-between gap-2 shadow-xs ${
+                    !isApi
+                      ? 'border-[#F97316] bg-white text-[#48185A] shadow-md ring-2 ring-[#F97316]/30'
+                      : 'border-white/30 bg-white/10 hover:bg-white/20 text-white hover:border-white/50 backdrop-blur-xs'
                   }`}
                 >
-                  <div className="flex items-center gap-2.5">
+                  <div className="flex items-center gap-2">
                     <span
-                      className={`w-3 h-3 rounded-full ${
-                        selectedOption === 'benefits' ? 'bg-[#009239]' : 'bg-gray-300'
+                      className={`w-2.5 h-2.5 rounded-full ${
+                        !isApi ? 'bg-[#F97316]' : 'bg-white/40'
                       }`}
                     />
-                    <span className="text-[13.5px] sm:text-[14px] font-bold whitespace-nowrap">
+                    <span className="font-bold text-left leading-tight">
                       Solo Beneficios Soy Starken
                     </span>
                   </div>
-                  {selectedOption === 'benefits' && (
-                    <span className="w-4 h-4 rounded-full bg-[#009239] text-white flex items-center justify-center flex-shrink-0">
+                  {!isApi && (
+                    <span className="w-4 h-4 rounded-full bg-[#F97316] text-white flex items-center justify-center flex-shrink-0">
                       <Check className="w-3 h-3 stroke-[3]" />
                     </span>
                   )}
@@ -184,24 +82,24 @@ export default function Proposal2CardsView() {
                 <button
                   type="button"
                   onClick={() => setSelectedOption('api')}
-                  className={`py-3 px-5 rounded-2xl font-bold text-xs sm:text-sm transition-all duration-200 border-2 cursor-pointer flex items-center justify-between gap-3 shadow-xs ${
-                    selectedOption === 'api'
-                      ? 'border-[#009239] bg-white text-[#009239] shadow-sm ring-2 ring-[#009239]/15'
-                      : 'border-gray-200 bg-gray-50/80 hover:bg-white text-gray-700 hover:border-gray-300'
+                  className={`py-3 px-3.5 rounded-xl font-bold text-xs sm:text-[13px] transition-all duration-200 border-2 cursor-pointer flex items-center justify-between gap-2 shadow-xs ${
+                    isApi
+                      ? 'border-[#F97316] bg-white text-[#48185A] shadow-md ring-2 ring-[#F97316]/30'
+                      : 'border-white/30 bg-white/10 hover:bg-white/20 text-white hover:border-white/50 backdrop-blur-xs'
                   }`}
                 >
-                  <div className="flex items-center gap-2.5">
+                  <div className="flex items-center gap-2">
                     <span
-                      className={`w-3 h-3 rounded-full ${
-                        selectedOption === 'api' ? 'bg-[#009239]' : 'bg-gray-300'
+                      className={`w-2.5 h-2.5 rounded-full ${
+                        isApi ? 'bg-[#F97316]' : 'bg-white/40'
                       }`}
                     />
-                    <span className="text-[13.5px] sm:text-[14px] font-bold whitespace-nowrap">
+                    <span className="font-bold text-left leading-tight">
                       Beneficios + Integración API
                     </span>
                   </div>
-                  {selectedOption === 'api' && (
-                    <span className="w-4 h-4 rounded-full bg-[#009239] text-white flex items-center justify-center flex-shrink-0">
+                  {isApi && (
+                    <span className="w-4 h-4 rounded-full bg-[#F97316] text-white flex items-center justify-center flex-shrink-0">
                       <Check className="w-3 h-3 stroke-[3]" />
                     </span>
                   )}
@@ -209,6 +107,115 @@ export default function Proposal2CardsView() {
               </div>
             </div>
 
+            {/* 2. INFORMACIÓN CORRIDA HACIA ABAJO BAJO EL SELECTOR */}
+            <div className="pt-1 flex flex-col space-y-4">
+              {/* Título dinámico */}
+              <h2 className="font-din text-[23px] sm:text-[26px] font-bold text-white tracking-normal leading-tight drop-shadow-sm">
+                {!isApi ? 'Obten hasta un 20% de descuento' : 'Precios especiales por volumen'}
+              </h2>
+
+              {/* Subtítulo */}
+              <p className="font-nunito text-[14px] text-white/80 font-medium">
+                {!isApi ? 'Categorias' : 'Plataformas disponibles:'}
+              </p>
+
+              {/* Tags / Pills de Categorías o Plataformas */}
+              {!isApi ? (
+                <div className="flex flex-wrap items-center gap-2">
+                  {['Shopify', 'Montaña', 'Cordillera'].map((cat) => (
+                    <span
+                      key={cat}
+                      className="px-4 py-1.5 rounded-full border border-white/35 bg-white/15 backdrop-blur-xs text-white font-nunito text-[13.5px] font-semibold shadow-xs"
+                    >
+                      {cat}
+                    </span>
+                  ))}
+                </div>
+              ) : (
+                <div className="flex flex-col gap-2">
+                  {/* Fila 1 */}
+                  <div className="flex flex-wrap items-center gap-2">
+                    {['Shopify', 'WooCommerce', 'Bsale*', 'VTEX'].map((p) => (
+                      <span
+                        key={p}
+                        className="px-3 py-1 rounded-full border border-white/35 bg-white/15 backdrop-blur-xs text-white font-nunito text-[12.5px] font-semibold shadow-xs"
+                      >
+                        {p}
+                      </span>
+                    ))}
+                  </div>
+                  {/* Fila 2 */}
+                  <div className="flex flex-wrap items-center gap-2">
+                    {['Magento', 'PrestaShop', 'Jumpseller*'].map((p) => (
+                      <span
+                        key={p}
+                        className="px-3 py-1 rounded-full border border-white/35 bg-white/15 backdrop-blur-xs text-white font-nunito text-[12.5px] font-semibold shadow-xs"
+                      >
+                        {p}
+                      </span>
+                    ))}
+                    <span className="px-3.5 py-1 rounded-full border-2 border-[#F97316] bg-[#F97316] text-white font-nunito text-[13px] font-bold shadow-xs">
+                      API
+                    </span>
+                  </div>
+                </div>
+              )}
+
+              {/* Viñetas / Bullets */}
+              <div className="pt-2">
+                <ul className="space-y-3">
+                  {!isApi ? (
+                    <>
+                      <li className="flex items-center gap-3 font-nunito text-[15px] sm:text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
+                        <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
+                        <span>Plan de difusión</span>
+                      </li>
+                      <li className="flex items-center gap-3 font-nunito text-[15px] sm:text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
+                        <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
+                        <span>Descuentos</span>
+                      </li>
+                      <li className="flex items-center gap-3 font-nunito text-[15px] sm:text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
+                        <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
+                        <span>Atencion preferencial en canales digitales</span>
+                      </li>
+                      <li className="flex items-center gap-3 font-nunito text-[15px] sm:text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
+                        <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
+                        <span>Retiro a domicilio a $3.490</span>
+                      </li>
+                      <li className="flex items-center gap-3 font-nunito text-[15px] sm:text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
+                        <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
+                        <span>Alianzas y beneficios</span>
+                      </li>
+                    </>
+                  ) : (
+                    <>
+                      <li className="flex items-center gap-3 font-nunito text-[15px] sm:text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
+                        <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
+                        <span>Integración vía API</span>
+                      </li>
+                      <li className="flex items-center gap-3 font-nunito text-[15px] sm:text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
+                        <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
+                        <span>Atención personalizada</span>
+                      </li>
+                      <li className="flex items-center gap-3 font-nunito text-[15px] sm:text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
+                        <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
+                        <span>Retiros en tu tienda</span>
+                      </li>
+                      <li className="flex items-center gap-3 font-nunito text-[15px] sm:text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
+                        <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
+                        <span>Personaliza tu check out</span>
+                      </li>
+                    </>
+                  )}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* PANEL DERECHO: FORMULARIO SOMOS PARTNER */}
+        <div className="w-full lg:w-[54%] flex-grow p-6 sm:p-8 lg:p-9 flex flex-col justify-between bg-white relative min-h-[460px] lg:min-h-[640px]">
+          <div>
             {/* TÍTULO Y BAJADA DEL FORMULARIO SOMOS PARTNER */}
             <div className="border-b border-gray-100 pb-3 mb-4">
               <h3 className="font-din text-[24px] font-bold text-[#009D4E] leading-snug">
