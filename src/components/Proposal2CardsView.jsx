@@ -51,7 +51,7 @@ export default function Proposal2CardsView() {
                 Selecciona opción de registro
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                {/* Opción 1: Solo Beneficios Soy Starken */}
+                {/* Opción 1: Registrarme */}
                 <button
                   type="button"
                   onClick={() => setSelectedOption('benefits')}
@@ -68,7 +68,7 @@ export default function Proposal2CardsView() {
                       }`}
                     />
                     <span className="font-bold text-left leading-tight">
-                      Solo Beneficios Soy Starken
+                      Registrarme
                     </span>
                   </div>
                   {!isApi && (
@@ -78,7 +78,7 @@ export default function Proposal2CardsView() {
                   )}
                 </button>
 
-                {/* Opción 2: Beneficios + Integración API */}
+                {/* Opción 2: Registrarme + Integraciones */}
                 <button
                   type="button"
                   onClick={() => setSelectedOption('api')}
@@ -95,7 +95,7 @@ export default function Proposal2CardsView() {
                       }`}
                     />
                     <span className="font-bold text-left leading-tight">
-                      Beneficios + Integración API
+                      Registrarme + Integraciones
                     </span>
                   </div>
                   {isApi && (
