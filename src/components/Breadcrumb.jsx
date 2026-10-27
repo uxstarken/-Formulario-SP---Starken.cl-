@@ -1,7 +1,7 @@
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 
-export default function Breadcrumb({ items = [{ label: 'Inicio', href: '#' }, { label: 'Registro Soy Starken', active: true }] }) {
+export default function Breadcrumb({ items = [{ label: 'Inicio', href: '#' }, { label: 'Registro Somos Partner', active: true }] }) {
   return (
     <nav aria-label="Breadcrumb" className="w-full pb-4 sm:pb-6 font-['Nunito',sans-serif]">
       <ol className="flex items-center flex-wrap gap-2 text-[13px] sm:text-[14px]">

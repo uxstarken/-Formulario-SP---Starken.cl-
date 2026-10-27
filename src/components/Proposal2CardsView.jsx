@@ -14,14 +14,14 @@ export default function Proposal2CardsView() {
       <Breadcrumb
         items={[
           { label: 'Inicio', href: '#' },
-          { label: 'Registro Soy Starken', active: true }
+          { label: 'Registro Somos Partner', active: true }
         ]}
       />
 
       {/* SECCIÓN SUPERIOR: TÍTULO Y BAJADA */}
       <div className="mb-8">
-        <h1 className="font-din text-[30px] font-bold text-[#1a1a1a] tracking-tight leading-tight text-left">
-          Regístrate y sé parte de Soy Starken
+        <h1 className="font-din text-[30px] font-bold text-[#48185A] tracking-tight leading-tight text-left">
+          Regístrate y sé parte de Somos Partner
         </h1>
         <p className="font-nunito text-[16px] text-[#595959] text-left mt-1.5 font-normal leading-relaxed">
           Elige la opción que mejor se adapte a tu modelo de negocio y comienza a disfrutar de tarifas preferenciales.
