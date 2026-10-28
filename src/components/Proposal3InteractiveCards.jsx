@@ -33,7 +33,7 @@ export default function Proposal3InteractiveCards() {
   return (
     <div className="w-full font-nunito pb-12">
       {/* 1. BREADCRUMB */}
-      <div className="mb-4">
+      <div className="mb-1 sm:mb-2">
         <Breadcrumb
           items={[
             { label: 'Inicio', href: '#' },
@@ -43,7 +43,7 @@ export default function Proposal3InteractiveCards() {
       </div>
 
       {/* 2. ENCABEZADO PRINCIPAL CENTRADO (SEGÚN REFERENCIA) */}
-      <div className="text-center max-w-[840px] mx-auto mb-10 pt-1">
+      <div className="text-center max-w-[840px] mx-auto mb-8 sm:mb-9">
         <h1 className="font-din text-[28px] font-bold text-[#48185A] tracking-normal leading-tight mb-2">
           Unete al programa de pymes mas grande de Chile
         </h1>

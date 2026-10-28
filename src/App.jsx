@@ -18,7 +18,7 @@ export default function App() {
       />
 
       {/* Main Content: Renderiza directamente la Propuesta de Tarjetas Interactivas */}
-      <main className="flex-1 pt-3 sm:pt-4 pb-16 sm:pb-20 bg-gradient-to-b from-gray-50/50 to-white">
+      <main className="flex-1 pt-1.5 sm:pt-2 pb-16 sm:pb-20 bg-gradient-to-b from-gray-50/50 to-white">
         <div className="max-w-[1240px] mx-auto px-4 lg:px-8">
           <Proposal3InteractiveCards />
         </div>
