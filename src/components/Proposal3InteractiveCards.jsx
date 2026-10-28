@@ -76,13 +76,22 @@ export default function Proposal3InteractiveCards() {
 
       {/* 2. ENCABEZADO PRINCIPAL CENTRADO (SEGÚN REFERENCIA) */}
       <div className="text-center max-w-[840px] mx-auto mb-8 sm:mb-9">
-        <h1 className="font-din text-[28px] font-bold text-[#48185A] tracking-normal leading-tight mb-2">
+        <h1
+          className="font-din text-[22px] text-title-22 font-bold text-[#48185A] tracking-normal leading-tight mb-2"
+          style={{ fontSize: '22px' }}
+        >
           Unete al programa de pymes mas grande de Chile
         </h1>
-        <p className="font-nunito text-[16px] font-semibold text-[#303030] tracking-wide mb-2">
+        <p
+          className="font-nunito text-base text-[16px] text-bajada-16 font-semibold text-[#303030] tracking-wide mb-2"
+          style={{ fontSize: '16px' }}
+        >
           Y comienza a enviar tus pedidos con Starken
         </p>
-        <p className="font-nunito text-[16px] font-bold text-[#009239]">
+        <p
+          className="font-nunito text-base text-[16px] text-bajada-16 font-bold text-[#009239]"
+          style={{ fontSize: '16px' }}
+        >
           Conoce nuestras opciones
         </p>
 
