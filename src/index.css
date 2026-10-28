@@ -99,3 +99,9 @@ body {
   animation: fadeInOverlay 0.25s ease-out forwards;
 }
 
+.text-badge-12 {
+  font-size: 12px !important;
+  line-height: 1rem;
+}
+
+

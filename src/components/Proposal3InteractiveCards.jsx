@@ -146,7 +146,8 @@ export default function Proposal3InteractiveCards() {
               {['Colina', 'Montaña', 'Cordillera'].map((cat) => (
                 <span
                   key={cat}
-                  className="px-3.5 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-[12.5px] font-semibold shadow-2xs"
+                  style={{ fontSize: '12px' }}
+                  className="px-3 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-xs text-badge-12 font-semibold shadow-2xs"
                 >
                   {cat}
                 </span>
@@ -239,7 +240,8 @@ export default function Proposal3InteractiveCards() {
                 {['Shopify', 'WooCommerce', 'Bsale*', 'VTEX'].map((p) => (
                   <span
                     key={p}
-                    className="px-2.5 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-[12px] font-semibold shadow-2xs"
+                    style={{ fontSize: '12px' }}
+                    className="px-2.5 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-xs text-badge-12 font-semibold shadow-2xs"
                   >
                     {p}
                   </span>
@@ -249,7 +251,8 @@ export default function Proposal3InteractiveCards() {
                 {['Magento', 'PrestaShop', 'Jumpseller*'].map((p) => (
                   <span
                     key={p}
-                    className="px-2.5 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-[12px] font-semibold shadow-2xs"
+                    style={{ fontSize: '12px' }}
+                    className="px-2.5 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-xs text-badge-12 font-semibold shadow-2xs"
                   >
                     {p}
                   </span>
@@ -586,7 +589,7 @@ export default function Proposal3InteractiveCards() {
                           {['Shopify', 'WooCommerce', 'Bsale*', 'VTEX'].map((p) => (
                             <span
                               key={p}
-                              className="px-3 py-1 rounded-full border border-gray-200 bg-white text-[#48185A] font-nunito text-[12.5px] font-semibold shadow-2xs"
+                              className="px-3 py-1 rounded-full border border-gray-200 bg-white text-[#48185A] font-nunito text-xs sm:text-[13px] font-semibold shadow-2xs"
                             >
                               {p}
                             </span>
@@ -597,7 +600,7 @@ export default function Proposal3InteractiveCards() {
                           {['Magento', 'PrestaShop', 'Jumpseller*'].map((p) => (
                             <span
                               key={p}
-                              className="px-3 py-1 rounded-full border border-gray-200 bg-white text-[#48185A] font-nunito text-[12.5px] font-semibold shadow-2xs"
+                              className="px-3 py-1 rounded-full border border-gray-200 bg-white text-[#48185A] font-nunito text-xs sm:text-[13px] font-semibold shadow-2xs"
                             >
                               {p}
                             </span>
@@ -651,7 +654,7 @@ export default function Proposal3InteractiveCards() {
                   {['Shopify', 'WooCommerce', 'Bsale*', 'VTEX'].map((p) => (
                     <span
                       key={p}
-                      className="px-3 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-[12.5px] font-semibold shadow-2xs"
+                      className="px-3 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-xs sm:text-[13px] font-semibold shadow-2xs"
                     >
                       {p}
                     </span>
@@ -662,7 +665,7 @@ export default function Proposal3InteractiveCards() {
                   {['Magento', 'PrestaShop', 'Jumpseller*'].map((p) => (
                     <span
                       key={p}
-                      className="px-3 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-[12.5px] font-semibold shadow-2xs"
+                      className="px-3 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-xs sm:text-[13px] font-semibold shadow-2xs"
                     >
                       {p}
                     </span>
