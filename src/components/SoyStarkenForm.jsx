@@ -1,19 +1,116 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { ALL_COMMUNES } from '../data/communes';
 import { validateRut, formatRut, isValidUrl } from '../utils/rutValidator';
 import { CheckCircle2, ChevronDown, Check } from 'lucide-react';
 
 const ECOMMERCE_PLATFORMS = [
-  'Woocomerce',
   'Shopify',
-  'Jumpseller',
+  'WooCommerce',
   'Bsale',
+  'Jumpseller',
   'Prestashop',
   'Magento',
   'Vtex',
   'WordPress',
   'Otra'
 ];
+
+// Dropdown estilizado con línea selectora en tono morado suave (#FAF5FC / #F3E8F7)
+function CustomDropdown({ value, onChange, onBlur, options, placeholder, hasError, searchable = false }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [search, setSearch] = useState('');
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (containerRef.current && !containerRef.current.contains(e.target)) {
+        if (isOpen) {
+          setIsOpen(false);
+          if (onBlur) onBlur();
+        }
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isOpen, onBlur]);
+
+  const filteredOptions = searchable && search
+    ? options.filter((o) => o.toLowerCase().includes(search.toLowerCase()))
+    : options;
+
+  return (
+    <div ref={containerRef} className={`relative w-full ${isOpen ? 'z-30' : 'z-10'}`}>
+      <button
+        type="button"
+        onClick={() => {
+          setIsOpen(!isOpen);
+          if (isOpen && onBlur) onBlur();
+        }}
+        className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] bg-white border outline-none flex items-center justify-between text-left transition-colors cursor-pointer ${
+          hasError
+            ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f] text-[#ff4d4f]'
+            : isOpen
+            ? 'border-[#48185A] ring-2 ring-[#48185A]/15'
+            : !value
+            ? 'border-[#d9d9d9] hover:border-[#b3b3b3] text-[#757575]'
+            : 'border-[#d9d9d9] hover:border-[#b3b3b3] text-[#333333]'
+        }`}
+      >
+        <span className="truncate">{value || placeholder}</span>
+        <ChevronDown
+          className={`w-4 h-4 text-[#999999] transition-transform duration-200 flex-shrink-0 ml-2 ${
+            isOpen ? 'rotate-180 text-[#48185A]' : ''
+          }`}
+        />
+      </button>
+
+      {isOpen && (
+        <div className="absolute top-full left-0 right-0 mt-1.5 bg-white rounded-xl border border-[#48185A]/20 shadow-xl max-h-60 overflow-y-auto z-50 py-1.5 animate-fadeIn">
+          {searchable && (
+            <div className="p-2 border-b border-gray-100 sticky top-0 bg-white z-10">
+              <input
+                type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Buscar comuna..."
+                className="w-full px-3 py-1.5 text-xs font-nunito rounded-lg border border-gray-200 outline-none focus:border-[#48185A]"
+                onClick={(e) => e.stopPropagation()}
+                autoFocus
+              />
+            </div>
+          )}
+          {filteredOptions.length === 0 ? (
+            <div className="px-3.5 py-3 text-xs text-gray-400 font-nunito text-center">
+              No se encontraron opciones
+            </div>
+          ) : (
+            filteredOptions.map((opt) => {
+              const isSelected = value === opt;
+              return (
+                <div
+                  key={opt}
+                  onClick={() => {
+                    onChange(opt);
+                    setIsOpen(false);
+                    setSearch('');
+                  }}
+                  className={`px-3.5 py-2.5 font-nunito text-[14px] cursor-pointer transition-colors duration-100 flex items-center justify-between ${
+                    isSelected
+                      ? 'bg-[#F3E8F7] text-[#48185A] font-bold'
+                      : 'text-[#333333] hover:bg-[#FAF5FC] hover:text-[#48185A]'
+                  }`}
+                >
+                  <span>{opt}</span>
+                  {isSelected && <Check className="w-4 h-4 text-[#48185A] flex-shrink-0" />}
+                </div>
+              );
+            })
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted }) {
   const isApi = optionType === 'api';
@@ -312,30 +409,15 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
               <label className="block font-nunito text-[16px] font-semibold text-[#333333] mb-1.5">
                 <span className="text-[#ff4d4f] font-bold mr-1">*</span> Comuna
               </label>
-              <div className="relative">
-                <select
-                  value={form1.comuna}
-                  onChange={(e) => handleForm1Change('comuna', e.target.value)}
-                  onBlur={() => handleBlur('comuna')}
-                  className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] bg-white border outline-none appearance-none pr-10 cursor-pointer transition-colors ${
-                    showError('comuna')
-                      ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f] text-[#ff4d4f]'
-                      : !form1.comuna
-                      ? 'border-[#d9d9d9] text-[#757575] focus:border-[#009239]'
-                      : 'border-[#d9d9d9] text-[#333333] focus:border-[#009239]'
-                  }`}
-                >
-                  <option value="">Selecciona una comuna</option>
-                  {ALL_COMMUNES.map((comuna) => (
-                    <option key={comuna} value={comuna} className="font-nunito text-[14px] text-[#333333]">
-                      {comuna}
-                    </option>
-                  ))}
-                </select>
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#999999]">
-                  <ChevronDown className="w-4 h-4" />
-                </div>
-              </div>
+              <CustomDropdown
+                value={form1.comuna}
+                onChange={(val) => handleForm1Change('comuna', val)}
+                onBlur={() => handleBlur('comuna')}
+                options={ALL_COMMUNES}
+                placeholder="Selecciona una comuna"
+                hasError={Boolean(showError('comuna'))}
+                searchable={true}
+              />
               {showError('comuna') && (
                 <p className="font-nunito text-xs text-[#ff4d4f] mt-1 font-normal">{errors1.comuna}</p>
               )}
@@ -437,30 +519,14 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
             <label className="block font-nunito text-[16px] font-semibold text-[#333333] mb-1.5">
               <span className="text-[#ff4d4f] font-bold mr-1">*</span> Plataforma de ecommerce
             </label>
-            <div className="relative">
-              <select
-                value={form2.plataforma}
-                onChange={(e) => handleForm2Change('plataforma', e.target.value)}
-                onBlur={() => handleBlur('plataforma')}
-                className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] bg-white border outline-none appearance-none pr-10 cursor-pointer transition-colors ${
-                  showError('plataforma')
-                    ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f] text-[#ff4d4f]'
-                    : !form2.plataforma
-                    ? 'border-[#d9d9d9] text-[#757575] focus:border-[#009239]'
-                    : 'border-[#d9d9d9] text-[#333333] focus:border-[#009239]'
-                }`}
-              >
-                <option value="">Selecciona tu plataforma</option>
-                {ECOMMERCE_PLATFORMS.map((plat) => (
-                  <option key={plat} value={plat} className="font-nunito text-[14px] text-[#333333]">
-                    {plat}
-                  </option>
-                ))}
-              </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#999999]">
-                <ChevronDown className="w-4 h-4" />
-              </div>
-            </div>
+            <CustomDropdown
+              value={form2.plataforma}
+              onChange={(val) => handleForm2Change('plataforma', val)}
+              onBlur={() => handleBlur('plataforma')}
+              options={ECOMMERCE_PLATFORMS}
+              placeholder="Selecciona tu plataforma"
+              hasError={Boolean(showError('plataforma'))}
+            />
             {showError('plataforma') && (
               <p className="font-nunito text-xs text-[#ff4d4f] mt-1 font-normal">{errors2.plataforma}</p>
             )}
