@@ -30,18 +30,8 @@ export default function Proposal2CardsView() {
 
       {/* CONTENEDOR SPLIT: 46% PANEL IZQUIERDO CON DEGRADADO MORADO #48185A / 54% FORMULARIO */}
       <div className="bg-white rounded-3xl shadow-xl border border-[#E2E8F0] overflow-hidden flex flex-col lg:flex-row mb-6 sm:mb-10">
-        {/* PANEL IZQUIERDO: IMAGEN DIFUMINADA CON DEGRADADO MORADO #48185A + SELECTOR + CONTENIDO DINÁMICO */}
-        <div className="w-full lg:w-[46%] flex-shrink-0 relative p-6 sm:p-7 lg:p-8 text-white flex flex-col justify-start overflow-hidden">
-          {/* Imagen de fondo difuminada dinámica según la opción seleccionada */}
-          <img
-            src={!isApi ? '/delivery-box.jpg' : '/ecommerce-sales.jpg'}
-            alt={!isApi ? 'Persona recibiendo paquete Starken' : 'Persona realizando ventas por internet'}
-            key={selectedOption}
-            className="absolute inset-0 w-full h-full object-cover object-center z-0 opacity-40 filter saturate-110"
-          />
-
-          {/* Degradado Morado #48185A */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#2D0B39]/94 via-[#48185A]/90 to-[#5C1E73]/85 z-1" />
+        {/* PANEL IZQUIERDO: DEGRADADO MORADO #48185A + SELECTOR + CONTENIDO DINÁMICO */}
+        <div className="w-full lg:w-[46%] flex-shrink-0 relative p-6 sm:p-7 lg:p-8 text-white flex flex-col justify-start overflow-hidden bg-gradient-to-br from-[#2D0B39] via-[#48185A] to-[#5C1E73]">
 
           {/* Contenido en primer plano sobre el degradado morado */}
           <div className="relative z-10 flex flex-col justify-start h-full space-y-5">

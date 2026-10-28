@@ -22,16 +22,7 @@ export default function Proposal1DropdownView() {
       {/* 2. CARD UNIFICADO: BANNER SUPERIOR + FORMULARIO DE REGISTRO EN UN SOLO CONTORNO */}
       <div className="bg-white rounded-2xl sm:rounded-3xl shadow-lg border border-gray-200/90 overflow-hidden mb-10">
         {/* Cabecera: Banner con degradado morado #48185A y contenido dinámico */}
-        <div className="relative overflow-hidden">
-          {/* Fotografía de fondo dinámica */}
-          <img
-            src={selectedOption === 'benefits' ? '/delivery-box.jpg' : '/ecommerce-sales.jpg'}
-            alt={selectedOption === 'benefits' ? 'Entrega de paquete Starken' : 'Ventas por internet ecommerce'}
-            key={selectedOption}
-            className="absolute inset-0 w-full h-full object-cover object-center z-0 opacity-40 filter saturate-110"
-          />
-          {/* Degradado morado #48185A sobre la imagen */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#2D0B39]/94 via-[#48185A]/90 to-[#5C1E73]/85 z-1" />
+        <div className="relative overflow-hidden bg-gradient-to-r from-[#2D0B39] via-[#48185A] to-[#5C1E73]">
 
           {/* Contenido del Banner: Estructurado en cuadrícula fija para evitar saltos y dar espacio a la lista */}
           <div className="relative z-10 px-6 py-6 sm:px-9 sm:py-7 text-white grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center min-h-[195px]">
