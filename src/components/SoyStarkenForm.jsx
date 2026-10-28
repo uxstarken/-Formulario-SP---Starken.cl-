@@ -131,6 +131,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
     tieneWeb: 'si',
     paginaWeb: '',
     plataforma: '',
+    otraPlataforma: '',
     correo: '',
     celular: '',
     terminos: false
@@ -140,9 +141,37 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
   const [submitted, setSubmitted] = useState(false);
   const [success, setSuccess] = useState(false);
 
+  // Prevenir tecleo de números en nombre
+  const handleNameKeyDown = (e) => {
+    if (/^[0-9]$/.test(e.key)) {
+      e.preventDefault();
+    }
+  };
+
+  // Prevenir tecleo de letras o caracteres especiales en celular (solo permitir 0-9 y controles)
+  const handleNumericKeyDown = (e) => {
+    if (
+      ['Backspace', 'Delete', 'Tab', 'Escape', 'Enter', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(e.key) ||
+      e.ctrlKey || e.metaKey
+    ) {
+      return;
+    }
+    if (!/^[0-9]$/.test(e.key)) {
+      e.preventDefault();
+    }
+  };
+
   // Form 1 Handlers
   const handleForm1Change = (field, val) => {
-    setForm1((prev) => ({ ...prev, [field]: val }));
+    let finalVal = val;
+    if (field === 'nombre') {
+      // No se permiten números en el campo nombre
+      finalVal = val.replace(/[0-9]/g, '');
+    } else if (field === 'celular') {
+      // Solo numérico, sin letras ni símbolos, máximo 9 dígitos
+      finalVal = val.replace(/\D/g, '').slice(0, 9);
+    }
+    setForm1((prev) => ({ ...prev, [field]: finalVal }));
   };
 
   // Form 2 Handlers
@@ -150,7 +179,11 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
     let finalVal = val;
     if (field === 'rut') {
       finalVal = formatRut(val);
+    } else if (field === 'celular') {
+      // Solo numérico, sin letras ni símbolos, máximo 9 dígitos
+      finalVal = val.replace(/\D/g, '').slice(0, 9);
     }
+    // En razonSocial sí se pueden ingresar números, se mantiene sin filtro
     setForm2((prev) => ({ ...prev, [field]: finalVal }));
   };
 
@@ -160,9 +193,12 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
 
   // Validations for Option 1 (Solo Beneficios)
   const errors1 = {};
-  if (!form1.nombre.trim()) {
+  const cleanNombre1 = form1.nombre.trim();
+  if (!cleanNombre1) {
     errors1.nombre = 'Ingrese un nombre válido.';
-  } else if (form1.nombre.trim().length < 3) {
+  } else if (/\d/.test(cleanNombre1)) {
+    errors1.nombre = 'El nombre no puede contener números.';
+  } else if (cleanNombre1.length < 3) {
     errors1.nombre = 'Ingrese un nombre válido.';
   }
 
@@ -172,7 +208,9 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
   }
 
   const digits1 = form1.celular.replace(/\D/g, '');
-  if (!digits1 || digits1.length < 8) {
+  if (!digits1) {
+    errors1.celular = 'Ingrese un número de teléfono válido.';
+  } else if (digits1.length < 8) {
     errors1.celular = 'Ingrese un número de teléfono válido.';
   }
 
@@ -207,6 +245,8 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
 
     if (!form2.plataforma) {
       errors2.plataforma = 'Seleccione su plataforma de ecommerce.';
+    } else if (form2.plataforma === 'Otra' && !form2.otraPlataforma.trim()) {
+      errors2.otraPlataforma = 'Ingrese el nombre de su plataforma.';
     }
   }
 
@@ -215,7 +255,9 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
   }
 
   const digits2 = form2.celular.replace(/\D/g, '');
-  if (!digits2 || digits2.length < 8) {
+  if (!digits2) {
+    errors2.celular = 'Ingrese un número de teléfono válido (ej: 912345678).';
+  } else if (digits2.length < 8) {
     errors2.celular = 'Ingrese un número de teléfono válido (ej: 912345678).';
   }
 
@@ -240,6 +282,9 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
       if (form2.tieneWeb === 'si') {
         touchedFields.paginaWeb = true;
         touchedFields.plataforma = true;
+        if (form2.plataforma === 'Otra') {
+          touchedFields.otraPlataforma = true;
+        }
       }
       setTouched(touchedFields);
     } else {
@@ -274,6 +319,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
       tieneWeb: 'si',
       paginaWeb: '',
       plataforma: '',
+      otraPlataforma: '',
       correo: '',
       celular: '',
       terminos: false
@@ -298,7 +344,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
                 <>
                   {' '}con integración web para la tienda{' '}
                   <span className="text-[#009239] font-semibold">{form2.paginaWeb}</span>{' '}
-                  ({form2.plataforma || 'E-commerce'}).
+                  ({form2.plataforma === 'Otra' ? (form2.otraPlataforma || 'Otra') : (form2.plataforma || 'E-commerce')}).
                 </>
               ) : (
                 ' con integración y beneficios personalizados.'
@@ -339,6 +385,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
               <input
                 type="text"
                 value={form1.nombre}
+                onKeyDown={handleNameKeyDown}
                 onChange={(e) => handleForm1Change('nombre', e.target.value)}
                 onBlur={() => handleBlur('nombre')}
                 placeholder="Escribe tu nombre"
@@ -382,8 +429,11 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
               </label>
               <input
                 type="tel"
+                inputMode="numeric"
+                pattern="[0-9]*"
                 maxLength={9}
                 value={form1.celular}
+                onKeyDown={handleNumericKeyDown}
                 onChange={(e) => handleForm1Change('celular', e.target.value)}
                 onBlur={() => handleBlur('celular')}
                 placeholder="Ingresa n° de teléfono"
@@ -584,7 +634,12 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
                 </label>
                 <CustomDropdown
                   value={form2.plataforma}
-                  onChange={(val) => handleForm2Change('plataforma', val)}
+                  onChange={(val) => {
+                    handleForm2Change('plataforma', val);
+                    if (val !== 'Otra') {
+                      handleForm2Change('otraPlataforma', '');
+                    }
+                  }}
                   onBlur={() => handleBlur('plataforma')}
                   options={ECOMMERCE_PLATFORMS}
                   placeholder="Selecciona tu plataforma"
@@ -592,6 +647,30 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
                 />
                 {showError('plataforma') && (
                   <p className="font-nunito text-xs text-[#ff4d4f] mt-1 font-normal">{errors2.plataforma}</p>
+                )}
+
+                {/* Si selecciona "Otra", aparece abajo el input para especificar la plataforma */}
+                {form2.plataforma === 'Otra' && (
+                  <div className="mt-3.5 animate-fadeIn">
+                    <label className="block font-nunito text-[16px] font-semibold text-[#333333] mb-1.5">
+                      <span className="text-[#ff4d4f] font-bold mr-1">*</span> Tu plataforma
+                    </label>
+                    <input
+                      type="text"
+                      value={form2.otraPlataforma}
+                      onChange={(e) => handleForm2Change('otraPlataforma', e.target.value)}
+                      onBlur={() => handleBlur('otraPlataforma')}
+                      placeholder="Nombre de tu plataforma"
+                      className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] ${
+                        showError('otraPlataforma')
+                          ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
+                          : 'border-[#d9d9d9] hover:border-[#b3b3b3] focus:border-[#009239]'
+                      }`}
+                    />
+                    {showError('otraPlataforma') && (
+                      <p className="font-nunito text-xs text-[#ff4d4f] mt-1 font-normal">{errors2.otraPlataforma}</p>
+                    )}
+                  </div>
                 )}
               </div>
             </>
@@ -626,8 +705,11 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
             </label>
             <input
               type="tel"
+              inputMode="numeric"
+              pattern="[0-9]*"
               maxLength={9}
               value={form2.celular}
+              onKeyDown={handleNumericKeyDown}
               onChange={(e) => handleForm2Change('celular', e.target.value)}
               onBlur={() => handleBlur('celular')}
               placeholder="912345678"
