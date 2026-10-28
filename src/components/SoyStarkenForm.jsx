@@ -524,7 +524,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
                 }`}
               >
                 <span
-                  className={`w-4 h-4 rounded-full border transition-colors flex-shrink-0 ${
+                  className={`w-3 h-3 rounded-full border transition-colors flex-shrink-0 ${
                     form2.tieneWeb === 'si'
                       ? 'border-white bg-[#F97316]'
                       : 'border-gray-400 bg-white'
@@ -543,7 +543,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
                 }`}
               >
                 <span
-                  className={`w-4 h-4 rounded-full border transition-colors flex-shrink-0 ${
+                  className={`w-3 h-3 rounded-full border transition-colors flex-shrink-0 ${
                     form2.tieneWeb === 'no'
                       ? 'border-white bg-[#F97316]'
                       : 'border-gray-400 bg-white'
