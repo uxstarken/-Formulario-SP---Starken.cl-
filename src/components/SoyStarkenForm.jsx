@@ -524,14 +524,12 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
                 }`}
               >
                 <span
-                  className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${
+                  className={`w-4 h-4 rounded-full border transition-colors flex-shrink-0 ${
                     form2.tieneWeb === 'si'
-                      ? 'border-white bg-[#009239]'
+                      ? 'border-white bg-[#F97316]'
                       : 'border-gray-400 bg-white'
                   }`}
-                >
-                  {form2.tieneWeb === 'si' && <Check className="w-2.5 h-2.5 text-white stroke-[3.5]" />}
-                </span>
+                />
                 <span>Sí</span>
               </button>
 
@@ -545,14 +543,12 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
                 }`}
               >
                 <span
-                  className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${
+                  className={`w-4 h-4 rounded-full border transition-colors flex-shrink-0 ${
                     form2.tieneWeb === 'no'
-                      ? 'border-white bg-[#009239]'
+                      ? 'border-white bg-[#F97316]'
                       : 'border-gray-400 bg-white'
                   }`}
-                >
-                  {form2.tieneWeb === 'no' && <Check className="w-2.5 h-2.5 text-white stroke-[3.5]" />}
-                </span>
+                />
                 <span>No</span>
               </button>
             </div>
