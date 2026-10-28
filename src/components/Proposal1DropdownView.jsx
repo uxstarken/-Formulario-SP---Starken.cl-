@@ -147,10 +147,10 @@ export default function Proposal1DropdownView() {
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6 pb-5 border-b border-gray-100">
             {/* Título y bajada del Formulario */}
             <div>
-              <h2 className="font-din text-[23px] sm:text-[25px] font-bold text-[#48185A] leading-snug">
+              <h2 className="font-din text-[24px] font-bold text-[#48185A] leading-snug">
                 Formulario de registro Somos Partner
               </h2>
-              <p className="font-nunito text-[14px] sm:text-[15px] text-gray-500 mt-0.5 font-normal">
+              <p className="font-nunito text-[16px] text-gray-500 mt-0.5 font-normal">
                 Completa la información requerida para dar de alta tu negocio en Starken.
               </p>
             </div>
