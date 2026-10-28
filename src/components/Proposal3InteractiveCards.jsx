@@ -68,100 +68,147 @@ export default function Proposal3InteractiveCards() {
           }}
         >
           {/* Badge superior flotante */}
-          <div className="flex justify-center -mt-10 sm:-mt-11 mb-3">
+          <div className="flex justify-center -mt-10 sm:-mt-11 mb-4">
             <span className="px-6 py-2 rounded-xl bg-[#48185A] text-white font-nunito font-bold text-[14px] shadow-md tracking-wide select-none">
               Unirme al programa
             </span>
           </div>
 
-          {/* Título de la tarjeta */}
-          <h2 className="font-din text-[24px] font-bold text-[#2b2e2c] text-center mb-1 leading-snug">
-            Obten hasta un 20% de descuento
-          </h2>
-
-          {/* Subtítulo Categorías */}
-          <p className="font-nunito text-[14px] text-gray-500 font-medium text-center mb-2.5">
-            Categorias
-          </p>
-
-          {/* Chips de Categorías */}
-          <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
-            {['Shopify', 'Montaña', 'Cordillera'].map((cat) => (
-              <span
-                key={cat}
-                className="px-4 py-1.5 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-[13px] font-semibold shadow-2xs"
-              >
-                {cat}
-              </span>
-            ))}
-          </div>
-
-          {/* Lista de Viñetas Punteadas (Nunito 16px) */}
-          <ul className="space-y-3 mb-6">
-            <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-              <span>Plan de difusión</span>
-            </li>
-            <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-              <span>Descuentos</span>
-            </li>
-            <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-              <span>Atencion preferencial en canales digitales</span>
-            </li>
-            <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-              <span>Retiro a domicilio a $3.490</span>
-            </li>
-            <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-              <span>Alianzas y beneficios</span>
-            </li>
-          </ul>
-
-          {/* CASO A: SI ESTÁ SELECCIONADA -> CARGA EL FORMULARIO IN-PLACE Y EL BOTÓN ES "ENVIAR" */}
+          {/* CASO A: SI ESTÁ SELECCIONADA -> FORMULARIO ARRIBA Y RESTO DE DETALLES ABAJO */}
           {selectedCard === 'benefits' ? (
-            <div className="pt-6 mt-2 border-t border-gray-100 animate-fadeIn">
-              <div className="mb-6 flex items-center justify-between pb-3 border-b border-gray-100">
-                <div>
-                  <h3 className="font-din text-[22px] font-bold text-[#48185A]">
-                    Formulario de registro Somos Partner
-                  </h3>
-                  <p className="font-nunito text-[14px] text-gray-500 mt-0.5">
-                    Completa la información requerida para dar de alta tu negocio en Starken.
-                  </p>
+            <div className="w-full animate-fadeIn">
+              {/* 1. FORMULARIO ARRIBA */}
+              <div className="mb-8">
+                <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-gray-100">
+                  <div>
+                    <h3 className="font-din text-[24px] font-bold text-[#48185A]">
+                      Formulario de registro Somos Partner
+                    </h3>
+                    <p className="font-nunito text-[16px] text-gray-500 mt-1">
+                      Completa la información requerida para dar de alta tu negocio en Starken.
+                    </p>
+                  </div>
+                  <div className="self-start sm:self-auto flex items-center gap-1.5 text-xs font-bold text-[#009239] bg-[#eafaf1] px-3 py-1 rounded-full flex-shrink-0">
+                    <CheckCircle2 className="w-4 h-4" />
+                    <span>Opción Activa</span>
+                  </div>
                 </div>
-                <div className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-[#009239] bg-[#eafaf1] px-3 py-1 rounded-full">
-                  <CheckCircle2 className="w-4 h-4" />
-                  <span>Opción Activa</span>
-                </div>
+                <SoyStarkenForm optionType="benefits" />
               </div>
-              <SoyStarkenForm optionType="benefits" />
+
+              {/* 2. RESTO DE DETALLES ABAJO */}
+              <div className="pt-8 border-t border-gray-200">
+                <h4 className="font-din text-[24px] font-bold text-[#2b2e2c] text-center mb-1 leading-snug">
+                  Obten hasta un 20% de descuento
+                </h4>
+                <p className="font-nunito text-[14px] text-gray-500 font-medium text-center mb-2.5">
+                  Categorias
+                </p>
+                <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
+                  {['Shopify', 'Montaña', 'Cordillera'].map((cat) => (
+                    <span
+                      key={cat}
+                      className="px-4 py-1.5 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-[13px] font-semibold shadow-2xs"
+                    >
+                      {cat}
+                    </span>
+                  ))}
+                </div>
+                <ul className="space-y-3 max-w-[520px] mx-auto">
+                  <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                    <span>Plan de difusión</span>
+                  </li>
+                  <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                    <span>Descuentos</span>
+                  </li>
+                  <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                    <span>Atencion preferencial en canales digitales</span>
+                  </li>
+                  <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                    <span>Retiro a domicilio a $3.490</span>
+                  </li>
+                  <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                    <span>Alianzas y beneficios</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           ) : (
-            /* CASO B: SI NO ESTÁ SELECCIONADA -> MUESTRA EL BOTÓN DE SELECCIÓN INICIAL */
-            <div className="pt-4 mt-auto">
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setSelectedCard('benefits');
-                }}
-                className="w-full py-3.5 px-6 rounded-xl bg-[#009239] hover:bg-[#007a2f] active:bg-[#006326] text-white font-bold text-[15px] shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer text-center"
-              >
-                Crea tu cuenta
-              </button>
-              <p
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setSelectedCard('benefits');
-                }}
-                className="text-center font-nunito text-[13px] text-[#48185A] font-bold mt-2.5 cursor-pointer hover:underline"
-              >
-                Y empieza a enviar hoy
+            /* CASO B: SI NO ESTÁ SELECCIONADA -> MUESTRA DETALLES Y BOTÓN DE SELECCIÓN */
+            <>
+              {/* Título de la tarjeta */}
+              <h2 className="font-din text-[24px] font-bold text-[#2b2e2c] text-center mb-1 leading-snug">
+                Obten hasta un 20% de descuento
+              </h2>
+
+              {/* Subtítulo Categorías */}
+              <p className="font-nunito text-[14px] text-gray-500 font-medium text-center mb-2.5">
+                Categorias
               </p>
-            </div>
+
+              {/* Chips de Categorías */}
+              <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
+                {['Shopify', 'Montaña', 'Cordillera'].map((cat) => (
+                  <span
+                    key={cat}
+                    className="px-4 py-1.5 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-[13px] font-semibold shadow-2xs"
+                  >
+                    {cat}
+                  </span>
+                ))}
+              </div>
+
+              {/* Lista de Viñetas Punteadas (Nunito 16px) */}
+              <ul className="space-y-3 mb-6">
+                <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                  <span>Plan de difusión</span>
+                </li>
+                <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                  <span>Descuentos</span>
+                </li>
+                <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                  <span>Atencion preferencial en canales digitales</span>
+                </li>
+                <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                  <span>Retiro a domicilio a $3.490</span>
+                </li>
+                <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                  <span>Alianzas y beneficios</span>
+                </li>
+              </ul>
+
+              <div className="pt-4 mt-auto">
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedCard('benefits');
+                  }}
+                  className="w-full py-3.5 px-6 rounded-xl bg-[#009239] hover:bg-[#007a2f] active:bg-[#006326] text-white font-bold text-[15px] shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer text-center"
+                >
+                  Crea tu cuenta
+                </button>
+                <p
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedCard('benefits');
+                  }}
+                  className="text-center font-nunito text-[13px] text-[#48185A] font-bold mt-2.5 cursor-pointer hover:underline"
+                >
+                  Y empieza a enviar hoy
+                </p>
+              </div>
+            </>
           )}
         </div>
 
@@ -183,113 +230,173 @@ export default function Proposal3InteractiveCards() {
           }}
         >
           {/* Badge superior flotante */}
-          <div className="flex justify-center -mt-10 sm:-mt-11 mb-3">
+          <div className="flex justify-center -mt-10 sm:-mt-11 mb-4">
             <span className="px-6 py-2 rounded-xl bg-[#48185A] text-white font-nunito font-bold text-[14px] shadow-md tracking-wide select-none">
               Conecta tu pagina web
             </span>
           </div>
 
-          {/* Título de la tarjeta */}
-          <h2 className="font-din text-[24px] font-bold text-[#2b2e2c] text-center mb-1 leading-snug">
-            Precios especiales por volumen
-          </h2>
-
-          {/* Subtítulo Plataformas disponibles */}
-          <p className="font-nunito text-[14px] text-gray-500 font-medium text-center mb-2.5">
-            Plataformas disponibles:
-          </p>
-
-          {/* Chips de Plataformas disponibles (En 2 filas según lineamientos) */}
-          <div className="flex flex-col items-center gap-2 mb-6">
-            {/* Fila 1 */}
-            <div className="flex flex-wrap items-center justify-center gap-2">
-              {['Shopify', 'WooCommerce', 'Bsale*', 'VTEX'].map((p) => (
-                <span
-                  key={p}
-                  className="px-3 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-[12.5px] font-semibold shadow-2xs"
-                >
-                  {p}
-                </span>
-              ))}
-            </div>
-            {/* Fila 2 */}
-            <div className="flex flex-wrap items-center justify-center gap-2">
-              {['Magento', 'PrestaShop', 'Jumpseller*'].map((p) => (
-                <span
-                  key={p}
-                  className="px-3 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-[12.5px] font-semibold shadow-2xs"
-                >
-                  {p}
-                </span>
-              ))}
-              <span className="px-3.5 py-1 rounded-full border-2 border-[#F97316] bg-[#F97316] text-white font-nunito text-[12.5px] font-bold shadow-2xs">
-                API
-              </span>
-            </div>
-          </div>
-
-          {/* Lista de Viñetas Punteadas (Nunito 16px) */}
-          <ul className="space-y-3 mb-6">
-            <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-              <span>Integración vía API</span>
-            </li>
-            <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-              <span>Atención personalizada</span>
-            </li>
-            <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-              <span>Retiros en tu tienda</span>
-            </li>
-            <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-              <span>Personaliza tu check out</span>
-            </li>
-          </ul>
-
-          {/* CASO A: SI ESTÁ SELECCIONADA -> CARGA EL FORMULARIO IN-PLACE Y EL BOTÓN ES "ENVIAR" */}
+          {/* CASO A: SI ESTÁ SELECCIONADA -> FORMULARIO ARRIBA Y RESTO DE DETALLES ABAJO */}
           {selectedCard === 'api' ? (
-            <div className="pt-6 mt-2 border-t border-gray-100 animate-fadeIn">
-              <div className="mb-6 flex items-center justify-between pb-3 border-b border-gray-100">
-                <div>
-                  <h3 className="font-din text-[22px] font-bold text-[#48185A]">
-                    Formulario de integración ecommerce
-                  </h3>
-                  <p className="font-nunito text-[14px] text-gray-500 mt-0.5">
-                    Completa los datos de tu empresa y plataforma web.
-                  </p>
+            <div className="w-full animate-fadeIn">
+              {/* 1. FORMULARIO ARRIBA */}
+              <div className="mb-8">
+                <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-gray-100">
+                  <div>
+                    <h3 className="font-din text-[24px] font-bold text-[#48185A]">
+                      Formulario de integración ecommerce
+                    </h3>
+                    <p className="font-nunito text-[16px] text-gray-500 mt-1">
+                      Completa los datos de tu empresa y plataforma web.
+                    </p>
+                  </div>
+                  <div className="self-start sm:self-auto flex items-center gap-1.5 text-xs font-bold text-[#009239] bg-[#eafaf1] px-3 py-1 rounded-full flex-shrink-0">
+                    <CheckCircle2 className="w-4 h-4" />
+                    <span>Opción Activa</span>
+                  </div>
                 </div>
-                <div className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-[#009239] bg-[#eafaf1] px-3 py-1 rounded-full">
-                  <CheckCircle2 className="w-4 h-4" />
-                  <span>Opción Activa</span>
-                </div>
+                <SoyStarkenForm optionType="api" />
               </div>
-              <SoyStarkenForm optionType="api" />
+
+              {/* 2. RESTO DE DETALLES ABAJO */}
+              <div className="pt-8 border-t border-gray-200">
+                <h4 className="font-din text-[24px] font-bold text-[#2b2e2c] text-center mb-1 leading-snug">
+                  Precios especiales por volumen
+                </h4>
+                <p className="font-nunito text-[14px] text-gray-500 font-medium text-center mb-2.5">
+                  Plataformas disponibles:
+                </p>
+                <div className="flex flex-col items-center gap-2 mb-6">
+                  {/* Fila 1 */}
+                  <div className="flex flex-wrap items-center justify-center gap-2">
+                    {['Shopify', 'WooCommerce', 'Bsale*', 'VTEX'].map((p) => (
+                      <span
+                        key={p}
+                        className="px-3 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-[12.5px] font-semibold shadow-2xs"
+                      >
+                        {p}
+                      </span>
+                    ))}
+                  </div>
+                  {/* Fila 2 */}
+                  <div className="flex flex-wrap items-center justify-center gap-2">
+                    {['Magento', 'PrestaShop', 'Jumpseller*'].map((p) => (
+                      <span
+                        key={p}
+                        className="px-3 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-[12.5px] font-semibold shadow-2xs"
+                      >
+                        {p}
+                      </span>
+                    ))}
+                    <span className="px-3.5 py-1 rounded-full border-2 border-[#F97316] bg-[#F97316] text-white font-nunito text-[12.5px] font-bold shadow-2xs">
+                      API
+                    </span>
+                  </div>
+                </div>
+                <ul className="space-y-3 max-w-[520px] mx-auto">
+                  <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                    <span>Integración vía API</span>
+                  </li>
+                  <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                    <span>Atención personalizada</span>
+                  </li>
+                  <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                    <span>Retiros en tu tienda</span>
+                  </li>
+                  <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                    <span>Personaliza tu check out</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           ) : (
-            /* CASO B: SI NO ESTÁ SELECCIONADA -> MUESTRA EL BOTÓN DE SELECCIÓN INICIAL */
-            <div className="pt-4 mt-auto">
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setSelectedCard('api');
-                }}
-                className="w-full py-3.5 px-6 rounded-xl bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white font-bold text-[15px] shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer text-center"
-              >
-                Escribe a un ejecutivo
-              </button>
-              <p
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setSelectedCard('api');
-                }}
-                className="text-center font-nunito text-[12.5px] text-gray-500 underline mt-2.5 cursor-pointer hover:text-gray-700"
-              >
-                *Para estos ecommerce debes contactar con un ejecutivo
+            /* CASO B: SI NO ESTÁ SELECCIONADA -> MUESTRA DETALLES Y BOTÓN DE SELECCIÓN */
+            <>
+              {/* Título de la tarjeta */}
+              <h2 className="font-din text-[24px] font-bold text-[#2b2e2c] text-center mb-1 leading-snug">
+                Precios especiales por volumen
+              </h2>
+
+              {/* Subtítulo Plataformas disponibles */}
+              <p className="font-nunito text-[14px] text-gray-500 font-medium text-center mb-2.5">
+                Plataformas disponibles:
               </p>
-            </div>
+
+              {/* Chips de Plataformas disponibles (En 2 filas según lineamientos) */}
+              <div className="flex flex-col items-center gap-2 mb-6">
+                {/* Fila 1 */}
+                <div className="flex flex-wrap items-center justify-center gap-2">
+                  {['Shopify', 'WooCommerce', 'Bsale*', 'VTEX'].map((p) => (
+                    <span
+                      key={p}
+                      className="px-3 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-[12.5px] font-semibold shadow-2xs"
+                    >
+                      {p}
+                    </span>
+                  ))}
+                </div>
+                {/* Fila 2 */}
+                <div className="flex flex-wrap items-center justify-center gap-2">
+                  {['Magento', 'PrestaShop', 'Jumpseller*'].map((p) => (
+                    <span
+                      key={p}
+                      className="px-3 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-[12.5px] font-semibold shadow-2xs"
+                    >
+                      {p}
+                    </span>
+                  ))}
+                  <span className="px-3.5 py-1 rounded-full border-2 border-[#F97316] bg-[#F97316] text-white font-nunito text-[12.5px] font-bold shadow-2xs">
+                    API
+                  </span>
+                </div>
+              </div>
+
+              {/* Lista de Viñetas Punteadas (Nunito 16px) */}
+              <ul className="space-y-3 mb-6">
+                <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                  <span>Integración vía API</span>
+                </li>
+                <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                  <span>Atención personalizada</span>
+                </li>
+                <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                  <span>Retiros en tu tienda</span>
+                </li>
+                <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                  <span>Personaliza tu check out</span>
+                </li>
+              </ul>
+
+              <div className="pt-4 mt-auto">
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedCard('api');
+                  }}
+                  className="w-full py-3.5 px-6 rounded-xl bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white font-bold text-[15px] shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer text-center"
+                >
+                  Escribe a un ejecutivo
+                </button>
+                <p
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedCard('api');
+                  }}
+                  className="text-center font-nunito text-[12.5px] text-gray-500 underline mt-2.5 cursor-pointer hover:text-gray-700"
+                >
+                  *Para estos ecommerce debes contactar con un ejecutivo
+                </p>
+              </div>
+            </>
           )}
         </div>
       </div>
