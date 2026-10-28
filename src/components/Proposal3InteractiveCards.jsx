@@ -156,23 +156,23 @@ export default function Proposal3InteractiveCards() {
 
             {/* Lista de Viñetas Punteadas */}
             <ul className="space-y-2.5 mb-5 flex-1">
-              <li className="flex items-center gap-2.5 font-nunito text-[15px] text-[#2b2e2c] font-medium leading-relaxed">
+              <li className="flex items-center gap-2.5 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
                 <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
                 <span>Plan de difusión</span>
               </li>
-              <li className="flex items-center gap-2.5 font-nunito text-[15px] text-[#2b2e2c] font-medium leading-relaxed">
+              <li className="flex items-center gap-2.5 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
                 <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
                 <span>Descuentos</span>
               </li>
-              <li className="flex items-center gap-2.5 font-nunito text-[15px] text-[#2b2e2c] font-medium leading-relaxed">
+              <li className="flex items-center gap-2.5 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
                 <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
                 <span>Atencion preferencial en canales digitales</span>
               </li>
-              <li className="flex items-center gap-2.5 font-nunito text-[15px] text-[#2b2e2c] font-medium leading-relaxed">
+              <li className="flex items-center gap-2.5 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
                 <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
                 <span>Retiro a domicilio a $3.490</span>
               </li>
-              <li className="flex items-center gap-2.5 font-nunito text-[15px] text-[#2b2e2c] font-medium leading-relaxed">
+              <li className="flex items-center gap-2.5 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
                 <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
                 <span>Alianzas y beneficios</span>
               </li>
@@ -262,19 +262,19 @@ export default function Proposal3InteractiveCards() {
 
             {/* Lista de Viñetas Punteadas */}
             <ul className="space-y-2.5 mb-5 flex-1">
-              <li className="flex items-center gap-2.5 font-nunito text-[15px] text-[#2b2e2c] font-medium leading-relaxed">
+              <li className="flex items-center gap-2.5 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
                 <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
                 <span>Integración vía API</span>
               </li>
-              <li className="flex items-center gap-2.5 font-nunito text-[15px] text-[#2b2e2c] font-medium leading-relaxed">
+              <li className="flex items-center gap-2.5 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
                 <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
                 <span>Atención personalizada</span>
               </li>
-              <li className="flex items-center gap-2.5 font-nunito text-[15px] text-[#2b2e2c] font-medium leading-relaxed">
+              <li className="flex items-center gap-2.5 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
                 <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
                 <span>Retiros en tu tienda</span>
               </li>
-              <li className="flex items-center gap-2.5 font-nunito text-[15px] text-[#2b2e2c] font-medium leading-relaxed">
+              <li className="flex items-center gap-2.5 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
                 <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
                 <span>Personaliza tu check out</span>
               </li>
