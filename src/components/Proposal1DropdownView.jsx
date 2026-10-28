@@ -147,7 +147,7 @@ export default function Proposal1DropdownView() {
             </div>
 
             {/* Pestañas de Opciones destacadas horizontalmente a la altura del título */}
-            <div className="flex-shrink-0 flex items-center gap-2 p-1.5 bg-[#FAF5FC] rounded-2xl border-2 border-[#48185A]/25 shadow-sm">
+            <div className="flex-shrink-0 flex items-center gap-2 p-1.5 bg-[#FAF5FC] rounded-2xl border-2 border-[#48185A]/25 shadow-sm -translate-y-1.5 sm:-translate-y-2">
               {/* Opción 1: Registrarme */}
               <button
                 type="button"
