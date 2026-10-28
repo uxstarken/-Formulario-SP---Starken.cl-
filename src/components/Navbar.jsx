@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { HelpCircle, ChevronDown, Menu, X } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { HelpCircle, ChevronDown, ChevronRight, Menu, X } from 'lucide-react';
 
 export default function Navbar({ onOpenForm, activeSegment = 'Emprendedores', onSelectSegment }) {
   const [currentSegment, setCurrentSegment] = useState(activeSegment);
@@ -12,35 +12,47 @@ export default function Navbar({ onOpenForm, activeSegment = 'Emprendedores', on
     if (onSelectSegment) onSelectSegment(seg);
   };
 
+  // Bloquear scroll de la página de fondo cuando el menú móvil esté abierto
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <header className="sticky top-0 z-50 w-full bg-white shadow-xs font-['Nunito',sans-serif]">
       {/* 1. TOP BAR CORPORATIVA (#303030) */}
-      <div className="bg-[#303030] text-white px-4 lg:px-12 h-10 flex items-center justify-between text-[13px] font-medium select-none">
-        {/* Segmentos de clientes */}
-        <div className="flex items-center space-x-1 sm:space-x-3 h-full overflow-x-auto no-scrollbar">
+      <div className="bg-[#303030] text-white px-3 sm:px-4 lg:px-12 h-10 flex items-center justify-between text-[13px] font-medium select-none">
+        {/* Segmentos de clientes: distribuidos en mobile, alineados a la izquierda en desktop */}
+        <div className="flex items-center justify-between md:justify-start w-full md:w-auto space-x-1 sm:space-x-3 h-full overflow-x-auto no-scrollbar">
           {segments.map((seg) => {
             const isActive = currentSegment === seg;
             return (
               <button
                 key={seg}
                 onClick={() => handleSegmentClick(seg)}
-                className={`h-full px-3 sm:px-4 flex items-center relative transition-colors duration-150 cursor-pointer text-xs sm:text-[13px] ${
+                className={`h-full px-2 sm:px-4 flex items-center relative transition-colors duration-150 cursor-pointer text-xs sm:text-[13px] whitespace-nowrap ${
                   isActive
                     ? 'text-white font-bold'
-                    : 'text-gray-300 hover:text-white opacity-80 hover:opacity-100'
+                    : 'text-gray-300 hover:text-white opacity-85 hover:opacity-100'
                 }`}
               >
                 {seg}
                 {isActive && (
-                  <span className="absolute bottom-0 left-2 right-2 h-[3px] bg-[#029E47] rounded-t-sm" />
+                  <span className="absolute bottom-0 left-1 right-1 sm:left-2 sm:right-2 h-[3px] bg-[#009D4E] rounded-t-sm" />
                 )}
               </button>
             );
           })}
         </div>
 
-        {/* Centro de Ayuda */}
-        <div className="flex items-center">
+        {/* Centro de Ayuda: SOLO visible en Desktop/Tablet, en Mobile pasa dentro del menú hamburguesa */}
+        <div className="hidden md:flex items-center">
           <a
             href="https://starken.cl"
             target="_blank"
@@ -61,12 +73,12 @@ export default function Navbar({ onOpenForm, activeSegment = 'Emprendedores', on
             <img
               src="/logo.png"
               alt="Starken"
-              className="h-12 w-auto object-contain"
+              className="h-10 sm:h-12 w-auto object-contain"
             />
           </a>
         </div>
 
-        {/* Links de navegación centrales */}
+        {/* Links de navegación centrales (Desktop) */}
         <nav className="hidden md:flex items-center gap-8 text-[14px] text-[#444444] font-medium">
           <div className="relative group cursor-pointer flex items-center gap-1 hover:text-[#029E47] transition-colors">
             <span>Envíos</span>
@@ -83,8 +95,8 @@ export default function Navbar({ onOpenForm, activeSegment = 'Emprendedores', on
           </a>
         </nav>
 
-        {/* Botón Ingresar */}
-        <div className="hidden sm:flex items-center">
+        {/* Botón Ingresar (Desktop) */}
+        <div className="hidden md:flex items-center">
           <button
             type="button"
             className="bg-[#009D4E] hover:bg-[#008743] active:bg-[#007439] text-white px-8 py-2.5 rounded-xl font-bold text-[14px] shadow-sm transition-all duration-150 cursor-pointer min-w-[130px] text-center"
@@ -96,23 +108,78 @@ export default function Navbar({ onOpenForm, activeSegment = 'Emprendedores', on
         {/* Hamburger Mobile */}
         <div className="flex md:hidden items-center">
           <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 text-gray-700 hover:text-[#009D4E] focus:outline-none cursor-pointer"
+            onClick={() => setIsMobileMenuOpen(true)}
+            className="p-2 text-[#2b2e2c] hover:text-[#009D4E] focus:outline-none cursor-pointer"
+            aria-label="Abrir menú"
           >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            <Menu className="w-7 h-7 stroke-[2]" />
           </button>
         </div>
       </div>
 
-      {/* Menú Mobile Desplegable */}
+      {/* 3. MENÚ MOBILE OVERLAY SEGÚN DISEÑO DE REFERENCIA */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100 px-6 py-4 space-y-3 shadow-lg">
-          <a href="#" className="block py-2 text-sm font-semibold text-gray-800 hover:text-[#009D4E]">Envíos</a>
-          <a href="#" className="block py-2 text-sm font-semibold text-gray-800 hover:text-[#009D4E]">Puntos red Starken</a>
-          <a href="#" className="block py-2 text-sm font-semibold text-gray-800 hover:text-[#009D4E]">Servicios</a>
-          <a href="#" className="block py-2 text-sm font-semibold text-gray-800 hover:text-[#009D4E]">Tarifas</a>
-          <div className="pt-2">
-            <button className="w-full bg-[#009D4E] text-white py-2.5 rounded-xl font-bold text-sm">
+        <div className="fixed inset-0 z-50 bg-white flex flex-col p-6 overflow-y-auto animate-fadeIn md:hidden">
+          {/* Header con Logo y botón de cerrar X */}
+          <div className="flex items-center justify-between mb-8">
+            <a href="#" onClick={(e) => { e.preventDefault(); setIsMobileMenuOpen(false); }}>
+              <img
+                src="/logo.png"
+                alt="Starken"
+                className="h-10 w-auto object-contain"
+              />
+            </a>
+            <button
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="p-2 text-[#2b2e2c] hover:text-[#009D4E] transition-colors cursor-pointer"
+              aria-label="Cerrar menú"
+            >
+              <X className="w-7 h-7 stroke-[2.2]" />
+            </button>
+          </div>
+
+          {/* Tarjetas de navegación */}
+          <div className="space-y-3">
+            {['Envíos', 'Puntos red Starken', 'Servicios', 'Tarifas'].map((item) => (
+              <a
+                key={item}
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                }}
+                className="flex items-center justify-between px-5 py-4 bg-[#FAFAFA] hover:bg-[#F2F2F2] border border-gray-200/80 rounded-2xl text-[#2b2e2c] font-medium text-[15.5px] transition-colors"
+              >
+                <span>{item}</span>
+                <ChevronRight className="w-4 h-4 text-gray-400 stroke-[2.2]" />
+              </a>
+            ))}
+          </div>
+
+          {/* Separador fino */}
+          <div className="border-t border-gray-200/80 my-7" />
+
+          {/* Centro de Ayuda (icono circular verde con signo de interrogación) */}
+          <div className="mb-6">
+            <a
+              href="https://starken.cl"
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center gap-3.5 text-[#2b2e2c] hover:text-[#009D4E] transition-colors font-medium text-[15.5px]"
+            >
+              <HelpCircle className="w-6 h-6 text-[#009D4E] stroke-[2.2] flex-shrink-0" />
+              <span>Centro de ayuda</span>
+            </a>
+          </div>
+
+          {/* Botón Ingresar grande con bordes redondeados completos (rounded-full) */}
+          <div className="mt-auto pt-4">
+            <button
+              type="button"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="w-full bg-[#009D4E] hover:bg-[#008743] active:bg-[#007439] text-white py-3.5 rounded-full font-bold text-[16px] shadow-md transition-all text-center cursor-pointer"
+            >
               Ingresar
             </button>
           </div>
@@ -121,3 +188,4 @@ export default function Navbar({ onOpenForm, activeSegment = 'Emprendedores', on
     </header>
   );
 }
+
