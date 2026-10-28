@@ -315,9 +315,6 @@ export default function Proposal3InteractiveCards() {
                               {p}
                             </span>
                           ))}
-                          <span className="px-3.5 py-1 rounded-full border-2 border-[#F97316] bg-[#F97316] text-white font-nunito text-[12.5px] font-bold shadow-2xs">
-                            API
-                          </span>
                         </div>
                       </div>
                     </div>
@@ -383,9 +380,6 @@ export default function Proposal3InteractiveCards() {
                       {p}
                     </span>
                   ))}
-                  <span className="px-3.5 py-1 rounded-full border-2 border-[#F97316] bg-[#F97316] text-white font-nunito text-[12.5px] font-bold shadow-2xs">
-                    API
-                  </span>
                 </div>
               </div>
 

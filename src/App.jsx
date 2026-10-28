@@ -1,37 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Proposal1DropdownView from './components/Proposal1DropdownView';
-import Proposal2CardsView from './components/Proposal2CardsView';
 import Proposal3InteractiveCards from './components/Proposal3InteractiveCards';
-import ProposalSwitcher from './components/ProposalSwitcher';
 
 export default function App() {
-  // 1 = Dropdown proposal, 2 = Cards proposal, 3 = Interactive comparative cards
-  const [activeProposal, setActiveProposal] = useState(3);
-
-  // Asegurar que cada vez que se cambie de propuesta, la página cargue desde el top superior
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-  }, [activeProposal]);
-
-  const handleSelectProposal = (proposal) => {
-    setActiveProposal(proposal);
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-  };
-
   const handleScrollToForm = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <div className="min-h-screen flex flex-col bg-[#ffffff] font-['Nunito',sans-serif] text-[#2b2e2c] relative">
-      {/* Botón Flotante Discreto P1, P2 y P3 */}
-      <ProposalSwitcher
-        activeProposal={activeProposal}
-        onSelectProposal={handleSelectProposal}
-      />
-
       {/* Navbar Oficial Starken */}
       <Navbar
         onOpenForm={handleScrollToForm}
@@ -39,12 +17,10 @@ export default function App() {
         onGoHome={handleScrollToForm}
       />
 
-      {/* Main Content: Renderiza directamente la propuesta activa */}
-      <main className={`flex-1 ${activeProposal === 1 ? 'pt-1.5 sm:pt-2 pb-10 sm:pb-14' : activeProposal === 2 ? 'pt-2 sm:pt-2.5 pb-16 sm:pb-24 lg:pb-28' : 'pt-3 sm:pt-4 pb-16 sm:pb-20'} bg-gradient-to-b from-gray-50/50 to-white`}>
+      {/* Main Content: Renderiza directamente la Propuesta de Tarjetas Interactivas */}
+      <main className="flex-1 pt-3 sm:pt-4 pb-16 sm:pb-20 bg-gradient-to-b from-gray-50/50 to-white">
         <div className="max-w-[1240px] mx-auto px-4 lg:px-8">
-          {activeProposal === 1 && <Proposal1DropdownView />}
-          {activeProposal === 2 && <Proposal2CardsView />}
-          {activeProposal === 3 && <Proposal3InteractiveCards />}
+          <Proposal3InteractiveCards />
         </div>
       </main>
 
@@ -53,3 +29,4 @@ export default function App() {
     </div>
   );
 }
+

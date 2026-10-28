@@ -128,6 +128,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
   const [form2, setForm2] = useState({
     razonSocial: '',
     rut: '',
+    tieneWeb: 'si',
     paginaWeb: '',
     plataforma: '',
     correo: '',
@@ -186,7 +187,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
   // Validations for Option 2 (Beneficios + Integración API)
   const errors2 = {};
   if (!form2.razonSocial.trim()) {
-    errors2.razonSocial = 'Ingrese nombre o razón social.';
+    errors2.razonSocial = 'Ingrese razón social.';
   } else if (form2.razonSocial.trim().length < 3) {
     errors2.razonSocial = 'Ingrese al menos 3 caracteres.';
   }
@@ -197,14 +198,16 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
     errors2.rut = 'RUT inválido. Ejemplo: 12345678-9';
   }
 
-  if (!form2.paginaWeb.trim()) {
-    errors2.paginaWeb = 'Ingrese una página web válida.';
-  } else if (!isValidUrl(form2.paginaWeb)) {
-    errors2.paginaWeb = 'Ingrese una URL válida (ej: www.ejemplo.cl).';
-  }
+  if (form2.tieneWeb === 'si') {
+    if (!form2.paginaWeb.trim()) {
+      errors2.paginaWeb = 'Ingrese una página web válida.';
+    } else if (!isValidUrl(form2.paginaWeb)) {
+      errors2.paginaWeb = 'Ingrese una URL válida (ej: www.ejemplo.cl).';
+    }
 
-  if (!form2.plataforma) {
-    errors2.plataforma = 'Seleccione su plataforma de ecommerce.';
+    if (!form2.plataforma) {
+      errors2.plataforma = 'Seleccione su plataforma de ecommerce.';
+    }
   }
 
   if (!form2.correo.trim() || !emailRegex.test(form2.correo)) {
@@ -227,15 +230,18 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
     setSubmitted(true);
 
     if (isApi) {
-      setTouched({
+      const touchedFields = {
         razonSocial: true,
         rut: true,
-        paginaWeb: true,
-        plataforma: true,
         correo: true,
         celular: true,
         terminos: true
-      });
+      };
+      if (form2.tieneWeb === 'si') {
+        touchedFields.paginaWeb = true;
+        touchedFields.plataforma = true;
+      }
+      setTouched(touchedFields);
     } else {
       setTouched({
         nombre: true,
@@ -265,6 +271,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
     setForm2({
       razonSocial: '',
       rut: '',
+      tieneWeb: 'si',
       paginaWeb: '',
       plataforma: '',
       correo: '',
@@ -286,8 +293,17 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
         <p className="text-sm text-gray-600 mb-6 leading-relaxed">
           {isApi ? (
             <>
-              Hemos recibido la solicitud para <strong>{form2.razonSocial}</strong> con integración API para la tienda{' '}
-              <span className="text-[#009239] font-semibold">{form2.paginaWeb}</span> ({form2.plataforma}). Nuestro equipo técnico se pondrá en contacto a la brevedad.
+              Hemos recibido la solicitud para <strong>{form2.razonSocial}</strong>
+              {form2.tieneWeb === 'si' && form2.paginaWeb ? (
+                <>
+                  {' '}con integración web para la tienda{' '}
+                  <span className="text-[#009239] font-semibold">{form2.paginaWeb}</span>{' '}
+                  ({form2.plataforma || 'E-commerce'}).
+                </>
+              ) : (
+                ' con integración y beneficios personalizados.'
+              )}{' '}
+              Nuestro equipo se pondrá en contacto a la brevedad.
             </>
           ) : (
             <>
@@ -447,17 +463,17 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
       {isApi && (
         <div className="flex flex-col justify-between min-h-[390px]">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-3.5">
-          {/* 1. Nombre o razón social * */}
+          {/* 1. Razón social * */}
           <div>
             <label className="block font-nunito text-[16px] font-semibold text-[#333333] mb-1.5">
-              <span className="text-[#ff4d4f] font-bold mr-1">*</span> Nombre o razón social
+              <span className="text-[#ff4d4f] font-bold mr-1">*</span> Razón social
             </label>
             <input
               type="text"
               value={form2.razonSocial}
               onChange={(e) => handleForm2Change('razonSocial', e.target.value)}
               onBlur={() => handleBlur('razonSocial')}
-              placeholder="nombre y apellido"
+              placeholder="Ej: Inversiones y Servicios SpA"
               className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] ${
                 showError('razonSocial')
                   ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
@@ -469,10 +485,10 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
             )}
           </div>
 
-          {/* 2. RUT * */}
+          {/* 2. Rut empresa * */}
           <div>
             <label className="block font-nunito text-[16px] font-semibold text-[#333333] mb-1.5">
-              <span className="text-[#ff4d4f] font-bold mr-1">*</span> RUT
+              <span className="text-[#ff4d4f] font-bold mr-1">*</span> Rut empresa
             </label>
             <input
               type="text"
@@ -492,45 +508,98 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
             )}
           </div>
 
-          {/* 3. Página web * */}
-          <div>
-            <label className="block font-nunito text-[16px] font-semibold text-[#333333] mb-1.5">
-              <span className="text-[#ff4d4f] font-bold mr-1">*</span> Página web
+          {/* 3. ¿Cuentas con página web o ecommerce? */}
+          <div className="col-span-1 md:col-span-2 py-1">
+            <label className="block font-nunito text-[16px] font-semibold text-[#333333] mb-2">
+              <span className="text-[#ff4d4f] font-bold mr-1">*</span> ¿Cuentas con página web o ecommerce?
             </label>
-            <input
-              type="text"
-              value={form2.paginaWeb}
-              onChange={(e) => handleForm2Change('paginaWeb', e.target.value)}
-              onBlur={() => handleBlur('paginaWeb')}
-              placeholder="www.ejemplo.cl"
-              className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] ${
-                showError('paginaWeb')
-                  ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
-                  : 'border-[#d9d9d9] hover:border-[#b3b3b3] focus:border-[#009239]'
-              }`}
-            />
-            {showError('paginaWeb') && (
-              <p className="font-nunito text-xs text-[#ff4d4f] mt-1 font-normal">{errors2.paginaWeb}</p>
-            )}
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                type="button"
+                onClick={() => handleForm2Change('tieneWeb', 'si')}
+                className={`px-5 py-2 rounded-xl border text-[14px] font-nunito font-bold flex items-center gap-2.5 transition-all duration-150 cursor-pointer ${
+                  form2.tieneWeb === 'si'
+                    ? 'bg-[#48185A] border-[#48185A] text-white shadow-sm'
+                    : 'bg-white border-gray-200 text-[#333333] hover:border-[#48185A]/40 hover:bg-[#FAF5FC]'
+                }`}
+              >
+                <span
+                  className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${
+                    form2.tieneWeb === 'si'
+                      ? 'border-white bg-[#009239]'
+                      : 'border-gray-400 bg-white'
+                  }`}
+                >
+                  {form2.tieneWeb === 'si' && <Check className="w-2.5 h-2.5 text-white stroke-[3.5]" />}
+                </span>
+                <span>Sí</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => handleForm2Change('tieneWeb', 'no')}
+                className={`px-5 py-2 rounded-xl border text-[14px] font-nunito font-bold flex items-center gap-2.5 transition-all duration-150 cursor-pointer ${
+                  form2.tieneWeb === 'no'
+                    ? 'bg-[#48185A] border-[#48185A] text-white shadow-sm'
+                    : 'bg-white border-gray-200 text-[#333333] hover:border-[#48185A]/40 hover:bg-[#FAF5FC]'
+                }`}
+              >
+                <span
+                  className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${
+                    form2.tieneWeb === 'no'
+                      ? 'border-white bg-[#009239]'
+                      : 'border-gray-400 bg-white'
+                  }`}
+                >
+                  {form2.tieneWeb === 'no' && <Check className="w-2.5 h-2.5 text-white stroke-[3.5]" />}
+                </span>
+                <span>No</span>
+              </button>
+            </div>
           </div>
 
-          {/* 4. Plataforma de ecommerce * */}
-          <div>
-            <label className="block font-nunito text-[16px] font-semibold text-[#333333] mb-1.5">
-              <span className="text-[#ff4d4f] font-bold mr-1">*</span> Plataforma de ecommerce
-            </label>
-            <CustomDropdown
-              value={form2.plataforma}
-              onChange={(val) => handleForm2Change('plataforma', val)}
-              onBlur={() => handleBlur('plataforma')}
-              options={ECOMMERCE_PLATFORMS}
-              placeholder="Selecciona tu plataforma"
-              hasError={Boolean(showError('plataforma'))}
-            />
-            {showError('plataforma') && (
-              <p className="font-nunito text-xs text-[#ff4d4f] mt-1 font-normal">{errors2.plataforma}</p>
-            )}
-          </div>
+          {/* 4. Página web * y 5. Plataforma de ecommerce * (Solo se despliegan si tieneWeb === 'si') */}
+          {form2.tieneWeb === 'si' && (
+            <>
+              <div>
+                <label className="block font-nunito text-[16px] font-semibold text-[#333333] mb-1.5">
+                  <span className="text-[#ff4d4f] font-bold mr-1">*</span> Página web
+                </label>
+                <input
+                  type="text"
+                  value={form2.paginaWeb}
+                  onChange={(e) => handleForm2Change('paginaWeb', e.target.value)}
+                  onBlur={() => handleBlur('paginaWeb')}
+                  placeholder="www.ejemplo.cl"
+                  className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] ${
+                    showError('paginaWeb')
+                      ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
+                      : 'border-[#d9d9d9] hover:border-[#b3b3b3] focus:border-[#009239]'
+                  }`}
+                />
+                {showError('paginaWeb') && (
+                  <p className="font-nunito text-xs text-[#ff4d4f] mt-1 font-normal">{errors2.paginaWeb}</p>
+                )}
+              </div>
+
+              <div>
+                <label className="block font-nunito text-[16px] font-semibold text-[#333333] mb-1.5">
+                  <span className="text-[#ff4d4f] font-bold mr-1">*</span> Plataforma de ecommerce
+                </label>
+                <CustomDropdown
+                  value={form2.plataforma}
+                  onChange={(val) => handleForm2Change('plataforma', val)}
+                  onBlur={() => handleBlur('plataforma')}
+                  options={ECOMMERCE_PLATFORMS}
+                  placeholder="Selecciona tu plataforma"
+                  hasError={Boolean(showError('plataforma'))}
+                />
+                {showError('plataforma') && (
+                  <p className="font-nunito text-xs text-[#ff4d4f] mt-1 font-normal">{errors2.plataforma}</p>
+                )}
+              </div>
+            </>
+          )}
 
           {/* 5. Correo * */}
           <div>
