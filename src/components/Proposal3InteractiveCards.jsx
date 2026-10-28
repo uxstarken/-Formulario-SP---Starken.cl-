@@ -198,15 +198,6 @@ export default function Proposal3InteractiveCards() {
                 >
                   Crea tu cuenta
                 </button>
-                <p
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSelectedCard('benefits');
-                  }}
-                  className="text-center font-nunito text-[13px] text-[#48185A] font-bold mt-2.5 cursor-pointer hover:underline"
-                >
-                  Y empieza a enviar hoy
-                </p>
               </div>
             </>
           )}
