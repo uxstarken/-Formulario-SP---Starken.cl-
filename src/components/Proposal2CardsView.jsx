@@ -166,42 +166,42 @@ export default function Proposal2CardsView() {
                 <ul className="space-y-3">
                   {!isApi ? (
                     <>
-                      <li className="flex items-center gap-3 font-nunito text-[15px] sm:text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
+                      <li className="flex items-center gap-3 font-nunito text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
                         <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
                         <span>Plan de difusión</span>
                       </li>
-                      <li className="flex items-center gap-3 font-nunito text-[15px] sm:text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
+                      <li className="flex items-center gap-3 font-nunito text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
                         <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
                         <span>Descuentos</span>
                       </li>
-                      <li className="flex items-center gap-3 font-nunito text-[15px] sm:text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
+                      <li className="flex items-center gap-3 font-nunito text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
                         <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
                         <span>Atencion preferencial en canales digitales</span>
                       </li>
-                      <li className="flex items-center gap-3 font-nunito text-[15px] sm:text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
+                      <li className="flex items-center gap-3 font-nunito text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
                         <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
                         <span>Retiro a domicilio a $3.490</span>
                       </li>
-                      <li className="flex items-center gap-3 font-nunito text-[15px] sm:text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
+                      <li className="flex items-center gap-3 font-nunito text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
                         <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
                         <span>Alianzas y beneficios</span>
                       </li>
                     </>
                   ) : (
                     <>
-                      <li className="flex items-center gap-3 font-nunito text-[15px] sm:text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
+                      <li className="flex items-center gap-3 font-nunito text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
                         <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
                         <span>Integración vía API</span>
                       </li>
-                      <li className="flex items-center gap-3 font-nunito text-[15px] sm:text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
+                      <li className="flex items-center gap-3 font-nunito text-[16px] text-white/95 font-medium drop-shadow-xs">
                         <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
                         <span>Atención personalizada</span>
                       </li>
-                      <li className="flex items-center gap-3 font-nunito text-[15px] sm:text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
+                      <li className="flex items-center gap-3 font-nunito text-[16px] text-white/95 font-medium drop-shadow-xs">
                         <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
                         <span>Retiros en tu tienda</span>
                       </li>
-                      <li className="flex items-center gap-3 font-nunito text-[15px] sm:text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
+                      <li className="flex items-center gap-3 font-nunito text-[16px] text-white/95 font-medium drop-shadow-xs">
                         <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
                         <span>Personaliza tu check out</span>
                       </li>
