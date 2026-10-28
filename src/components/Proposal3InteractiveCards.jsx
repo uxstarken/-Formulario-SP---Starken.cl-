@@ -414,15 +414,6 @@ export default function Proposal3InteractiveCards() {
                 >
                   Escribe a un ejecutivo
                 </button>
-                <p
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSelectedCard('api');
-                  }}
-                  className="text-center font-nunito text-[12.5px] text-gray-500 underline mt-2.5 cursor-pointer hover:text-gray-700"
-                >
-                  *Para estos ecommerce debes contactar con un ejecutivo
-                </p>
               </div>
             </>
           )}
