@@ -255,7 +255,7 @@ export default function Proposal3InteractiveCards() {
           {/* Badge superior flotante */}
           <div className="flex justify-center -mt-10 sm:-mt-11 mb-4">
             <span className="px-6 py-2 rounded-xl bg-[#48185A] text-white font-nunito font-bold text-[14px] shadow-md tracking-wide select-none">
-              Conecta tu pagina web
+              Conectar mi pagina web
             </span>
           </div>
 
