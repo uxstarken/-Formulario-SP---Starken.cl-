@@ -117,71 +117,85 @@ export default function Navbar({ onOpenForm, activeSegment = 'Emprendedores', on
         </div>
       </div>
 
-      {/* 3. MENÚ MOBILE OVERLAY SEGÚN DISEÑO DE REFERENCIA */}
+      {/* 3. MENÚ MOBILE LATERAL OFF-CANVAS CON EFECTO SLIDE-IN DESDE EL COSTADO */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-white flex flex-col p-6 overflow-y-auto animate-fadeIn md:hidden">
-          {/* Header con Logo y botón de cerrar X */}
-          <div className="flex items-center justify-between mb-8">
-            <a href="#" onClick={(e) => { e.preventDefault(); setIsMobileMenuOpen(false); }}>
-              <img
-                src="/logo.png"
-                alt="Starken"
-                className="h-10 w-auto object-contain"
-              />
-            </a>
-            <button
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="p-2 text-[#2b2e2c] hover:text-[#009D4E] transition-colors cursor-pointer"
-              aria-label="Cerrar menú"
-            >
-              <X className="w-7 h-7 stroke-[2.2]" />
-            </button>
-          </div>
+        <div className="fixed inset-0 z-50 md:hidden">
+          {/* Backdrop oscuro translúcido con desenfoque suave (hacer clic aquí cierra el menú) */}
+          <div
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="fixed inset-0 bg-black/45 backdrop-blur-[2px] animate-fade-in-overlay transition-opacity cursor-pointer"
+            aria-hidden="true"
+          />
 
-          {/* Tarjetas de navegación */}
-          <div className="space-y-3">
-            {['Envíos', 'Puntos red Starken', 'Servicios', 'Tarifas'].map((item) => (
-              <a
-                key={item}
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIsMobileMenuOpen(false);
-                }}
-                className="flex items-center justify-between px-5 py-4 bg-[#FAFAFA] hover:bg-[#F2F2F2] border border-gray-200/80 rounded-2xl text-[#2b2e2c] font-medium text-[15.5px] transition-colors"
-              >
-                <span>{item}</span>
-                <ChevronRight className="w-4 h-4 text-gray-400 stroke-[2.2]" />
+          {/* Panel Lateral que aparece suavemente desde el costado derecho */}
+          <div
+            className="fixed inset-y-0 right-0 w-[84vw] max-w-[340px] bg-white shadow-2xl flex flex-col p-6 overflow-y-auto animate-slide-in-right z-10"
+            role="dialog"
+            aria-modal="true"
+          >
+            {/* Header con Logo y botón de cerrar X */}
+            <div className="flex items-center justify-between mb-8">
+              <a href="#" onClick={(e) => { e.preventDefault(); setIsMobileMenuOpen(false); }}>
+                <img
+                  src="/logo.png"
+                  alt="Starken"
+                  className="h-10 w-auto object-contain"
+                />
               </a>
-            ))}
-          </div>
+              <button
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="p-1.5 -mr-1.5 text-[#2b2e2c] hover:text-[#009D4E] transition-colors cursor-pointer"
+                aria-label="Cerrar menú"
+              >
+                <X className="w-6 h-6 stroke-[2.2]" />
+              </button>
+            </div>
 
-          {/* Separador fino */}
-          <div className="border-t border-gray-200/80 my-7" />
+            {/* Tarjetas de navegación */}
+            <div className="space-y-3">
+              {['Envíos', 'Puntos red Starken', 'Servicios', 'Tarifas'].map((item) => (
+                <a
+                  key={item}
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="flex items-center justify-between px-5 py-4 bg-white hover:bg-[#FAFAFA] border border-gray-200/90 rounded-2xl text-[#2b2e2c] font-medium text-[15px] shadow-2xs transition-colors"
+                >
+                  <span>{item}</span>
+                  <ChevronRight className="w-4 h-4 text-gray-400 stroke-[2.2]" />
+                </a>
+              ))}
+            </div>
 
-          {/* Centro de Ayuda (icono circular verde con signo de interrogación) */}
-          <div className="mb-6">
-            <a
-              href="https://starken.cl"
-              target="_blank"
-              rel="noreferrer"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="flex items-center gap-3.5 text-[#2b2e2c] hover:text-[#009D4E] transition-colors font-medium text-[15.5px]"
-            >
-              <HelpCircle className="w-6 h-6 text-[#009D4E] stroke-[2.2] flex-shrink-0" />
-              <span>Centro de ayuda</span>
-            </a>
-          </div>
+            {/* Separador fino */}
+            <div className="border-t border-gray-200/80 my-7" />
 
-          {/* Botón Ingresar grande con bordes redondeados completos (rounded-full) */}
-          <div className="mt-auto pt-4">
-            <button
-              type="button"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="w-full bg-[#009D4E] hover:bg-[#008743] active:bg-[#007439] text-white py-3.5 rounded-full font-bold text-[16px] shadow-md transition-all text-center cursor-pointer"
-            >
-              Ingresar
-            </button>
+            {/* Centro de Ayuda (icono circular verde con signo de interrogación) */}
+            <div className="mb-6">
+              <a
+                href="https://starken.cl"
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center gap-3.5 text-[#2b2e2c] hover:text-[#009D4E] transition-colors font-medium text-[15.5px]"
+              >
+                <HelpCircle className="w-6 h-6 text-[#009D4E] stroke-[2.2] flex-shrink-0" />
+                <span>Centro de ayuda</span>
+              </a>
+            </div>
+
+            {/* Botón Ingresar grande con bordes redondeados completos (rounded-full) */}
+            <div className="mt-auto pt-4">
+              <button
+                type="button"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full bg-[#009D4E] hover:bg-[#008743] active:bg-[#007439] text-white py-3.5 rounded-full font-bold text-[16px] shadow-md transition-all text-center cursor-pointer"
+              >
+                Ingresar
+              </button>
+            </div>
           </div>
         </div>
       )}
