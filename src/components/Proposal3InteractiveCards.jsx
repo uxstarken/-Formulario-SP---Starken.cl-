@@ -45,7 +45,7 @@ export default function Proposal3InteractiveCards() {
       {/* 2. ENCABEZADO PRINCIPAL CENTRADO (SEGÚN REFERENCIA) */}
       <div className="text-center max-w-[840px] mx-auto mb-10 pt-1">
         <h1 className="font-din text-[28px] font-bold text-[#48185A] tracking-normal leading-tight mb-2">
-          Unete al programa de pymes mas grande de chile
+          Unete al programa de pymes mas grande de Chile
         </h1>
         <p className="font-nunito text-[16px] font-semibold text-[#303030] tracking-wide mb-2">
           Y comienza a enviar tus pedidos con Starken
