@@ -8,7 +8,7 @@ export default function ProposalSwitcher({ activeProposal, onSelectProposal }) {
   ];
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 font-nunito">
+    <div className="fixed bottom-20 right-4 z-50 font-nunito">
       <div className="bg-[#1f2937]/95 hover:bg-[#111827] backdrop-blur-md text-white p-1 rounded-full shadow-2xl border border-white/20 flex items-center gap-1 transition-all">
         {proposals.map((p) => (
           <button
