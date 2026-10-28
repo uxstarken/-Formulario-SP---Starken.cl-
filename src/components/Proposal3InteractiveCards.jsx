@@ -9,13 +9,45 @@ export default function Proposal3InteractiveCards() {
   // 'api' = tarjeta 2 seleccionada (expandida con formulario in-place)
   const [selectedCard, setSelectedCard] = useState(null);
   const scrollTargetRef = useRef(null);
+  const carouselRef = useRef(null);
+  const mobileFormRef = useRef(null);
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  // Manejar deslizamiento del carrusel en mobile para sincronizar los dots
+  const handleCarouselScroll = () => {
+    if (carouselRef.current) {
+      const { scrollLeft, offsetWidth } = carouselRef.current;
+      const slide = Math.round(scrollLeft / (offsetWidth * 0.75));
+      setActiveSlide(Math.min(1, Math.max(0, slide)));
+    }
+  };
+
+  const scrollToSlide = (index) => {
+    if (carouselRef.current) {
+      const cards = carouselRef.current.children;
+      if (cards[index]) {
+        cards[index].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+      setActiveSlide(index);
+    }
+  };
 
   // Auto-centrar suavemente en el formulario / tarjetas cuando se selecciona una opción
   useEffect(() => {
     if (selectedCard) {
+      const isMobile = window.innerWidth < 1024;
       const timer = setTimeout(() => {
-        if (scrollTargetRef.current) {
-          const navbarHeight = 125; // Altura sticky navbar (40px + 80px) + margen de respiración
+        if (isMobile && mobileFormRef.current) {
+          const navbarHeight = 85; // Altura sticky navbar mobile
+          const elementTop = mobileFormRef.current.getBoundingClientRect().top;
+          const targetY = elementTop + window.pageYOffset - navbarHeight;
+
+          window.scrollTo({
+            top: Math.max(0, targetY),
+            behavior: 'smooth'
+          });
+        } else if (!isMobile && scrollTargetRef.current) {
+          const navbarHeight = 125; // Altura sticky navbar desktop
           const elementTop = scrollTargetRef.current.getBoundingClientRect().top;
           const targetY = elementTop + window.pageYOffset - navbarHeight;
 
@@ -24,7 +56,7 @@ export default function Proposal3InteractiveCards() {
             behavior: 'smooth'
           });
         }
-      }, 70);
+      }, 90);
 
       return () => clearTimeout(timer);
     }
@@ -69,8 +101,263 @@ export default function Proposal3InteractiveCards() {
         )}
       </div>
 
-      {/* 3. CONTENEDOR DE TARJETAS COMPARATIVAS INTERACTIVAS */}
-      <div className="flex flex-col lg:flex-row gap-8 lg:gap-7 items-start justify-center transition-all duration-300 ease-in-out">
+      {/* ============================================================== */}
+      {/* 3. VERSIÓN MOBILE: CARRUSEL HORIZONTAL TIPO PEEK + FORMULARIO ABAJO */}
+      {/* ============================================================== */}
+      <div className="block lg:hidden mb-8">
+        {/* Contenedor Carrusel Horizontal con Efecto Peek (asomando la otra tarjeta) */}
+        <div
+          ref={carouselRef}
+          onScroll={handleCarouselScroll}
+          className="flex overflow-x-auto gap-3.5 snap-x snap-mandatory pt-8 pb-3 px-4 -mx-4 scroll-smooth"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          {/* Tarjeta 1 Mobile: Unirme al programa */}
+          <div
+            onClick={() => {
+              setSelectedCard('benefits');
+              scrollToSlide(0);
+            }}
+            className={`w-[85vw] max-w-[340px] flex-shrink-0 snap-center bg-white rounded-3xl p-6 border transition-all duration-300 flex flex-col relative cursor-pointer ${
+              selectedCard === 'benefits'
+                ? 'border-2 border-[#48185A] shadow-xl ring-2 ring-[#48185A]/15'
+                : 'border-gray-200/90 shadow-md hover:border-[#48185A]/40'
+            }`}
+          >
+            {/* Badge superior flotante */}
+            <div className="flex justify-center -mt-10 mb-3">
+              <span className="px-5 py-1.5 rounded-xl bg-[#48185A] text-white font-nunito font-bold text-[13px] shadow-md tracking-wide select-none">
+                Unirme al programa
+              </span>
+            </div>
+
+            {/* Título de la tarjeta */}
+            <h2 className="font-din text-[22px] font-bold text-[#2b2e2c] text-center mb-1 leading-snug">
+              Obten hasta un 20% de descuento
+            </h2>
+
+            {/* Subtítulo Categorías */}
+            <p className="font-nunito text-[13.5px] text-gray-500 font-medium text-center mb-2.5">
+              Categorias
+            </p>
+
+            {/* Chips de Categorías */}
+            <div className="flex flex-wrap items-center justify-center gap-2 mb-5">
+              {['Colina', 'Montaña', 'Cordillera'].map((cat) => (
+                <span
+                  key={cat}
+                  className="px-3.5 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-[12.5px] font-semibold shadow-2xs"
+                >
+                  {cat}
+                </span>
+              ))}
+            </div>
+
+            {/* Lista de Viñetas Punteadas */}
+            <ul className="space-y-2.5 mb-5 flex-1">
+              <li className="flex items-center gap-2.5 font-nunito text-[15px] text-[#2b2e2c] font-medium leading-relaxed">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                <span>Plan de difusión</span>
+              </li>
+              <li className="flex items-center gap-2.5 font-nunito text-[15px] text-[#2b2e2c] font-medium leading-relaxed">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                <span>Descuentos</span>
+              </li>
+              <li className="flex items-center gap-2.5 font-nunito text-[15px] text-[#2b2e2c] font-medium leading-relaxed">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                <span>Atencion preferencial en canales digitales</span>
+              </li>
+              <li className="flex items-center gap-2.5 font-nunito text-[15px] text-[#2b2e2c] font-medium leading-relaxed">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                <span>Retiro a domicilio a $3.490</span>
+              </li>
+              <li className="flex items-center gap-2.5 font-nunito text-[15px] text-[#2b2e2c] font-medium leading-relaxed">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                <span>Alianzas y beneficios</span>
+              </li>
+            </ul>
+
+            {/* Botón */}
+            <div className="pt-2 mt-auto">
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedCard('benefits');
+                  scrollToSlide(0);
+                }}
+                className={`w-full py-3 px-5 rounded-xl font-bold text-[14.5px] shadow-md transition-all duration-150 cursor-pointer text-center flex items-center justify-center gap-2 ${
+                  selectedCard === 'benefits'
+                    ? 'bg-[#009239] text-white shadow-[#009239]/20'
+                    : 'bg-[#48185A] hover:bg-[#381146] text-white'
+                }`}
+              >
+                {selectedCard === 'benefits' ? (
+                  <>
+                    <CheckCircle2 className="w-4 h-4" />
+                    <span>Opción Seleccionada</span>
+                  </>
+                ) : (
+                  <span>Crea tu cuenta</span>
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* Tarjeta 2 Mobile: Conectar mi pagina web */}
+          <div
+            onClick={() => {
+              setSelectedCard('api');
+              scrollToSlide(1);
+            }}
+            className={`w-[85vw] max-w-[340px] flex-shrink-0 snap-center bg-white rounded-3xl p-6 border transition-all duration-300 flex flex-col relative cursor-pointer ${
+              selectedCard === 'api'
+                ? 'border-2 border-[#48185A] shadow-xl ring-2 ring-[#48185A]/15'
+                : 'border-gray-200/90 shadow-md hover:border-[#48185A]/40'
+            }`}
+          >
+            {/* Badge superior flotante */}
+            <div className="flex justify-center -mt-10 mb-3">
+              <span className="px-5 py-1.5 rounded-xl bg-[#48185A] text-white font-nunito font-bold text-[13px] shadow-md tracking-wide select-none">
+                Conectar mi pagina web
+              </span>
+            </div>
+
+            {/* Título de la tarjeta */}
+            <h2 className="font-din text-[22px] font-bold text-[#2b2e2c] text-center mb-1 leading-snug">
+              Precios especiales por volumen
+            </h2>
+
+            {/* Subtítulo Plataformas disponibles */}
+            <p className="font-nunito text-[13.5px] text-gray-500 font-medium text-center mb-2.5">
+              Plataformas disponibles:
+            </p>
+
+            {/* Chips de Plataformas */}
+            <div className="flex flex-col items-center gap-1.5 mb-5">
+              <div className="flex flex-wrap items-center justify-center gap-1.5">
+                {['Shopify', 'WooCommerce', 'Bsale*', 'VTEX'].map((p) => (
+                  <span
+                    key={p}
+                    className="px-2.5 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-[12px] font-semibold shadow-2xs"
+                  >
+                    {p}
+                  </span>
+                ))}
+              </div>
+              <div className="flex flex-wrap items-center justify-center gap-1.5">
+                {['Magento', 'PrestaShop', 'Jumpseller*'].map((p) => (
+                  <span
+                    key={p}
+                    className="px-2.5 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-[12px] font-semibold shadow-2xs"
+                  >
+                    {p}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Lista de Viñetas Punteadas */}
+            <ul className="space-y-2.5 mb-5 flex-1">
+              <li className="flex items-center gap-2.5 font-nunito text-[15px] text-[#2b2e2c] font-medium leading-relaxed">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                <span>Integración vía API</span>
+              </li>
+              <li className="flex items-center gap-2.5 font-nunito text-[15px] text-[#2b2e2c] font-medium leading-relaxed">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                <span>Atención personalizada</span>
+              </li>
+              <li className="flex items-center gap-2.5 font-nunito text-[15px] text-[#2b2e2c] font-medium leading-relaxed">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                <span>Retiros en tu tienda</span>
+              </li>
+              <li className="flex items-center gap-2.5 font-nunito text-[15px] text-[#2b2e2c] font-medium leading-relaxed">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                <span>Personaliza tu check out</span>
+              </li>
+            </ul>
+
+            {/* Botón */}
+            <div className="pt-2 mt-auto">
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedCard('api');
+                  scrollToSlide(1);
+                }}
+                className={`w-full py-3 px-5 rounded-xl font-bold text-[14.5px] shadow-md transition-all duration-150 cursor-pointer text-center flex items-center justify-center gap-2 ${
+                  selectedCard === 'api'
+                    ? 'bg-[#009239] text-white shadow-[#009239]/20'
+                    : 'bg-[#48185A] hover:bg-[#381146] text-white'
+                }`}
+              >
+                {selectedCard === 'api' ? (
+                  <>
+                    <CheckCircle2 className="w-4 h-4" />
+                    <span>Opción Seleccionada</span>
+                  </>
+                ) : (
+                  <span>Escribe a un ejecutivo</span>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Indicadores de paginación (Dots) */}
+        <div className="flex justify-center items-center gap-2 mt-2 mb-1">
+          <button
+            type="button"
+            onClick={() => scrollToSlide(0)}
+            className={`h-2.5 rounded-full transition-all duration-200 cursor-pointer ${
+              activeSlide === 0 ? 'w-7 bg-[#48185A]' : 'w-2.5 bg-gray-300 hover:bg-gray-400'
+            }`}
+            aria-label="Ver opción 1: Unirme al programa"
+          />
+          <button
+            type="button"
+            onClick={() => scrollToSlide(1)}
+            className={`h-2.5 rounded-full transition-all duration-200 cursor-pointer ${
+              activeSlide === 1 ? 'w-7 bg-[#48185A]' : 'w-2.5 bg-gray-300 hover:bg-gray-400'
+            }`}
+            aria-label="Ver opción 2: Conectar mi pagina web"
+          />
+        </div>
+
+        {/* Formulario móvil desplegado abajo al seleccionar una opción */}
+        {selectedCard && (
+          <div ref={mobileFormRef} className="mt-6 animate-fadeIn scroll-mt-24">
+            <div className="bg-white rounded-3xl p-5 sm:p-7 border-2 border-[#48185A] shadow-xl ring-2 ring-[#48185A]/10">
+              <div className="mb-6 pb-3.5 border-b border-gray-100 flex items-start justify-between gap-3">
+                <div>
+                  <h3 className="font-din text-[22px] font-bold text-[#48185A] leading-snug">
+                    {selectedCard === 'benefits'
+                      ? 'Formulario de registro Somos Partner'
+                      : 'Formulario de integración ecommerce'}
+                  </h3>
+                  <p className="font-nunito text-[14px] text-gray-500 mt-1">
+                    {selectedCard === 'benefits'
+                      ? 'Completa la información requerida para dar de alta tu negocio en Starken.'
+                      : 'Completa los datos de tu empresa y plataforma web.'}
+                  </p>
+                </div>
+                <div className="flex items-center gap-1 text-[11px] font-bold text-[#009239] bg-[#eafaf1] px-2.5 py-1 rounded-full flex-shrink-0">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span>Activa</span>
+                </div>
+              </div>
+
+              <SoyStarkenForm optionType={selectedCard} />
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* ============================================================== */}
+      {/* 4. VERSIÓN DESKTOP: TARJETAS COMPARATIVAS INTERACTIVAS */}
+      {/* ============================================================== */}
+      <div className="hidden lg:flex lg:flex-row gap-8 lg:gap-7 items-start justify-center transition-all duration-300 ease-in-out">
         {/* ============================================================== */}
         {/* TARJETA 1: REGISTRARME / UNIRME AL PROGRAMA */}
         {/* ============================================================== */}
