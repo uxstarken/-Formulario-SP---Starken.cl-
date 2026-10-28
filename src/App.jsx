@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Proposal1DropdownView from './components/Proposal1DropdownView';
@@ -10,6 +10,16 @@ export default function App() {
   // 1 = Dropdown proposal, 2 = Cards proposal, 3 = Interactive comparative cards
   const [activeProposal, setActiveProposal] = useState(3);
 
+  // Asegurar que cada vez que se cambie de propuesta, la página cargue desde el top superior
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [activeProposal]);
+
+  const handleSelectProposal = (proposal) => {
+    setActiveProposal(proposal);
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  };
+
   const handleScrollToForm = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -19,7 +29,7 @@ export default function App() {
       {/* Botón Flotante Discreto P1, P2 y P3 */}
       <ProposalSwitcher
         activeProposal={activeProposal}
-        onSelectProposal={setActiveProposal}
+        onSelectProposal={handleSelectProposal}
       />
 
       {/* Navbar Oficial Starken */}
