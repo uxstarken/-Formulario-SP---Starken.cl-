@@ -47,7 +47,7 @@ export default function Proposal3InteractiveCards() {
         <h1 className="font-din text-[28px] font-bold text-[#48185A] tracking-normal leading-tight mb-2">
           Unete al programa de pymes mas grande de chile
         </h1>
-        <p className="font-nunito text-[16px] font-semibold text-[#48185A]/80 tracking-wide mb-2">
+        <p className="font-nunito text-[16px] font-semibold text-[#303030] tracking-wide mb-2">
           Y comienza a enviar tus pedidos con Starken
         </p>
         <p className="font-nunito text-[16px] font-bold text-[#009239]">
