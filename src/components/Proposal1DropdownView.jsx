@@ -8,9 +8,9 @@ export default function Proposal1DropdownView() {
   const [selectedOption, setSelectedOption] = useState('benefits');
 
   return (
-    <div className="w-full max-w-[1040px] mx-auto font-nunito">
+    <div className="w-full font-nunito">
       {/* 1. BREADCRUMB ARRIBA DEL BANNER */}
-      <div className="px-1 mb-2">
+      <div className="mb-2">
         <Breadcrumb
           items={[
             { label: 'Inicio', href: '#' },

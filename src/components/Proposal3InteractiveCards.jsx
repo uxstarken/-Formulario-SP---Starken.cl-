@@ -31,9 +31,9 @@ export default function Proposal3InteractiveCards() {
   }, [selectedCard]);
 
   return (
-    <div className="w-full max-w-[1200px] mx-auto font-nunito pb-12">
+    <div className="w-full font-nunito pb-12">
       {/* 1. BREADCRUMB */}
-      <div className="px-1 mb-4">
+      <div className="mb-4">
         <Breadcrumb
           items={[
             { label: 'Inicio', href: '#' },

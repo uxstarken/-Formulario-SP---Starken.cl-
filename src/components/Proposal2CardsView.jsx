@@ -9,7 +9,7 @@ export default function Proposal2CardsView() {
   const isApi = selectedOption === 'api';
 
   return (
-    <div className="w-full max-w-[1100px] mx-auto font-nunito">
+    <div className="w-full font-nunito">
       {/* Breadcrumb Oficial */}
       <Breadcrumb
         items={[
