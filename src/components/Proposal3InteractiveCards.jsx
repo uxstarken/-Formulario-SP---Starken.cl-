@@ -130,7 +130,7 @@ export default function Proposal3InteractiveCards() {
                         Categorias
                       </p>
                       <div className="flex flex-wrap items-center justify-center md:justify-start gap-2">
-                        {['Montaña', 'Cordillera'].map((cat) => (
+                        {['Colina', 'Montaña', 'Cordillera'].map((cat) => (
                           <span
                             key={cat}
                             className="px-4 py-1.5 rounded-full border border-gray-200 bg-white text-[#48185A] font-nunito text-[13px] font-semibold shadow-2xs"
@@ -185,7 +185,7 @@ export default function Proposal3InteractiveCards() {
 
               {/* Chips de Categorías */}
               <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
-                {['Montaña', 'Cordillera'].map((cat) => (
+                {['Colina', 'Montaña', 'Cordillera'].map((cat) => (
                   <span
                     key={cat}
                     className="px-4 py-1.5 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-[13px] font-semibold shadow-2xs"
