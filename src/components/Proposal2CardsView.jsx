@@ -18,12 +18,12 @@ export default function Proposal2CardsView() {
         ]}
       />
 
-      {/* SECCIÓN SUPERIOR: TÍTULO Y BAJADA */}
-      <div className="mb-6 sm:mb-7">
-        <h1 className="font-din text-[30px] font-bold text-[#48185A] tracking-tight leading-tight text-left">
+      {/* SECCIÓN SUPERIOR: TÍTULO Y BAJADA CENTRADOS AL MEDIO */}
+      <div className="mb-6 sm:mb-7 text-center max-w-[840px] mx-auto">
+        <h1 className="font-din text-[30px] font-bold text-[#48185A] tracking-tight leading-tight text-center">
           Regístrate y sé parte de Somos Partner
         </h1>
-        <p className="font-nunito text-[16px] text-[#595959] text-left mt-1.5 font-normal leading-relaxed">
+        <p className="font-nunito text-[16px] text-[#595959] text-center mt-1.5 font-normal leading-relaxed">
           Elige la opción que mejor se adapte a tu modelo de negocio y comienza a disfrutar de tarifas preferenciales.
         </p>
       </div>

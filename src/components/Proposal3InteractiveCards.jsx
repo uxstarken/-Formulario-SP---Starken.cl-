@@ -205,7 +205,7 @@ export default function Proposal3InteractiveCards() {
                     e.stopPropagation();
                     setSelectedCard('benefits');
                   }}
-                  className="w-full py-3.5 px-6 rounded-xl bg-[#009239] hover:bg-[#007a2f] active:bg-[#006326] text-white font-bold text-[15px] shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer text-center"
+                  className="w-full py-3.5 px-6 rounded-xl bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white font-bold text-[15px] shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer text-center"
                 >
                   Crea tu cuenta
                 </button>
