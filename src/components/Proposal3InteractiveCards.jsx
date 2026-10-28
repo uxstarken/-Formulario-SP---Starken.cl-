@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import SoyStarkenForm from './SoyStarkenForm';
 import Breadcrumb from './Breadcrumb';
 import { ArrowLeft, CheckCircle2 } from 'lucide-react';
@@ -8,6 +8,27 @@ export default function Proposal3InteractiveCards() {
   // 'benefits' = tarjeta 1 seleccionada (expandida con formulario in-place)
   // 'api' = tarjeta 2 seleccionada (expandida con formulario in-place)
   const [selectedCard, setSelectedCard] = useState(null);
+  const scrollTargetRef = useRef(null);
+
+  // Auto-centrar suavemente en el formulario / tarjetas cuando se selecciona una opción
+  useEffect(() => {
+    if (selectedCard) {
+      const timer = setTimeout(() => {
+        if (scrollTargetRef.current) {
+          const navbarHeight = 125; // Altura sticky navbar (40px + 80px) + margen de respiración
+          const elementTop = scrollTargetRef.current.getBoundingClientRect().top;
+          const targetY = elementTop + window.pageYOffset - navbarHeight;
+
+          window.scrollTo({
+            top: Math.max(0, targetY),
+            behavior: 'smooth'
+          });
+        }
+      }, 70);
+
+      return () => clearTimeout(timer);
+    }
+  }, [selectedCard]);
 
   return (
     <div className="w-full max-w-[1200px] mx-auto font-nunito pb-12">
@@ -35,7 +56,7 @@ export default function Proposal3InteractiveCards() {
 
         {/* Botón para volver a ver ambas opciones en caso de que alguna esté seleccionada */}
         {selectedCard && (
-          <div className="mt-4 flex justify-center">
+          <div ref={scrollTargetRef} className="mt-4 flex justify-center">
             <button
               type="button"
               onClick={() => setSelectedCard(null)}
