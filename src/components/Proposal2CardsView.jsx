@@ -101,7 +101,7 @@ export default function Proposal2CardsView() {
             <div className="pt-1 flex flex-col space-y-3.5">
               {/* Título dinámico */}
               <h2 className="font-din text-[24px] font-bold text-white tracking-normal leading-tight drop-shadow-sm">
-                {!isApi ? 'Obten hasta un 20% de descuento' : 'Precios especiales por volumen'}
+                {!isApi ? 'Obtén descuentos por categorías' : 'Precios especiales por volumen'}
               </h2>
 
               {/* Subtítulo */}
@@ -125,7 +125,7 @@ export default function Proposal2CardsView() {
                 <div className="flex flex-col gap-2">
                   {/* Fila 1 */}
                   <div className="flex flex-wrap items-center gap-2">
-                    {['Shopify', 'WooCommerce', 'Bsale*', 'VTEX'].map((p) => (
+                    {['Shopify', 'WooCommerce', 'Bsale*', 'Jumpseller*'].map((p) => (
                       <span
                         key={p}
                         className="px-3 py-1 rounded-full border border-white/35 bg-white/15 backdrop-blur-xs text-white font-nunito text-[12.5px] font-semibold shadow-xs"
@@ -136,7 +136,7 @@ export default function Proposal2CardsView() {
                   </div>
                   {/* Fila 2 */}
                   <div className="flex flex-wrap items-center gap-2">
-                    {['Magento', 'PrestaShop', 'Jumpseller*'].map((p) => (
+                    {['PrestaShop', 'Magento', 'VTEX'].map((p) => (
                       <span
                         key={p}
                         className="px-3 py-1 rounded-full border border-white/35 bg-white/15 backdrop-blur-xs text-white font-nunito text-[12.5px] font-semibold shadow-xs"
@@ -158,42 +158,30 @@ export default function Proposal2CardsView() {
                     <>
                       <li className="flex items-center gap-3 font-nunito text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
                         <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
+                        <span>Alianza y beneficios</span>
+                      </li>
+                      <li className="flex items-center gap-3 font-nunito text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
+                        <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
+                        <span>Atención especializada en canales digitales</span>
+                      </li>
+                      <li className="flex items-center gap-3 font-nunito text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
+                        <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
                         <span>Plan de difusión</span>
-                      </li>
-                      <li className="flex items-center gap-3 font-nunito text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
-                        <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
-                        <span>Descuentos</span>
-                      </li>
-                      <li className="flex items-center gap-3 font-nunito text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
-                        <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
-                        <span>Atencion preferencial en canales digitales</span>
-                      </li>
-                      <li className="flex items-center gap-3 font-nunito text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
-                        <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
-                        <span>Retiro a domicilio a $3.490</span>
-                      </li>
-                      <li className="flex items-center gap-3 font-nunito text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
-                        <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
-                        <span>Alianzas y beneficios</span>
                       </li>
                     </>
                   ) : (
                     <>
                       <li className="flex items-center gap-3 font-nunito text-[16px] text-white/95 font-medium leading-relaxed drop-shadow-xs">
                         <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
-                        <span>Integración vía API</span>
+                        <span>Integración vía API o Plugin</span>
                       </li>
                       <li className="flex items-center gap-3 font-nunito text-[16px] text-white/95 font-medium drop-shadow-xs">
                         <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
-                        <span>Atención personalizada</span>
+                        <span>Acompañamiento especializado</span>
                       </li>
                       <li className="flex items-center gap-3 font-nunito text-[16px] text-white/95 font-medium drop-shadow-xs">
                         <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
-                        <span>Retiros en tu tienda</span>
-                      </li>
-                      <li className="flex items-center gap-3 font-nunito text-[16px] text-white/95 font-medium drop-shadow-xs">
-                        <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
-                        <span>Personaliza tu check out</span>
+                        <span>Vende y despacha desde un solo lugar</span>
                       </li>
                     </>
                   )}
@@ -209,7 +197,7 @@ export default function Proposal2CardsView() {
             {/* TÍTULO Y BAJADA DEL FORMULARIO SOMOS PARTNER */}
             <div className="border-b border-gray-100 pb-3 mb-4">
               <h3 className="font-din text-[24px] font-bold text-[#48185A] leading-snug">
-                Formulario de registro Somos Partner
+                Formulario de registro
               </h3>
               <p className="font-nunito text-[16px] text-gray-500 mt-1 min-h-[24px]">
                 {!isApi

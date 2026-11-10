@@ -380,7 +380,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
             {/* 1. Nombre y apellido */}
             <div>
               <label className="block font-nunito text-[16px] font-semibold text-[#333333] mb-1.5">
-                <span className="text-[#ff4d4f] font-bold mr-1">*</span> Nombre y apellido
+                Nombre y apellido
               </label>
               <input
                 type="text"
@@ -403,7 +403,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
             {/* 2. Correo */}
             <div>
               <label className="block font-nunito text-[16px] font-semibold text-[#333333] mb-1.5">
-                <span className="text-[#ff4d4f] font-bold mr-1">*</span> Correo
+                Correo
               </label>
               <input
                 type="email"
@@ -425,7 +425,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
             {/* 3. Celular */}
             <div>
               <label className="block font-nunito text-[16px] font-semibold text-[#333333] mb-1.5">
-                <span className="text-[#ff4d4f] font-bold mr-1">*</span> Celular
+                Celular
               </label>
               <input
                 type="tel"
@@ -451,7 +451,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
             {/* 4. Dirección de tu negocio */}
             <div>
               <label className="block font-nunito text-[16px] font-semibold text-[#333333] mb-1.5">
-                <span className="text-[#ff4d4f] font-bold mr-1">*</span> Dirección de tu negocio
+                Dirección de tu negocio
               </label>
               <input
                 type="text"
@@ -473,7 +473,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
             {/* 5. Comuna */}
             <div className="md:col-span-2">
               <label className="block font-nunito text-[16px] font-semibold text-[#333333] mb-1.5">
-                <span className="text-[#ff4d4f] font-bold mr-1">*</span> Comuna
+                Comuna
               </label>
               <CustomDropdown
                 value={form1.comuna}
@@ -491,7 +491,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
 
             {/* Nota de campo obligatorio (pegado a Comuna en Opción 1, baja en Opción 2 con el checkbox) */}
             <div className="col-span-1 md:col-span-2 pt-0.5">
-              <p className="font-nunito text-[14px] text-[#666666]">(*) Campo obligatorio</p>
+              <p className="font-nunito text-[14px] text-[#666666]">Todos los campos son obligatorios</p>
             </div>
           </div>
 
@@ -516,7 +516,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
           {/* 1. Razón social * */}
           <div>
             <label className="block font-nunito text-[16px] font-semibold text-[#333333] mb-1.5">
-              <span className="text-[#ff4d4f] font-bold mr-1">*</span> Razón social
+              Razón social
             </label>
             <input
               type="text"
@@ -538,7 +538,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
           {/* 2. Rut empresa * */}
           <div>
             <label className="block font-nunito text-[16px] font-semibold text-[#333333] mb-1.5">
-              <span className="text-[#ff4d4f] font-bold mr-1">*</span> Rut empresa
+              Rut empresa
             </label>
             <input
               type="text"
@@ -561,7 +561,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
           {/* 3. ¿Cuentas con página web o ecommerce? */}
           <div className="col-span-1 md:col-span-2 py-1">
             <label className="block font-nunito text-[16px] font-semibold text-[#333333] mb-2">
-              <span className="text-[#ff4d4f] font-bold mr-1">*</span> ¿Cuentas con página web o ecommerce?
+              ¿Cuentas con página web o ecommerce?
             </label>
             <div className="flex flex-wrap items-center gap-3">
               <button
@@ -609,7 +609,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
             <>
               <div>
                 <label className="block font-nunito text-[16px] font-semibold text-[#333333] mb-1.5">
-                  <span className="text-[#ff4d4f] font-bold mr-1">*</span> Página web
+                  Página web
                 </label>
                 <input
                   type="text"
@@ -630,7 +630,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
 
               <div>
                 <label className="block font-nunito text-[16px] font-semibold text-[#333333] mb-1.5">
-                  <span className="text-[#ff4d4f] font-bold mr-1">*</span> Plataforma de ecommerce
+                  Plataforma de ecommerce
                 </label>
                 <CustomDropdown
                   value={form2.plataforma}
@@ -653,7 +653,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
                 {form2.plataforma === 'Otra' && (
                   <div className="mt-3.5 animate-fadeIn">
                     <label className="block font-nunito text-[16px] font-semibold text-[#333333] mb-1.5">
-                      <span className="text-[#ff4d4f] font-bold mr-1">*</span> Tu plataforma
+                      Tu plataforma
                     </label>
                     <input
                       type="text"
@@ -679,7 +679,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
           {/* 5. Correo * */}
           <div>
             <label className="block font-nunito text-[16px] font-semibold text-[#333333] mb-1.5">
-              <span className="text-[#ff4d4f] font-bold mr-1">*</span> Correo
+              Correo
             </label>
             <input
               type="email"
@@ -701,7 +701,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
           {/* 6. Celular * */}
           <div>
             <label className="block font-nunito text-[16px] font-semibold text-[#333333] mb-1.5">
-              <span className="text-[#ff4d4f] font-bold mr-1">*</span> Celular
+              Celular
             </label>
             <input
               type="tel"
@@ -751,7 +751,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
 
             {/* Nota de campo obligatorio */}
             <div className="col-span-1 md:col-span-2 pt-0.5">
-              <p className="font-nunito text-[14px] text-[#666666]">(*) Campo obligatorio</p>
+              <p className="font-nunito text-[14px] text-[#666666]">Todos los campos son obligatorios</p>
             </div>
           </div>
 

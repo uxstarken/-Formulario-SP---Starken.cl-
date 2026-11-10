@@ -1,36 +1,85 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SoyStarkenForm from './SoyStarkenForm';
 import Breadcrumb from './Breadcrumb';
-import { ArrowLeft, CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, ChevronDown, ChevronUp } from 'lucide-react';
 
 export default function Proposal3InteractiveCards() {
   // null = ambas tarjetas en modo comparativo inicial
   // 'benefits' = tarjeta 1 seleccionada (expandida con formulario in-place)
   // 'api' = tarjeta 2 seleccionada (expandida con formulario in-place)
   const [selectedCard, setSelectedCard] = useState(null);
+
+  // Estado para expandir los detalles (chips + beneficios) de cada tarjeta en mobile
+  const [mobileExpandedCard, setMobileExpandedCard] = useState(null);
+
   const scrollTargetRef = useRef(null);
-  const carouselRef = useRef(null);
   const mobileFormRef = useRef(null);
-  const [activeSlide, setActiveSlide] = useState(0);
+  const mobileCard1Ref = useRef(null);
+  const mobileCard2Ref = useRef(null);
+  const cardBenefitsRef = useRef(null);
+  const cardApiRef = useRef(null);
 
-  // Manejar deslizamiento del carrusel en mobile para sincronizar los dots
-  const handleCarouselScroll = () => {
-    if (carouselRef.current) {
-      const { scrollLeft, offsetWidth } = carouselRef.current;
-      const slide = Math.round(scrollLeft / (offsetWidth * 0.75));
-      setActiveSlide(Math.min(1, Math.max(0, slide)));
+  // Toggle para desplegar/contraer la información de una tarjeta en mobile
+  const toggleMobileExpand = (cardKey) => {
+    setMobileExpandedCard((prev) => (prev === cardKey ? null : cardKey));
+  };
+
+  // Manejar click en botón de acción en mobile
+  const handleMobileSelectCard = (cardKey) => {
+    if (selectedCard === cardKey) {
+      setSelectedCard(null);
+    } else {
+      setSelectedCard(cardKey);
+      setMobileExpandedCard(cardKey); // también despliega los detalles si estaban cerrados
     }
   };
 
-  const scrollToSlide = (index) => {
-    if (carouselRef.current) {
-      const cards = carouselRef.current.children;
-      if (cards[index]) {
-        cards[index].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  // Click o Tap fuera de la card grande para volver a la vista comprimida inicial
+  useEffect(() => {
+    if (!selectedCard) return;
+
+    let startedInside = false;
+
+    const handlePointerDown = (e) => {
+      const activeCard = selectedCard === 'benefits' ? cardBenefitsRef.current : cardApiRef.current;
+      const card1 = mobileCard1Ref.current;
+      const card2 = mobileCard2Ref.current;
+
+      const isInsideDesktop = activeCard && activeCard.contains(e.target);
+      const isInsideMobile = (card1 && card1.contains(e.target)) || (card2 && card2.contains(e.target));
+
+      startedInside = Boolean(isInsideDesktop || isInsideMobile);
+    };
+
+    const handleClickOutside = (e) => {
+      if (startedInside) {
+        startedInside = false;
+        return;
       }
-      setActiveSlide(index);
-    }
-  };
+
+      const activeCard = selectedCard === 'benefits' ? cardBenefitsRef.current : cardApiRef.current;
+      const card1 = mobileCard1Ref.current;
+      const card2 = mobileCard2Ref.current;
+
+      const isInsideDesktop = activeCard && activeCard.contains(e.target);
+      const isInsideMobile = (card1 && card1.contains(e.target)) || (card2 && card2.contains(e.target));
+
+      if (!isInsideDesktop && !isInsideMobile) {
+        setSelectedCard(null);
+      }
+    };
+
+    const timer = setTimeout(() => {
+      document.addEventListener('pointerdown', handlePointerDown);
+      document.addEventListener('click', handleClickOutside);
+    }, 50);
+
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener('pointerdown', handlePointerDown);
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [selectedCard]);
 
   // Auto-centrar suavemente en el formulario / tarjetas cuando se selecciona una opción
   useEffect(() => {
@@ -65,7 +114,7 @@ export default function Proposal3InteractiveCards() {
   return (
     <div className="w-full font-nunito pb-12">
       {/* 1. BREADCRUMB */}
-      <div className="mb-1 sm:mb-2">
+      <div className="mb-0 sm:mb-2">
         <Breadcrumb
           items={[
             { label: 'Inicio', href: '#' },
@@ -75,15 +124,15 @@ export default function Proposal3InteractiveCards() {
       </div>
 
       {/* 2. ENCABEZADO PRINCIPAL CENTRADO (SEGÚN REFERENCIA) */}
-      <div className="text-center max-w-[840px] mx-auto mb-8 sm:mb-9">
+      <div className="text-center max-w-[840px] mx-auto mb-5 sm:mb-8 lg:mb-9">
         <h1
-          className="font-din text-[22px] text-title-22 font-bold text-[#48185A] tracking-normal leading-tight mb-2"
+          className="font-din text-[22px] text-title-22 font-bold text-[#48185A] tracking-normal leading-tight mb-1.5"
           style={{ fontSize: '22px' }}
         >
-          Unete al programa de pymes mas grande de Chile
+          Únete al programa de pymes y emprendedores más grande de Chile
         </h1>
         <p
-          className="font-nunito text-base text-[16px] text-bajada-16 font-semibold text-[#303030] tracking-wide mb-2"
+          className="font-nunito text-base text-[16px] text-bajada-16 font-semibold text-[#303030] tracking-wide mb-1.5"
           style={{ fontSize: '16px' }}
         >
           Y comienza a enviar tus pedidos con Starken
@@ -94,159 +143,216 @@ export default function Proposal3InteractiveCards() {
         >
           Conoce nuestras opciones
         </p>
-
-        {/* Botón para volver a ver ambas opciones en caso de que alguna esté seleccionada */}
-        {selectedCard && (
-          <div ref={scrollTargetRef} className="mt-4 flex justify-center">
-            <button
-              type="button"
-              onClick={() => setSelectedCard(null)}
-              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold text-[#48185A] bg-[#FAF5FC] hover:bg-[#F3E8F7] border border-[#48185A]/25 transition-all shadow-2xs cursor-pointer"
-            >
-              <ArrowLeft className="w-3.5 h-3.5" />
-              <span>Ver ambas opciones en tamaño inicial</span>
-            </button>
-          </div>
-        )}
       </div>
 
       {/* ============================================================== */}
-      {/* 3. VERSIÓN MOBILE: CARRUSEL HORIZONTAL TIPO PEEK + FORMULARIO ABAJO */}
+      {/* 3. VERSIÓN MOBILE: TARJETAS VERTICALES COMPACTAS PLEGABLES */}
       {/* ============================================================== */}
-      <div className="block lg:hidden mb-8">
-        {/* Contenedor Carrusel Horizontal con Efecto Peek (asomando la otra tarjeta) */}
+      <div className="block lg:hidden mb-8 space-y-[60px] pt-3 pb-6">
+        {/* ========================================== */}
+        {/* TARJETA 1 MOBILE: UNIRME AL PROGRAMA */}
+        {/* ========================================== */}
         <div
-          ref={carouselRef}
-          onScroll={handleCarouselScroll}
-          className="flex overflow-x-auto gap-3.5 snap-x snap-mandatory pt-8 pb-3 px-4 -mx-4 scroll-smooth"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          ref={mobileCard1Ref}
+          onClick={() => {
+            // Tap en cualquier parte de la card contraída la despliega
+            if (mobileExpandedCard !== 'benefits') {
+              setMobileExpandedCard('benefits');
+            }
+          }}
+          className={`w-full bg-white rounded-3xl p-5 sm:p-6 border transition-all duration-300 relative select-none ${
+            mobileExpandedCard !== 'benefits' ? 'cursor-pointer hover:border-[#48185A]/40' : ''
+          } ${
+            mobileExpandedCard === 'benefits' && selectedCard !== 'benefits'
+              ? 'pb-9 sm:pb-10'
+              : 'pb-6 sm:pb-7'
+          } ${
+            selectedCard === 'benefits'
+              ? 'border-2 border-[#48185A] shadow-xl ring-2 ring-[#48185A]/15 pb-6'
+              : 'border-gray-200/90 shadow-md'
+          }`}
         >
-          {/* Tarjeta 1 Mobile: Unirme al programa */}
+          {/* Cabecera / Área superior de la tarjeta (tap para desplegar o contraer) */}
           <div
-            onClick={() => {
-              setSelectedCard('benefits');
-              scrollToSlide(0);
+            onClick={(e) => {
+              if (mobileExpandedCard === 'benefits') {
+                e.stopPropagation();
+                toggleMobileExpand('benefits');
+              }
             }}
-            className={`w-[85vw] max-w-[340px] flex-shrink-0 snap-center bg-white rounded-3xl p-6 border transition-all duration-300 flex flex-col relative cursor-pointer ${
-              selectedCard === 'benefits'
-                ? 'border-2 border-[#48185A] shadow-xl ring-2 ring-[#48185A]/15'
-                : 'border-gray-200/90 shadow-md hover:border-[#48185A]/40'
-            }`}
+            className="cursor-pointer"
           >
             {/* Badge superior flotante */}
-            <div className="flex justify-center -mt-10 mb-3">
-              <span className="px-5 py-1.5 rounded-xl bg-[#48185A] text-white font-nunito font-bold text-[13px] shadow-md tracking-wide select-none">
+            <div className="flex justify-center -mt-9 mb-3">
+              <span className="px-5 py-1.5 rounded-xl bg-[#48185A] text-white font-nunito font-bold text-[13px] shadow-md tracking-wide">
                 Unirme al programa
               </span>
             </div>
 
-            {/* Título de la tarjeta */}
-            <h2 className="font-din text-[22px] font-bold text-[#2b2e2c] text-center mb-1 leading-snug">
-              Obten hasta un 20% de descuento
-            </h2>
+            {/* Título de la tarjeta centrado */}
+            <div className="text-center mb-2.5">
+              <h2 className="font-din text-[21px] font-bold text-[#2b2e2c] leading-snug">
+                Obtén descuentos por categorías
+              </h2>
+            </div>
 
-            {/* Subtítulo Categorías */}
-            <p className="font-nunito text-[13.5px] text-gray-500 font-medium text-center mb-2.5">
+            {/* Subtítulo Categorías visible siempre (contraída y expandida) */}
+            <p className="font-nunito text-[13px] text-gray-500 font-medium text-center mb-2.5">
               Categorias
             </p>
 
-            {/* Chips de Categorías */}
-            <div className="flex flex-wrap items-center justify-center gap-2 mb-5">
+            {/* Chips de Categorías visible siempre (contraída y expandida) */}
+            <div className="flex flex-wrap items-center justify-center gap-2 mb-2">
               {['Colina', 'Montaña', 'Cordillera'].map((cat) => (
                 <span
                   key={cat}
                   style={{ fontSize: '12px' }}
-                  className="px-3 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-xs text-badge-12 font-semibold shadow-2xs"
+                  className="px-3.5 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-xs text-badge-12 font-semibold shadow-2xs"
                 >
                   {cat}
                 </span>
               ))}
             </div>
-
-            {/* Lista de Viñetas Punteadas */}
-            <ul className="space-y-2.5 mb-5 flex-1">
-              <li className="flex items-center gap-2.5 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
-                <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-                <span>Plan de difusión</span>
-              </li>
-              <li className="flex items-center gap-2.5 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
-                <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-                <span>Descuentos</span>
-              </li>
-              <li className="flex items-center gap-2.5 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
-                <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-                <span>Atencion preferencial en canales digitales</span>
-              </li>
-              <li className="flex items-center gap-2.5 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
-                <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-                <span>Retiro a domicilio a $3.490</span>
-              </li>
-              <li className="flex items-center gap-2.5 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
-                <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-                <span>Alianzas y beneficios</span>
-              </li>
-            </ul>
-
-            {/* Botón */}
-            <div className="pt-2 mt-auto">
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setSelectedCard('benefits');
-                  scrollToSlide(0);
-                }}
-                className={`w-full py-3 px-5 rounded-xl font-bold text-[14.5px] shadow-md transition-all duration-150 cursor-pointer text-center flex items-center justify-center gap-2 ${
-                  selectedCard === 'benefits'
-                    ? 'bg-[#009239] text-white shadow-[#009239]/20'
-                    : 'bg-[#48185A] hover:bg-[#381146] text-white'
-                }`}
-              >
-                {selectedCard === 'benefits' ? (
-                  <>
-                    <CheckCircle2 className="w-4 h-4" />
-                    <span>Opción Seleccionada</span>
-                  </>
-                ) : (
-                  <span>Crea tu cuenta</span>
-                )}
-              </button>
-            </div>
           </div>
 
-          {/* Tarjeta 2 Mobile: Conectar mi pagina web */}
+          {/* Detalle desplegable: Viñetas + Botón de acción */}
+          {mobileExpandedCard === 'benefits' && (
+            <div className="pt-5 mt-5 border-t border-gray-100 animate-fadeIn">
+              {/* Lista de Viñetas Punteadas con más aire y separación */}
+              <ul className="space-y-3.5 mb-6">
+                <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0 mt-1" />
+                  <span>Alianza y beneficios</span>
+                </li>
+                <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0 mt-1" />
+                  <span>Atención especializada en canales digitales</span>
+                </li>
+                <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0 mt-1" />
+                  <span>Plan de difusión</span>
+                </li>
+              </ul>
+
+              {/* Botón de acción (aparece cuando la card está desplegada) con aire superior e inferior */}
+              <div className="pt-1 pb-3">
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleMobileSelectCard('benefits');
+                  }}
+                  className={`w-full py-3 px-5 rounded-xl font-bold text-[14.5px] shadow-md transition-all duration-150 cursor-pointer text-center flex items-center justify-center gap-2 ${
+                    selectedCard === 'benefits'
+                      ? 'bg-[#009239] text-white shadow-[#009239]/20'
+                      : 'bg-[#48185A] hover:bg-[#381146] text-white'
+                  }`}
+                >
+                  {selectedCard === 'benefits' ? (
+                    <>
+                      <CheckCircle2 className="w-4 h-4" />
+                      <span>Opción Seleccionada</span>
+                    </>
+                  ) : (
+                    <span>Unirme al programa</span>
+                  )}
+                </button>
+              </div>
+
+              {/* Formulario móvil desplegado abajo SOLO cuando se presiona el botón */}
+              {selectedCard === 'benefits' && (
+                <div ref={mobileFormRef} className="mt-5 pt-5 border-t border-gray-100 animate-fadeIn scroll-mt-24">
+                  <div className="mb-5 pb-3 border-b border-gray-100 flex items-center justify-between gap-3">
+                    <h3 className="font-din text-[20px] font-bold text-[#48185A] leading-snug">
+                      Formulario de registro
+                    </h3>
+                    <div className="flex items-center gap-1 text-[11px] font-bold text-[#009239] bg-[#eafaf1] px-2.5 py-1 rounded-full flex-shrink-0">
+                      <CheckCircle2 className="w-3.5 h-3.5" />
+                      <span>Activa</span>
+                    </div>
+                  </div>
+                  <SoyStarkenForm optionType="benefits" />
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Badge circular morado con flecha blanca al medio (mitad dentro y mitad fuera). Desaparece cuando el formulario está desplegado */}
+          {selectedCard !== 'benefits' && (
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleMobileExpand('benefits');
+              }}
+              aria-label={mobileExpandedCard === 'benefits' ? 'Contraer información' : 'Desplegar información'}
+              className="absolute bottom-[-18px] left-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white flex items-center justify-center shadow-md cursor-pointer border-2 border-white transition-all z-10"
+            >
+              {mobileExpandedCard === 'benefits' ? (
+                <ChevronUp className="w-5 h-5 text-white" />
+              ) : (
+                <ChevronDown className="w-5 h-5 text-white" />
+              )}
+            </button>
+          )}
+        </div>
+
+        {/* ========================================== */}
+        {/* TARJETA 2 MOBILE: CONECTAR MI PÁGINA WEB */}
+        {/* ========================================== */}
+        <div
+          ref={mobileCard2Ref}
+          onClick={() => {
+            // Tap en cualquier parte de la card contraída la despliega
+            if (mobileExpandedCard !== 'api') {
+              setMobileExpandedCard('api');
+            }
+          }}
+          className={`w-full bg-white rounded-3xl p-5 sm:p-6 border transition-all duration-300 relative select-none ${
+            mobileExpandedCard !== 'api' ? 'cursor-pointer hover:border-[#48185A]/40' : ''
+          } ${
+            mobileExpandedCard === 'api' && selectedCard !== 'api'
+              ? 'pb-9 sm:pb-10'
+              : 'pb-6 sm:pb-7'
+          } ${
+            selectedCard === 'api'
+              ? 'border-2 border-[#48185A] shadow-xl ring-2 ring-[#48185A]/15 pb-6'
+              : 'border-gray-200/90 shadow-md'
+          }`}
+        >
+          {/* Cabecera / Área superior de la tarjeta (tap para desplegar o contraer) */}
           <div
-            onClick={() => {
-              setSelectedCard('api');
-              scrollToSlide(1);
+            onClick={(e) => {
+              if (mobileExpandedCard === 'api') {
+                e.stopPropagation();
+                toggleMobileExpand('api');
+              }
             }}
-            className={`w-[85vw] max-w-[340px] flex-shrink-0 snap-center bg-white rounded-3xl p-6 border transition-all duration-300 flex flex-col relative cursor-pointer ${
-              selectedCard === 'api'
-                ? 'border-2 border-[#48185A] shadow-xl ring-2 ring-[#48185A]/15'
-                : 'border-gray-200/90 shadow-md hover:border-[#48185A]/40'
-            }`}
+            className="cursor-pointer"
           >
             {/* Badge superior flotante */}
-            <div className="flex justify-center -mt-10 mb-3">
-              <span className="px-5 py-1.5 rounded-xl bg-[#48185A] text-white font-nunito font-bold text-[13px] shadow-md tracking-wide select-none">
-                Conectar mi pagina web
+            <div className="flex justify-center -mt-9 mb-3">
+              <span className="px-5 py-1.5 rounded-xl bg-[#48185A] text-white font-nunito font-bold text-[13px] shadow-md tracking-wide">
+                Conectar mi página web
               </span>
             </div>
 
-            {/* Título de la tarjeta */}
-            <h2 className="font-din text-[22px] font-bold text-[#2b2e2c] text-center mb-1 leading-snug">
-              Precios especiales por volumen
-            </h2>
+            {/* Título de la tarjeta centrado */}
+            <div className="text-center mb-2.5">
+              <h2 className="font-din text-[21px] font-bold text-[#2b2e2c] leading-snug">
+                Precios especiales por volumen
+              </h2>
+            </div>
 
-            {/* Subtítulo Plataformas disponibles */}
-            <p className="font-nunito text-[13.5px] text-gray-500 font-medium text-center mb-2.5">
+            {/* Subtítulo Plataformas disponible siempre (contraída y expandida) */}
+            <p className="font-nunito text-[13px] text-gray-500 font-medium text-center mb-2.5">
               Plataformas disponibles:
             </p>
 
-            {/* Chips de Plataformas */}
-            <div className="flex flex-col items-center gap-1.5 mb-5">
+            {/* Chips de Plataformas visible siempre (contraída y expandida) */}
+            <div className="flex flex-col items-center gap-2 mb-2">
               <div className="flex flex-wrap items-center justify-center gap-1.5">
-                {['Shopify', 'WooCommerce', 'Bsale*', 'VTEX'].map((p) => (
+                {['Shopify', 'WooCommerce', 'Bsale*', 'Jumpseller*'].map((p) => (
                   <span
                     key={p}
                     style={{ fontSize: '12px' }}
@@ -257,7 +363,7 @@ export default function Proposal3InteractiveCards() {
                 ))}
               </div>
               <div className="flex flex-wrap items-center justify-center gap-1.5">
-                {['Magento', 'PrestaShop', 'Jumpseller*'].map((p) => (
+                {['PrestaShop', 'Magento', 'VTEX'].map((p) => (
                   <span
                     key={p}
                     style={{ fontSize: '12px' }}
@@ -268,121 +374,117 @@ export default function Proposal3InteractiveCards() {
                 ))}
               </div>
             </div>
-
-            {/* Lista de Viñetas Punteadas */}
-            <ul className="space-y-2.5 mb-5 flex-1">
-              <li className="flex items-center gap-2.5 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
-                <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-                <span>Integración vía API</span>
-              </li>
-              <li className="flex items-center gap-2.5 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
-                <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-                <span>Atención personalizada</span>
-              </li>
-              <li className="flex items-center gap-2.5 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
-                <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-                <span>Retiros en tu tienda</span>
-              </li>
-              <li className="flex items-center gap-2.5 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
-                <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-                <span>Personaliza tu check out</span>
-              </li>
-            </ul>
-
-            {/* Botón */}
-            <div className="pt-2 mt-auto">
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setSelectedCard('api');
-                  scrollToSlide(1);
-                }}
-                className={`w-full py-3 px-5 rounded-xl font-bold text-[14.5px] shadow-md transition-all duration-150 cursor-pointer text-center flex items-center justify-center gap-2 ${
-                  selectedCard === 'api'
-                    ? 'bg-[#009239] text-white shadow-[#009239]/20'
-                    : 'bg-[#48185A] hover:bg-[#381146] text-white'
-                }`}
-              >
-                {selectedCard === 'api' ? (
-                  <>
-                    <CheckCircle2 className="w-4 h-4" />
-                    <span>Opción Seleccionada</span>
-                  </>
-                ) : (
-                  <span>Escribe a un ejecutivo</span>
-                )}
-              </button>
-            </div>
           </div>
-        </div>
 
-        {/* Indicadores de paginación (Dots) */}
-        <div className="flex justify-center items-center gap-2 mt-2 mb-1">
-          <button
-            type="button"
-            onClick={() => scrollToSlide(0)}
-            className={`h-2.5 rounded-full transition-all duration-200 cursor-pointer ${
-              activeSlide === 0 ? 'w-7 bg-[#48185A]' : 'w-2.5 bg-gray-300 hover:bg-gray-400'
-            }`}
-            aria-label="Ver opción 1: Unirme al programa"
-          />
-          <button
-            type="button"
-            onClick={() => scrollToSlide(1)}
-            className={`h-2.5 rounded-full transition-all duration-200 cursor-pointer ${
-              activeSlide === 1 ? 'w-7 bg-[#48185A]' : 'w-2.5 bg-gray-300 hover:bg-gray-400'
-            }`}
-            aria-label="Ver opción 2: Conectar mi pagina web"
-          />
-        </div>
+          {/* Detalle desplegable: Viñetas + Botón de acción */}
+          {mobileExpandedCard === 'api' && (
+            <div className="pt-5 mt-5 border-t border-gray-100 animate-fadeIn">
+              {/* Lista de Viñetas Punteadas con más aire y separación */}
+              <ul className="space-y-3.5 mb-6">
+                <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0 mt-1" />
+                  <span>Integración vía API o Plugin</span>
+                </li>
+                <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0 mt-1" />
+                  <span>Acompañamiento especializado</span>
+                </li>
+                <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0 mt-1" />
+                  <span>Vende y despacha desde un solo lugar</span>
+                </li>
+              </ul>
 
-        {/* Formulario móvil desplegado abajo al seleccionar una opción */}
-        {selectedCard && (
-          <div ref={mobileFormRef} className="mt-6 animate-fadeIn scroll-mt-24">
-            <div className="bg-white rounded-3xl p-5 sm:p-7 border-2 border-[#48185A] shadow-xl ring-2 ring-[#48185A]/10">
-              <div className="mb-6 pb-3.5 border-b border-gray-100 flex items-start justify-between gap-3">
-                <div>
-                  <h3 className="font-din text-[22px] font-bold text-[#48185A] leading-snug">
-                    {selectedCard === 'benefits'
-                      ? 'Formulario de registro Somos Partner'
-                      : 'Formulario de integración ecommerce'}
-                  </h3>
-                  <p className="font-nunito text-[14px] text-gray-500 mt-1">
-                    {selectedCard === 'benefits'
-                      ? 'Completa la información requerida para dar de alta tu negocio en Starken.'
-                      : 'Completa los datos de tu empresa y plataforma web.'}
-                  </p>
-                </div>
-                <div className="flex items-center gap-1 text-[11px] font-bold text-[#009239] bg-[#eafaf1] px-2.5 py-1 rounded-full flex-shrink-0">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>Activa</span>
-                </div>
+              {/* Botón de acción (aparece cuando la card está desplegada) con aire superior e inferior */}
+              <div className="pt-1 pb-3">
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleMobileSelectCard('api');
+                  }}
+                  className={`w-full py-3 px-5 rounded-xl font-bold text-[14.5px] shadow-md transition-all duration-150 cursor-pointer text-center flex items-center justify-center gap-2 ${
+                    selectedCard === 'api'
+                      ? 'bg-[#009239] text-white shadow-[#009239]/20'
+                      : 'bg-[#48185A] hover:bg-[#381146] text-white'
+                  }`}
+                >
+                  {selectedCard === 'api' ? (
+                    <>
+                      <CheckCircle2 className="w-4 h-4" />
+                      <span>Opción Seleccionada</span>
+                    </>
+                  ) : (
+                    <span>Contactar con ejecutivo</span>
+                  )}
+                </button>
               </div>
 
-              <SoyStarkenForm optionType={selectedCard} />
+              {/* Formulario móvil desplegado abajo SOLO cuando se presiona el botón */}
+              {selectedCard === 'api' && (
+                <div ref={mobileFormRef} className="mt-5 pt-5 border-t border-gray-100 animate-fadeIn scroll-mt-24">
+                  <div className="mb-5 pb-3 border-b border-gray-100 flex items-start justify-between gap-3">
+                    <div>
+                      <h3 className="font-din text-[20px] font-bold text-[#48185A] leading-snug">
+                        Formulario de integración ecommerce
+                      </h3>
+                      <p className="font-nunito text-[13px] text-gray-500 mt-1">
+                        Completa los datos de tu empresa y plataforma web.
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-1 text-[11px] font-bold text-[#009239] bg-[#eafaf1] px-2.5 py-1 rounded-full flex-shrink-0">
+                      <CheckCircle2 className="w-3.5 h-3.5" />
+                      <span>Activa</span>
+                    </div>
+                  </div>
+                  <SoyStarkenForm optionType="api" />
+                </div>
+              )}
             </div>
-          </div>
-        )}
+          )}
+
+          {/* Badge circular morado con flecha blanca al medio (mitad dentro y mitad fuera). Desaparece cuando el formulario está desplegado */}
+          {selectedCard !== 'api' && (
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleMobileExpand('api');
+              }}
+              aria-label={mobileExpandedCard === 'api' ? 'Contraer información' : 'Desplegar información'}
+              className="absolute bottom-[-18px] left-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white flex items-center justify-center shadow-md cursor-pointer border-2 border-white transition-all z-10"
+            >
+              {mobileExpandedCard === 'api' ? (
+                <ChevronUp className="w-5 h-5 text-white" />
+              ) : (
+                <ChevronDown className="w-5 h-5 text-white" />
+              )}
+            </button>
+          )}
+        </div>
       </div>
 
       {/* ============================================================== */}
       {/* 4. VERSIÓN DESKTOP: TARJETAS COMPARATIVAS INTERACTIVAS */}
       {/* ============================================================== */}
-      <div className="hidden lg:flex lg:flex-row gap-8 lg:gap-7 items-start justify-center transition-all duration-300 ease-in-out">
+      <div
+        ref={scrollTargetRef}
+        className="hidden lg:flex lg:flex-row gap-8 lg:gap-7 items-start justify-center transition-all duration-300 ease-in-out"
+      >
         {/* ============================================================== */}
         {/* TARJETA 1: REGISTRARME / UNIRME AL PROGRAMA */}
         {/* ============================================================== */}
         <div
+          ref={cardBenefitsRef}
           className={`w-full bg-white rounded-3xl p-6 sm:p-8 lg:p-9 border transition-all duration-300 ease-in-out flex flex-col relative ${
             selectedCard === 'benefits'
-              ? 'lg:w-[62%] border-2 border-[#48185A] shadow-xl ring-4 ring-[#48185A]/10'
+              ? 'lg:w-[62%] border-2 border-[#48185A] shadow-xl ring-4 ring-[#48185A]/10 cursor-default'
               : selectedCard === 'api'
               ? 'lg:w-[38%] border-gray-200/90 shadow-md opacity-95 hover:opacity-100 hover:border-[#48185A]/40 cursor-pointer'
-              : 'lg:w-[50%] border-gray-200/90 shadow-lg hover:shadow-xl'
+              : 'lg:w-[50%] border-gray-200/90 shadow-lg hover:shadow-xl cursor-pointer'
           }`}
           onClick={() => {
-            if (selectedCard === 'api') {
+            if (!selectedCard) {
               setSelectedCard('benefits');
             }
           }}
@@ -402,11 +504,8 @@ export default function Proposal3InteractiveCards() {
                 <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-gray-100">
                   <div>
                     <h3 className="font-din text-[24px] font-bold text-[#48185A]">
-                      Formulario de registro Somos Partner
+                      Formulario de registro
                     </h3>
-                    <p className="font-nunito text-[16px] text-gray-500 mt-1">
-                      Completa la información requerida para dar de alta tu negocio en Starken.
-                    </p>
                   </div>
                   <div className="self-start sm:self-auto flex items-center gap-1.5 text-xs font-bold text-[#009239] bg-[#eafaf1] px-3 py-1 rounded-full flex-shrink-0">
                     <CheckCircle2 className="w-4 h-4" />
@@ -423,7 +522,7 @@ export default function Proposal3InteractiveCards() {
                     {/* Sección 1 (Izquierda): Título, Subtítulo y Categorías */}
                     <div className="md:col-span-6 flex flex-col items-center md:items-start text-center md:text-left">
                       <h4 className="font-din text-[22px] sm:text-[24px] font-bold text-[#2b2e2c] mb-1.5 leading-snug">
-                        Obten hasta un 20% de descuento
+                        Obtén descuentos por categorías
                       </h4>
                       <p className="font-nunito text-[14px] text-gray-500 font-medium mb-3">
                         Categorias
@@ -445,23 +544,15 @@ export default function Proposal3InteractiveCards() {
                       <ul className="space-y-3">
                         <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
                           <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                          <span>Alianza y beneficios</span>
+                        </li>
+                        <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                          <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                          <span>Atención especializada en canales digitales</span>
+                        </li>
+                        <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                          <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
                           <span>Plan de difusión</span>
-                        </li>
-                        <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
-                          <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-                          <span>Descuentos</span>
-                        </li>
-                        <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
-                          <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-                          <span>Atencion preferencial en canales digitales</span>
-                        </li>
-                        <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
-                          <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-                          <span>Retiro a domicilio a $3.490</span>
-                        </li>
-                        <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
-                          <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-                          <span>Alianzas y beneficios</span>
                         </li>
                       </ul>
                     </div>
@@ -474,7 +565,7 @@ export default function Proposal3InteractiveCards() {
             <>
               {/* Título de la tarjeta */}
               <h2 className="font-din text-[24px] font-bold text-[#2b2e2c] text-center mb-1 leading-snug">
-                Obten hasta un 20% de descuento
+                Obtén descuentos por categorías
               </h2>
 
               {/* Subtítulo Categorías */}
@@ -498,23 +589,15 @@ export default function Proposal3InteractiveCards() {
               <ul className="space-y-3 mb-6">
                 <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                  <span>Alianza y beneficios</span>
+                </li>
+                <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                  <span>Atención especializada en canales digitales</span>
+                </li>
+                <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
                   <span>Plan de difusión</span>
-                </li>
-                <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-                  <span>Descuentos</span>
-                </li>
-                <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-                  <span>Atencion preferencial en canales digitales</span>
-                </li>
-                <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-                  <span>Retiro a domicilio a $3.490</span>
-                </li>
-                <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-                  <span>Alianzas y beneficios</span>
                 </li>
               </ul>
 
@@ -527,7 +610,7 @@ export default function Proposal3InteractiveCards() {
                   }}
                   className="w-full py-3.5 px-6 rounded-xl bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white font-bold text-[15px] shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer text-center"
                 >
-                  Crea tu cuenta
+                  Unirme al programa
                 </button>
               </div>
             </>
@@ -538,15 +621,16 @@ export default function Proposal3InteractiveCards() {
         {/* TARJETA 2: REGISTRARME + INTEGRACIONES / CONECTA TU PAGINA WEB */}
         {/* ============================================================== */}
         <div
+          ref={cardApiRef}
           className={`w-full bg-white rounded-3xl p-6 sm:p-8 lg:p-9 border transition-all duration-300 ease-in-out flex flex-col relative ${
             selectedCard === 'api'
-              ? 'lg:w-[62%] border-2 border-[#48185A] shadow-xl ring-4 ring-[#48185A]/10'
+              ? 'lg:w-[62%] border-2 border-[#48185A] shadow-xl ring-4 ring-[#48185A]/10 cursor-default'
               : selectedCard === 'benefits'
               ? 'lg:w-[38%] border-gray-200/90 shadow-md opacity-95 hover:opacity-100 hover:border-[#48185A]/40 cursor-pointer'
-              : 'lg:w-[50%] border-gray-200/90 shadow-lg hover:shadow-xl'
+              : 'lg:w-[50%] border-gray-200/90 shadow-lg hover:shadow-xl cursor-pointer'
           }`}
           onClick={() => {
-            if (selectedCard === 'benefits') {
+            if (!selectedCard) {
               setSelectedCard('api');
             }
           }}
@@ -554,7 +638,7 @@ export default function Proposal3InteractiveCards() {
           {/* Badge superior flotante */}
           <div className="flex justify-center -mt-10 sm:-mt-11 mb-4">
             <span className="px-6 py-2 rounded-xl bg-[#48185A] text-white font-nunito font-bold text-[14px] shadow-md tracking-wide select-none">
-              Conectar mi pagina web
+              Conectar mi página web
             </span>
           </div>
 
@@ -595,7 +679,7 @@ export default function Proposal3InteractiveCards() {
                       <div className="flex flex-col items-center md:items-start gap-2">
                         {/* Fila 1 */}
                         <div className="flex flex-wrap items-center justify-center md:justify-start gap-1.5 sm:gap-2">
-                          {['Shopify', 'WooCommerce', 'Bsale*', 'VTEX'].map((p) => (
+                          {['Shopify', 'WooCommerce', 'Bsale*', 'Jumpseller*'].map((p) => (
                             <span
                               key={p}
                               className="px-3 py-1 rounded-full border border-gray-200 bg-white text-[#48185A] font-nunito text-xs sm:text-[13px] font-semibold shadow-2xs"
@@ -606,7 +690,7 @@ export default function Proposal3InteractiveCards() {
                         </div>
                         {/* Fila 2 */}
                         <div className="flex flex-wrap items-center justify-center md:justify-start gap-1.5 sm:gap-2">
-                          {['Magento', 'PrestaShop', 'Jumpseller*'].map((p) => (
+                          {['PrestaShop', 'Magento', 'VTEX'].map((p) => (
                             <span
                               key={p}
                               className="px-3 py-1 rounded-full border border-gray-200 bg-white text-[#48185A] font-nunito text-xs sm:text-[13px] font-semibold shadow-2xs"
@@ -623,19 +707,15 @@ export default function Proposal3InteractiveCards() {
                       <ul className="space-y-3">
                         <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
                           <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-                          <span>Integración vía API</span>
+                          <span>Integración vía API o Plugin</span>
                         </li>
                         <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
                           <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-                          <span>Atención personalizada</span>
+                          <span>Acompañamiento especializado</span>
                         </li>
                         <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
                           <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-                          <span>Retiros en tu tienda</span>
-                        </li>
-                        <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
-                          <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-                          <span>Personaliza tu check out</span>
+                          <span>Vende y despacha desde un solo lugar</span>
                         </li>
                       </ul>
                     </div>
@@ -660,7 +740,7 @@ export default function Proposal3InteractiveCards() {
               <div className="flex flex-col items-center gap-2 mb-6">
                 {/* Fila 1 */}
                 <div className="flex flex-wrap items-center justify-center gap-2">
-                  {['Shopify', 'WooCommerce', 'Bsale*', 'VTEX'].map((p) => (
+                  {['Shopify', 'WooCommerce', 'Bsale*', 'Jumpseller*'].map((p) => (
                     <span
                       key={p}
                       className="px-3 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-xs sm:text-[13px] font-semibold shadow-2xs"
@@ -671,7 +751,7 @@ export default function Proposal3InteractiveCards() {
                 </div>
                 {/* Fila 2 */}
                 <div className="flex flex-wrap items-center justify-center gap-2">
-                  {['Magento', 'PrestaShop', 'Jumpseller*'].map((p) => (
+                  {['PrestaShop', 'Magento', 'VTEX'].map((p) => (
                     <span
                       key={p}
                       className="px-3 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-xs sm:text-[13px] font-semibold shadow-2xs"
@@ -686,19 +766,15 @@ export default function Proposal3InteractiveCards() {
               <ul className="space-y-3 mb-6">
                 <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-                  <span>Integración vía API</span>
+                  <span>Integración vía API o Plugin</span>
                 </li>
                 <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-                  <span>Atención personalizada</span>
+                  <span>Acompañamiento especializado</span>
                 </li>
                 <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-                  <span>Retiros en tu tienda</span>
-                </li>
-                <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
-                  <span>Personaliza tu check out</span>
+                  <span>Vende y despacha desde un solo lugar</span>
                 </li>
               </ul>
 
@@ -711,7 +787,7 @@ export default function Proposal3InteractiveCards() {
                   }}
                   className="w-full py-3.5 px-6 rounded-xl bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white font-bold text-[15px] shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer text-center"
                 >
-                  Escribe a un ejecutivo
+                  Contactar con ejecutivo
                 </button>
               </div>
             </>

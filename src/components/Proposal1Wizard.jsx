@@ -414,7 +414,7 @@ export default function Proposal1Wizard({ onSubmitSuccess }) {
               {/* Nombre y Apellido */}
               <div>
                 <label className="block text-xs font-bold text-gray-700 mb-1.5">
-                  Nombre Completo del Solicitante <span className="text-red-500">*</span>
+                  Nombre Completo del Solicitante
                 </label>
                 <div className="relative">
                   <User className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -451,7 +451,7 @@ export default function Proposal1Wizard({ onSubmitSuccess }) {
               {/* Correo Electrónico */}
               <div>
                 <label className="block text-xs font-bold text-gray-700 mb-1.5">
-                  Correo Electrónico Comercial <span className="text-red-500">*</span>
+                  Correo Electrónico Comercial
                 </label>
                 <div className="relative">
                   <Mail className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -471,7 +471,7 @@ export default function Proposal1Wizard({ onSubmitSuccess }) {
               {/* Celular */}
               <div>
                 <label className="block text-xs font-bold text-gray-700 mb-1.5">
-                  Teléfono Celular <span className="text-red-500">*</span>
+                  Teléfono Celular
                 </label>
                 <div className="relative">
                   <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-xs font-bold text-gray-500 flex items-center gap-1">
@@ -493,7 +493,7 @@ export default function Proposal1Wizard({ onSubmitSuccess }) {
               {/* Nombre del Negocio */}
               <div className="sm:col-span-2">
                 <label className="block text-xs font-bold text-gray-700 mb-1.5">
-                  Nombre de Fantasía o Razón Social <span className="text-red-500">*</span>
+                  Nombre de Fantasía o Razón Social
                 </label>
                 <div className="relative">
                   <Building className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -513,7 +513,7 @@ export default function Proposal1Wizard({ onSubmitSuccess }) {
               {/* Dirección */}
               <div>
                 <label className="block text-xs font-bold text-gray-700 mb-1.5">
-                  Dirección del Negocio o Retiro <span className="text-red-500">*</span>
+                  Dirección del Negocio o Retiro
                 </label>
                 <div className="relative">
                   <MapPin className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -533,7 +533,7 @@ export default function Proposal1Wizard({ onSubmitSuccess }) {
               {/* Comuna */}
               <div>
                 <label className="block text-xs font-bold text-gray-700 mb-1.5">
-                  Comuna <span className="text-red-500">*</span>
+                  Comuna
                 </label>
                 <select
                   value={formData.commune}
@@ -761,7 +761,7 @@ export default function Proposal1Wizard({ onSubmitSuccess }) {
                   <a href="#" className="text-[#029E47] font-bold underline">
                     Términos y Condiciones del Programa Soy Starken
                   </a>{' '}
-                  y las políticas de tratamiento de datos personales. <span className="text-red-500">*</span>
+                  y las políticas de tratamiento de datos personales.
                 </span>
               </label>
               {errors.termsAccepted && <p className="text-[11px] text-red-500 pl-7">{errors.termsAccepted}</p>}

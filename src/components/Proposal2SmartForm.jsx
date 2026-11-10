@@ -290,7 +290,7 @@ export default function Proposal2SmartForm({ onSubmitSuccess }) {
             {/* Nombre Completo */}
             <div>
               <label className="block text-xs font-bold text-gray-700 mb-1">
-                Nombre y Apellido <span className="text-red-500">*</span>
+                Nombre y Apellido
               </label>
               <input
                 type="text"
@@ -324,7 +324,7 @@ export default function Proposal2SmartForm({ onSubmitSuccess }) {
             {/* Email */}
             <div>
               <label className="block text-xs font-bold text-gray-700 mb-1">
-                Correo Electrónico <span className="text-red-500">*</span>
+                Correo Electrónico
               </label>
               <input
                 type="email"
@@ -341,7 +341,7 @@ export default function Proposal2SmartForm({ onSubmitSuccess }) {
             {/* Celular */}
             <div>
               <label className="block text-xs font-bold text-gray-700 mb-1">
-                Teléfono Celular <span className="text-red-500">*</span>
+                Teléfono Celular
               </label>
               <div className="relative">
                 <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-gray-400">+56</span>
@@ -361,7 +361,7 @@ export default function Proposal2SmartForm({ onSubmitSuccess }) {
             {/* Nombre del Negocio */}
             <div className="sm:col-span-2">
               <label className="block text-xs font-bold text-gray-700 mb-1">
-                Nombre de Fantasía o Negocio <span className="text-red-500">*</span>
+                Nombre de Fantasía o Negocio
               </label>
               <input
                 type="text"
@@ -378,7 +378,7 @@ export default function Proposal2SmartForm({ onSubmitSuccess }) {
             {/* Dirección */}
             <div>
               <label className="block text-xs font-bold text-gray-700 mb-1">
-                Dirección Comercial o de Retiro <span className="text-red-500">*</span>
+                Dirección Comercial o de Retiro
               </label>
               <input
                 type="text"
@@ -395,7 +395,7 @@ export default function Proposal2SmartForm({ onSubmitSuccess }) {
             {/* Comuna */}
             <div>
               <label className="block text-xs font-bold text-gray-700 mb-1">
-                Comuna <span className="text-red-500">*</span>
+                Comuna
               </label>
               <select
                 value={formData.commune}
@@ -575,7 +575,7 @@ export default function Proposal2SmartForm({ onSubmitSuccess }) {
                 Términos y Condiciones del Programa Soy Starken
               </a>{' '}
               y autorizo el tratamiento de mis datos de contacto para la gestión comercial y técnica.{' '}
-              <span className="text-red-500">*</span>
+             
             </span>
           </label>
           {errors.termsAccepted && <p className="text-[11px] text-red-500 pl-7">{errors.termsAccepted}</p>}
