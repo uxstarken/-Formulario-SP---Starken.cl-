@@ -65,8 +65,8 @@ export default function Navbar({ onOpenForm, activeSegment = 'Emprendedores', on
         </div>
       </div>
 
-      {/* 2. MAIN NAV BAR (#ffffff, altura 80px) */}
-      <div className="max-w-[1240px] mx-auto px-4 lg:px-8 h-20 flex items-center justify-between">
+      {/* 2. MAIN NAV BAR (#ffffff, altura 80px en desktop, 70px en mobile) */}
+      <div className="max-w-[1240px] mx-auto px-4 lg:px-8 h-[70px] md:h-20 flex items-center justify-between">
         {/* Logo Starken */}
         <div className="flex items-center">
           <a href="#" onClick={(e) => { e.preventDefault(); if (onOpenForm) onOpenForm(); }} className="flex items-center">
