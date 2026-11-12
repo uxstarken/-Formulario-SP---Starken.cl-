@@ -113,8 +113,8 @@ export default function Proposal3InteractiveCards() {
 
   return (
     <div className="w-full font-nunito pb-12">
-      {/* 1. BREADCRUMB */}
-      <div className="mb-0 sm:mb-2">
+      {/* 1. BREADCRUMB (oculto en mobile) */}
+      <div className="hidden lg:block mb-2">
         <Breadcrumb
           items={[
             { label: 'Inicio', href: '#' },
