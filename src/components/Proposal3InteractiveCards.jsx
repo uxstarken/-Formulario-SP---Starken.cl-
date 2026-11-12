@@ -71,52 +71,99 @@ export default function Proposal3InteractiveCards() {
     }
   };
 
-  // Click o Tap fuera de la card grande para volver a la vista comprimida inicial
+  // Click o Tap fuera de las cards para volver a la vista inicial (ambas contraídas)
   useEffect(() => {
-    if (!selectedCard) return;
+    // Si ninguna card está abierta o seleccionada, no necesitamos escuchar eventos
+    if (!selectedCard && !mobileExpandedCard) return;
 
     let startedInside = false;
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let lastTriggerTime = 0;
 
-    const handlePointerDown = (e) => {
-      const activeCard = selectedCard === 'benefits' ? cardBenefitsRef.current : cardApiRef.current;
-      const card1 = mobileCard1Ref.current;
-      const card2 = mobileCard2Ref.current;
-
-      const isInsideDesktop = activeCard && activeCard.contains(e.target);
-      const isInsideMobile = (card1 && card1.contains(e.target)) || (card2 && card2.contains(e.target));
-
-      startedInside = Boolean(isInsideDesktop || isInsideMobile);
+    const checkInside = (target) => {
+      const isMobile = window.innerWidth < 1024;
+      if (isMobile) {
+        const card1 = mobileCard1Ref.current;
+        const card2 = mobileCard2Ref.current;
+        return Boolean((card1 && card1.contains(target)) || (card2 && card2.contains(target)));
+      } else {
+        const activeDesktopCard = selectedCard === 'benefits' ? cardBenefitsRef.current : cardApiRef.current;
+        return Boolean(activeDesktopCard && activeDesktopCard.contains(target));
+      }
     };
 
-    const handleClickOutside = (e) => {
+    const handlePointerDown = (e) => {
+      startedInside = checkInside(e.target);
+      if (e.touches && e.touches[0]) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      } else {
+        touchStartX = e.clientX;
+        touchStartY = e.clientY;
+      }
+    };
+
+    const handleActionOutside = (e) => {
+      // Evitar doble ejecución rápida (por ejemplo touchend seguido de click sintético)
+      const now = Date.now();
+      if (now - lastTriggerTime < 250) return;
+
+      // Si el gesto comenzó dentro de la card, ignorar
       if (startedInside) {
         startedInside = false;
         return;
       }
 
-      const activeCard = selectedCard === 'benefits' ? cardBenefitsRef.current : cardApiRef.current;
-      const card1 = mobileCard1Ref.current;
-      const card2 = mobileCard2Ref.current;
+      // Si el usuario arrastró más de 12px (hizo scroll/swipe), no es un tap/click intencional
+      let clientX = e.clientX;
+      let clientY = e.clientY;
+      if (e.changedTouches && e.changedTouches[0]) {
+        clientX = e.changedTouches[0].clientX;
+        clientY = e.changedTouches[0].clientY;
+      }
 
-      const isInsideDesktop = activeCard && activeCard.contains(e.target);
-      const isInsideMobile = (card1 && card1.contains(e.target)) || (card2 && card2.contains(e.target));
+      if (clientX !== undefined && clientY !== undefined && touchStartX !== undefined && touchStartY !== undefined) {
+        const distance = Math.hypot(clientX - touchStartX, clientY - touchStartY);
+        if (distance > 12) {
+          return;
+        }
+      }
 
-      if (!isInsideDesktop && !isInsideMobile) {
-        setSelectedCard(null);
+      // Verificar que el elemento final tampoco sea interno
+      if (!checkInside(e.target)) {
+        lastTriggerTime = now;
+        const isMobile = window.innerWidth < 1024;
+        if (isMobile) {
+          setMobileExpandedCard(null);
+          setSelectedCard(null);
+          if (window.pageYOffset > 80) {
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+            });
+          }
+        } else {
+          setSelectedCard(null);
+        }
       }
     };
 
     const timer = setTimeout(() => {
-      document.addEventListener('pointerdown', handlePointerDown);
-      document.addEventListener('click', handleClickOutside);
+      document.addEventListener('pointerdown', handlePointerDown, { passive: true });
+      document.addEventListener('touchstart', handlePointerDown, { passive: true });
+      document.addEventListener('click', handleActionOutside);
+      document.addEventListener('touchend', handleActionOutside);
     }, 50);
 
     return () => {
       clearTimeout(timer);
       document.removeEventListener('pointerdown', handlePointerDown);
-      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener('touchstart', handlePointerDown);
+      document.removeEventListener('click', handleActionOutside);
+      document.removeEventListener('touchend', handleActionOutside);
     };
-  }, [selectedCard]);
+  }, [selectedCard, mobileExpandedCard]);
 
   // Auto-centrar suavemente en el formulario / tarjetas cuando se selecciona una opción
   useEffect(() => {
