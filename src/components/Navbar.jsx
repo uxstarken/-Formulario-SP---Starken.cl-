@@ -27,7 +27,7 @@ export default function Navbar({ onOpenForm, activeSegment = 'Emprendedores', on
   return (
     <header className="sticky top-0 z-50 w-full bg-white shadow-xs font-['Nunito',sans-serif]">
       {/* 1. TOP BAR CORPORATIVA (#303030) */}
-      <div className="bg-[#303030] text-white px-3 sm:px-4 lg:px-12 h-10 flex items-center justify-between text-[13px] font-medium select-none">
+      <div className="bg-[#303030] text-white px-3 sm:px-4 lg:px-12 h-[46px] md:h-10 flex items-center justify-between text-[13px] font-medium select-none">
         {/* Segmentos de clientes: distribuidos en mobile, alineados a la izquierda en desktop */}
         <div className="flex items-center justify-between md:justify-start w-full md:w-auto space-x-1 sm:space-x-3 h-full overflow-x-auto no-scrollbar">
           {segments.map((seg) => {

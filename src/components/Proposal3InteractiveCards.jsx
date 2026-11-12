@@ -287,7 +287,7 @@ export default function Proposal3InteractiveCards() {
             </div>
           )}
 
-          {/* Badge circular morado con flecha blanca al medio (mitad dentro y mitad fuera). Desaparece cuando el formulario está desplegado */}
+          {/* Botón píldora morado con texto "Beneficios" y flecha. Desaparece cuando el formulario está desplegado */}
           {selectedCard !== 'benefits' && (
             <button
               type="button"
@@ -295,13 +295,14 @@ export default function Proposal3InteractiveCards() {
                 e.stopPropagation();
                 toggleMobileExpand('benefits');
               }}
-              aria-label={mobileExpandedCard === 'benefits' ? 'Contraer información' : 'Desplegar información'}
-              className="absolute bottom-[-18px] left-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white flex items-center justify-center shadow-md cursor-pointer border-2 border-white transition-all z-10"
+              aria-label={mobileExpandedCard === 'benefits' ? 'Contraer beneficios' : 'Desplegar beneficios'}
+              className="absolute bottom-[-17px] left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white flex items-center justify-center gap-1.5 shadow-md cursor-pointer border-2 border-white transition-all z-10 font-nunito font-bold text-[13px] whitespace-nowrap select-none"
             >
+              <span>Beneficios</span>
               {mobileExpandedCard === 'benefits' ? (
-                <ChevronUp className="w-5 h-5 text-white" />
+                <ChevronUp className="w-4 h-4 text-white" />
               ) : (
-                <ChevronDown className="w-5 h-5 text-white" />
+                <ChevronDown className="w-4 h-4 text-white" />
               )}
             </button>
           )}
@@ -450,7 +451,7 @@ export default function Proposal3InteractiveCards() {
             </div>
           )}
 
-          {/* Badge circular morado con flecha blanca al medio (mitad dentro y mitad fuera). Desaparece cuando el formulario está desplegado */}
+          {/* Botón píldora morado con texto "Beneficios" y flecha. Desaparece cuando el formulario está desplegado */}
           {selectedCard !== 'api' && (
             <button
               type="button"
@@ -458,13 +459,14 @@ export default function Proposal3InteractiveCards() {
                 e.stopPropagation();
                 toggleMobileExpand('api');
               }}
-              aria-label={mobileExpandedCard === 'api' ? 'Contraer información' : 'Desplegar información'}
-              className="absolute bottom-[-18px] left-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white flex items-center justify-center shadow-md cursor-pointer border-2 border-white transition-all z-10"
+              aria-label={mobileExpandedCard === 'api' ? 'Contraer beneficios' : 'Desplegar beneficios'}
+              className="absolute bottom-[-17px] left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white flex items-center justify-center gap-1.5 shadow-md cursor-pointer border-2 border-white transition-all z-10 font-nunito font-bold text-[13px] whitespace-nowrap select-none"
             >
+              <span>Beneficios</span>
               {mobileExpandedCard === 'api' ? (
-                <ChevronUp className="w-5 h-5 text-white" />
+                <ChevronUp className="w-4 h-4 text-white" />
               ) : (
-                <ChevronDown className="w-5 h-5 text-white" />
+                <ChevronDown className="w-4 h-4 text-white" />
               )}
             </button>
           )}
