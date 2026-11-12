@@ -503,7 +503,7 @@ export default function Proposal3InteractiveCards() {
       {/* ============================================================== */}
       <div
         ref={scrollTargetRef}
-        className="hidden lg:flex lg:flex-row gap-8 lg:gap-7 items-start justify-center transition-all duration-300 ease-in-out"
+        className="hidden lg:flex lg:flex-row gap-8 lg:gap-7 items-start justify-center transition-all duration-300 ease-in-out pt-6"
       >
         {/* ============================================================== */}
         {/* TARJETA 1: REGISTRARME / UNIRME AL PROGRAMA */}
@@ -523,9 +523,9 @@ export default function Proposal3InteractiveCards() {
             }
           }}
         >
-          {/* Badge superior flotante */}
-          <div className="flex justify-center -mt-10 sm:-mt-11 mb-4">
-            <span className="px-6 py-2 rounded-full border-2 border-[#48185A] bg-white text-[#48185A] font-nunito font-bold text-[14px] shadow-sm tracking-wide select-none">
+          {/* Badge superior flotante centrado exactamente sobre la línea superior de la card */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+            <span className="whitespace-nowrap px-6 py-2 rounded-full border-2 border-[#48185A] bg-white text-[#48185A] font-nunito font-bold text-[14px] shadow-sm tracking-wide select-none">
               Unirme al programa
             </span>
           </div>
@@ -669,9 +669,9 @@ export default function Proposal3InteractiveCards() {
             }
           }}
         >
-          {/* Badge superior flotante */}
-          <div className="flex justify-center -mt-10 sm:-mt-11 mb-4">
-            <span className="px-6 py-2 rounded-full border-2 border-[#48185A] bg-white text-[#48185A] font-nunito font-bold text-[14px] shadow-sm tracking-wide select-none">
+          {/* Badge superior flotante centrado exactamente sobre la línea superior de la card */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+            <span className="whitespace-nowrap px-6 py-2 rounded-full border-2 border-[#48185A] bg-white text-[#48185A] font-nunito font-bold text-[14px] shadow-sm tracking-wide select-none">
               Conectar mi página web
             </span>
           </div>
