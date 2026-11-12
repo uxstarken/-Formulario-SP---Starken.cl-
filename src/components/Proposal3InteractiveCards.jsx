@@ -558,8 +558,8 @@ export default function Proposal3InteractiveCards() {
                     {/* Sección 1 (Izquierda): Título, Subtítulo y Categorías */}
                     <div className="md:col-span-6 flex flex-col items-center md:items-start text-center md:text-left">
                       <h4
-                        className="font-din text-[18px] text-card-title-18 font-bold text-[#2b2e2c] mb-1.5 leading-snug"
-                        style={{ fontSize: '18px' }}
+                        className="font-din text-[24px] text-card-title-desktop-24 font-bold text-[#2b2e2c] mb-1.5 leading-snug"
+                        style={{ fontSize: '24px' }}
                       >
                         Obtén descuentos por categorías
                       </h4>
@@ -604,8 +604,8 @@ export default function Proposal3InteractiveCards() {
             <>
               {/* Título de la tarjeta */}
               <h2
-                className="font-din text-[18px] text-card-title-18 font-bold text-[#2b2e2c] text-center mb-1 leading-snug"
-                style={{ fontSize: '18px' }}
+                className="font-din text-[24px] text-card-title-desktop-24 font-bold text-[#2b2e2c] text-center mb-1 leading-snug"
+                style={{ fontSize: '24px' }}
               >
                 Obtén descuentos por categorías
               </h2>
@@ -707,8 +707,8 @@ export default function Proposal3InteractiveCards() {
                     {/* Sección 1 (Izquierda): Título, Subtítulo y Plataformas */}
                     <div className="md:col-span-6 flex flex-col items-center md:items-start text-center md:text-left">
                       <h4
-                        className="font-din text-[18px] text-card-title-18 font-bold text-[#2b2e2c] mb-1.5 leading-snug"
-                        style={{ fontSize: '18px' }}
+                        className="font-din text-[24px] text-card-title-desktop-24 font-bold text-[#2b2e2c] mb-1.5 leading-snug"
+                        style={{ fontSize: '24px' }}
                       >
                         Precios especiales por volumen
                       </h4>
@@ -778,8 +778,8 @@ export default function Proposal3InteractiveCards() {
             <>
               {/* Título de la tarjeta */}
               <h2
-                className="font-din text-[18px] text-card-title-18 font-bold text-[#2b2e2c] text-center mb-1 leading-snug"
-                style={{ fontSize: '18px' }}
+                className="font-din text-[24px] text-card-title-desktop-24 font-bold text-[#2b2e2c] text-center mb-1 leading-snug"
+                style={{ fontSize: '24px' }}
               >
                 Precios especiales por volumen
               </h2>
