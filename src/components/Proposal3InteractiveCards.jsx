@@ -1,7 +1,39 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SoyStarkenForm from './SoyStarkenForm';
 import Breadcrumb from './Breadcrumb';
-import { CheckCircle2, ChevronDown, ChevronUp } from 'lucide-react';
+import { CheckCircle2, ChevronDown } from 'lucide-react';
+
+// Botón "Beneficios" (mobile): contraído = ancho completo con texto;
+// expandido = tras una leve animación se reduce a un botón circular solo con la flecha.
+function BeneficiosToggle({ expanded, onToggle }) {
+  return (
+    <button
+      type="button"
+      onClick={(e) => {
+        e.stopPropagation();
+        onToggle();
+      }}
+      aria-expanded={expanded}
+      aria-label={expanded ? 'Contraer beneficios' : 'Desplegar beneficios'}
+      className={`mt-4 mx-auto flex items-center justify-center h-[46px] rounded-full bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white shadow-md cursor-pointer overflow-hidden transition-[width,background-color] duration-300 ease-out font-nunito font-bold text-[15px] select-none ${
+        expanded ? 'w-[46px] delay-150' : 'w-full'
+      }`}
+    >
+      <span
+        className={`whitespace-nowrap overflow-hidden transition-all duration-200 ease-out ${
+          expanded ? 'max-w-0 opacity-0 mr-0' : 'max-w-[140px] opacity-100 mr-2'
+        }`}
+      >
+        Beneficios
+      </span>
+      <ChevronDown
+        className={`w-5 h-5 flex-shrink-0 text-white transition-transform duration-300 ${
+          expanded ? 'rotate-180' : 'rotate-0'
+        }`}
+      />
+    </button>
+  );
+}
 
 export default function Proposal3InteractiveCards() {
   // null = ambas tarjetas en modo comparativo inicial
@@ -229,24 +261,11 @@ export default function Proposal3InteractiveCards() {
               ))}
             </div>
 
-            {/* Botón principal "Beneficios" dentro de la card, ancho completo (jerarquía mayor que el badge superior) */}
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleMobileExpand('benefits');
-              }}
-              aria-expanded={mobileExpandedCard === 'benefits'}
-              aria-label={mobileExpandedCard === 'benefits' ? 'Contraer beneficios' : 'Desplegar beneficios'}
-              className="w-full mt-4 py-3 px-5 rounded-full bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white flex items-center justify-center gap-2 shadow-md cursor-pointer transition-all font-nunito font-bold text-[15px] select-none"
-            >
-              <span>Beneficios</span>
-              {mobileExpandedCard === 'benefits' ? (
-                <ChevronUp className="w-5 h-5 text-white" />
-              ) : (
-                <ChevronDown className="w-5 h-5 text-white" />
-              )}
-            </button>
+            {/* Botón principal "Beneficios": ancho completo con texto al contraer, solo icono al expandir */}
+            <BeneficiosToggle
+              expanded={mobileExpandedCard === 'benefits'}
+              onToggle={() => toggleMobileExpand('benefits')}
+            />
           </div>
 
           {/* Detalle desplegable: Viñetas + Botón de acción */}
@@ -385,24 +404,11 @@ export default function Proposal3InteractiveCards() {
               </div>
             </div>
 
-            {/* Botón principal "Beneficios" dentro de la card, ancho completo (jerarquía mayor que el badge superior) */}
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleMobileExpand('api');
-              }}
-              aria-expanded={mobileExpandedCard === 'api'}
-              aria-label={mobileExpandedCard === 'api' ? 'Contraer beneficios' : 'Desplegar beneficios'}
-              className="w-full mt-4 py-3 px-5 rounded-full bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white flex items-center justify-center gap-2 shadow-md cursor-pointer transition-all font-nunito font-bold text-[15px] select-none"
-            >
-              <span>Beneficios</span>
-              {mobileExpandedCard === 'api' ? (
-                <ChevronUp className="w-5 h-5 text-white" />
-              ) : (
-                <ChevronDown className="w-5 h-5 text-white" />
-              )}
-            </button>
+            {/* Botón principal "Beneficios": ancho completo con texto al contraer, solo icono al expandir */}
+            <BeneficiosToggle
+              expanded={mobileExpandedCard === 'api'}
+              onToggle={() => toggleMobileExpand('api')}
+            />
           </div>
 
           {/* Detalle desplegable: Viñetas + Botón de acción */}
