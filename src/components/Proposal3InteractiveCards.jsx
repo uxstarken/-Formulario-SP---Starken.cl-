@@ -15,8 +15,8 @@ function BeneficiosToggle({ expanded, onToggle }) {
       }}
       aria-expanded={expanded}
       aria-label={expanded ? 'Contraer beneficios' : 'Desplegar beneficios'}
-      className={`mt-2.5 mx-auto flex items-center justify-center h-[40px] rounded-full bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white shadow-md cursor-pointer overflow-hidden transition-[width,background-color] duration-300 ease-out font-nunito font-bold text-[14px] select-none ${
-        expanded ? 'w-[40px] delay-150' : 'w-full'
+      className={`mt-4 mx-auto flex items-center justify-center h-[46px] rounded-full bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white shadow-md cursor-pointer overflow-hidden transition-[width,background-color] duration-300 ease-out font-nunito font-bold text-[15px] select-none ${
+        expanded ? 'w-[46px] delay-150' : 'w-full'
       }`}
     >
       <span
@@ -27,7 +27,7 @@ function BeneficiosToggle({ expanded, onToggle }) {
         Beneficios
       </span>
       <ChevronDown
-        className={`w-4 h-4 flex-shrink-0 text-white transition-transform duration-300 ${
+        className={`w-5 h-5 flex-shrink-0 text-white transition-transform duration-300 ${
           expanded ? 'rotate-180' : 'rotate-0'
         }`}
       />
@@ -185,18 +185,18 @@ export default function Proposal3InteractiveCards() {
       </div>
 
       {/* 2. ENCABEZADO PRINCIPAL CENTRADO (SEGÚN REFERENCIA) */}
-      <div className="text-center max-w-[840px] mx-auto mb-3.5 sm:mb-8 lg:mb-9">
+      <div className="text-center max-w-[840px] mx-auto mb-4 sm:mb-8 lg:mb-9">
         {/* Versión Mobile */}
         <div className="block lg:hidden">
           <h1
-            className="font-din whitespace-nowrap font-bold text-[#48185A] tracking-tight leading-tight mb-1"
+            className="font-din whitespace-nowrap font-bold text-[#48185A] tracking-tight leading-tight mb-1.5"
             style={{ fontSize: 'clamp(15px, 4.7vw, 19px)' }}
           >
             Únete al programa de pyme de Starken
           </h1>
           <p
-            className="font-nunito text-base text-[15px] text-bajada-16 font-semibold text-[#303030] tracking-wide"
-            style={{ fontSize: '15px' }}
+            className="font-nunito text-base text-[16px] text-bajada-16 font-semibold text-[#303030] tracking-wide"
+            style={{ fontSize: '16px' }}
           >
             y haz crecer tu negocio.
           </p>
@@ -220,7 +220,7 @@ export default function Proposal3InteractiveCards() {
       {/* ============================================================== */}
       {/* 3. VERSIÓN MOBILE: TARJETAS VERTICALES COMPACTAS PLEGABLES */}
       {/* ============================================================== */}
-      <div className="block lg:hidden mb-8 space-y-[26px] pt-1 pb-6">
+      <div className="block lg:hidden mb-8 space-y-[44px] pt-2 pb-6">
         {/* ========================================== */}
         {/* TARJETA 1 MOBILE: UNIRME AL PROGRAMA */}
         {/* ========================================== */}
@@ -232,11 +232,11 @@ export default function Proposal3InteractiveCards() {
               setMobileExpandedCard('benefits');
             }
           }}
-          className={`w-full bg-white rounded-3xl p-4 sm:p-6 border transition-all duration-300 relative select-none ${
+          className={`w-full bg-white rounded-3xl p-5 sm:p-6 border transition-all duration-300 relative select-none ${
             mobileExpandedCard !== 'benefits' ? 'cursor-pointer hover:border-[#48185A]/40' : ''
-          } pb-4 sm:pb-6 ${
+          } pb-5 sm:pb-6 ${
             selectedCard === 'benefits'
-              ? 'border-2 border-[#48185A] shadow-xl ring-2 ring-[#48185A]/15 pb-5'
+              ? 'border-2 border-[#48185A] shadow-xl ring-2 ring-[#48185A]/15 pb-6'
               : 'border-gray-200/90 shadow-md'
           }`}
         >
@@ -251,14 +251,14 @@ export default function Proposal3InteractiveCards() {
             className="cursor-pointer"
           >
             {/* Badge superior flotante */}
-            <div className="flex justify-center -mt-7 mb-2">
-              <span className="px-3.5 py-0.5 rounded-full border border-[#48185A]/50 bg-white text-[#48185A]/80 font-nunito font-semibold text-[11.5px] tracking-wide select-none">
+            <div className="flex justify-center -mt-9 mb-3">
+              <span className="px-4 py-1 rounded-full border border-[#48185A]/50 bg-white text-[#48185A]/80 font-nunito font-semibold text-[12px] tracking-wide select-none">
                 Unirme al programa
               </span>
             </div>
 
             {/* Título de la tarjeta centrado */}
-            <div className="text-center mb-1.5">
+            <div className="text-center mb-2.5">
               <h2
                 className="font-din text-[18px] text-card-title-18 font-bold text-[#2b2e2c] leading-snug"
                 style={{ fontSize: '18px' }}
@@ -268,17 +268,17 @@ export default function Proposal3InteractiveCards() {
             </div>
 
             {/* Subtítulo Categorías visible siempre (contraída y expandida) */}
-            <p className="font-nunito text-[12.5px] text-gray-500 font-medium text-center mb-1.5">
+            <p className="font-nunito text-[13px] text-gray-500 font-medium text-center mb-2.5">
               Categorias
             </p>
 
             {/* Chips de Categorías visible siempre (contraída y expandida) */}
-            <div className="flex flex-wrap items-center justify-center gap-1.5 mb-1.5">
+            <div className="flex flex-wrap items-center justify-center gap-2 mb-2">
               {['Colina', 'Montaña', 'Cordillera'].map((cat) => (
                 <span
                   key={cat}
-                  style={{ fontSize: '11.5px' }}
-                  className="px-3 py-0.5 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-xs text-badge-12 font-semibold shadow-2xs"
+                  style={{ fontSize: '12px' }}
+                  className="px-3.5 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-xs text-badge-12 font-semibold shadow-2xs"
                 >
                   {cat}
                 </span>
@@ -362,11 +362,11 @@ export default function Proposal3InteractiveCards() {
               setMobileExpandedCard('api');
             }
           }}
-          className={`w-full bg-white rounded-3xl p-4 sm:p-6 border transition-all duration-300 relative select-none ${
+          className={`w-full bg-white rounded-3xl p-5 sm:p-6 border transition-all duration-300 relative select-none ${
             mobileExpandedCard !== 'api' ? 'cursor-pointer hover:border-[#48185A]/40' : ''
-          } pb-4 sm:pb-6 ${
+          } pb-5 sm:pb-6 ${
             selectedCard === 'api'
-              ? 'border-2 border-[#48185A] shadow-xl ring-2 ring-[#48185A]/15 pb-5'
+              ? 'border-2 border-[#48185A] shadow-xl ring-2 ring-[#48185A]/15 pb-6'
               : 'border-gray-200/90 shadow-md'
           }`}
         >
@@ -381,14 +381,14 @@ export default function Proposal3InteractiveCards() {
             className="cursor-pointer"
           >
             {/* Badge superior flotante */}
-            <div className="flex justify-center -mt-7 mb-2">
-              <span className="px-3.5 py-0.5 rounded-full border border-[#48185A]/50 bg-white text-[#48185A]/80 font-nunito font-semibold text-[11.5px] tracking-wide select-none">
+            <div className="flex justify-center -mt-9 mb-3">
+              <span className="px-4 py-1 rounded-full border border-[#48185A]/50 bg-white text-[#48185A]/80 font-nunito font-semibold text-[12px] tracking-wide select-none">
                 Conectar mi página web
               </span>
             </div>
 
             {/* Título de la tarjeta centrado */}
-            <div className="text-center mb-1.5">
+            <div className="text-center mb-2.5">
               <h2
                 className="font-din text-[18px] text-card-title-18 font-bold text-[#2b2e2c] leading-snug"
                 style={{ fontSize: '18px' }}
@@ -398,18 +398,18 @@ export default function Proposal3InteractiveCards() {
             </div>
 
             {/* Subtítulo Plataformas disponible siempre (contraída y expandida) */}
-            <p className="font-nunito text-[12.5px] text-gray-500 font-medium text-center mb-1.5">
+            <p className="font-nunito text-[13px] text-gray-500 font-medium text-center mb-2.5">
               Plataformas disponibles
             </p>
 
             {/* Chips de Plataformas visible siempre (contraída y expandida) */}
-            <div className="flex flex-col items-center gap-1 mb-1.5 w-full">
+            <div className="flex flex-col items-center gap-1.5 mb-2 w-full">
               <div className="flex flex-nowrap items-center justify-center gap-1.5 max-w-full">
                 {['Shopify', 'Magento', 'Bsale*', 'Jumpseller*'].map((p) => (
                   <span
                     key={p}
-                    style={{ fontSize: '11.5px' }}
-                    className="whitespace-nowrap px-2.5 py-0.5 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-[11.5px] text-badge-12 font-semibold shadow-2xs"
+                    style={{ fontSize: '12px' }}
+                    className="whitespace-nowrap px-2.5 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-[12px] text-badge-12 font-semibold shadow-2xs"
                   >
                     {p}
                   </span>
@@ -419,8 +419,8 @@ export default function Proposal3InteractiveCards() {
                 {['PrestaShop', 'WooCommerce', 'VTEX'].map((p) => (
                   <span
                     key={p}
-                    style={{ fontSize: '11.5px' }}
-                    className="whitespace-nowrap px-2.5 py-0.5 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-[11.5px] text-badge-12 font-semibold shadow-2xs"
+                    style={{ fontSize: '12px' }}
+                    className="whitespace-nowrap px-2.5 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-[12px] text-badge-12 font-semibold shadow-2xs"
                   >
                     {p}
                   </span>
