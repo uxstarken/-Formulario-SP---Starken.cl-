@@ -709,8 +709,8 @@ export default function Proposal3InteractiveCards() {
                       </p>
                       <div className="flex flex-col items-center md:items-start gap-1.5 sm:gap-2">
                         {/* Fila 1 */}
-                        <div className="flex flex-nowrap items-center justify-center md:justify-start gap-1 sm:gap-1.5">
-                          {['Shopify', 'WooCommerce', 'Bsale*', 'Jumpseller*'].map((p) => (
+                        <div className="flex flex-wrap items-center justify-center md:justify-start gap-1 sm:gap-1.5">
+                          {['Shopify', 'WooCommerce', 'Bsale*'].map((p) => (
                             <span
                               key={p}
                               className="whitespace-nowrap px-2.5 py-1 rounded-full border border-gray-200 bg-white text-[#48185A] font-nunito text-[11.5px] sm:text-xs lg:text-[14px] text-badge-desktop-14 font-semibold shadow-2xs"
@@ -720,8 +720,19 @@ export default function Proposal3InteractiveCards() {
                           ))}
                         </div>
                         {/* Fila 2 */}
-                        <div className="flex flex-nowrap items-center justify-center md:justify-start gap-1 sm:gap-1.5">
-                          {['PrestaShop', 'Magento', 'VTEX'].map((p) => (
+                        <div className="flex flex-wrap items-center justify-center md:justify-start gap-1 sm:gap-1.5">
+                          {['PrestaShop', 'Magento'].map((p) => (
+                            <span
+                              key={p}
+                              className="whitespace-nowrap px-2.5 py-1 rounded-full border border-gray-200 bg-white text-[#48185A] font-nunito text-[11.5px] sm:text-xs lg:text-[14px] text-badge-desktop-14 font-semibold shadow-2xs"
+                            >
+                              {p}
+                            </span>
+                          ))}
+                        </div>
+                        {/* Fila 3 */}
+                        <div className="flex flex-wrap items-center justify-center md:justify-start gap-1 sm:gap-1.5">
+                          {['Jumpseller*', 'VTEX'].map((p) => (
                             <span
                               key={p}
                               className="whitespace-nowrap px-2.5 py-1 rounded-full border border-gray-200 bg-white text-[#48185A] font-nunito text-[11.5px] sm:text-xs lg:text-[14px] text-badge-desktop-14 font-semibold shadow-2xs"
@@ -770,11 +781,11 @@ export default function Proposal3InteractiveCards() {
                 Plataformas disponibles
               </p>
 
-              {/* Chips de Plataformas disponibles (En 2 filas fijas horizontales) */}
-              <div className="flex flex-col items-center justify-center min-h-[64px] gap-1.5 sm:gap-2 mb-9 sm:mb-10 w-full">
+              {/* Chips de Plataformas disponibles (En 3 filas en desktop) */}
+              <div className="flex flex-col items-center justify-center gap-1.5 sm:gap-2 mb-9 sm:mb-10 w-full">
                 {/* Fila 1 */}
-                <div className="flex flex-nowrap items-center justify-center gap-1 sm:gap-1.5 max-w-full">
-                  {['Shopify', 'WooCommerce', 'Bsale*', 'Jumpseller*'].map((p) => (
+                <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-1.5 max-w-full">
+                  {['Shopify', 'WooCommerce', 'Bsale*'].map((p) => (
                     <span
                       key={p}
                       className="whitespace-nowrap px-2.5 sm:px-3 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-xs sm:text-[12px] lg:text-[14px] text-badge-desktop-14 font-semibold shadow-2xs"
@@ -784,8 +795,19 @@ export default function Proposal3InteractiveCards() {
                   ))}
                 </div>
                 {/* Fila 2 */}
-                <div className="flex flex-nowrap items-center justify-center gap-1 sm:gap-1.5 max-w-full">
-                  {['PrestaShop', 'Magento', 'VTEX'].map((p) => (
+                <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-1.5 max-w-full">
+                  {['PrestaShop', 'Magento'].map((p) => (
+                    <span
+                      key={p}
+                      className="whitespace-nowrap px-2.5 sm:px-3 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-xs sm:text-[12px] lg:text-[14px] text-badge-desktop-14 font-semibold shadow-2xs"
+                    >
+                      {p}
+                    </span>
+                  ))}
+                </div>
+                {/* Fila 3 */}
+                <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-1.5 max-w-full">
+                  {['Jumpseller*', 'VTEX'].map((p) => (
                     <span
                       key={p}
                       className="whitespace-nowrap px-2.5 sm:px-3 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-xs sm:text-[12px] lg:text-[14px] text-badge-desktop-14 font-semibold shadow-2xs"
