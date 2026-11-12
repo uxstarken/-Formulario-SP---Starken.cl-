@@ -511,7 +511,9 @@ export default function Proposal3InteractiveCards() {
       {/* ============================================================== */}
       <div
         ref={scrollTargetRef}
-        className="hidden lg:flex lg:flex-row gap-8 lg:gap-7 items-start justify-center transition-all duration-300 ease-in-out pt-6"
+        className={`hidden lg:flex lg:flex-row gap-8 lg:gap-7 justify-center transition-all duration-300 ease-in-out pt-6 ${
+          selectedCard ? 'items-start' : 'items-stretch'
+        }`}
       >
         {/* ============================================================== */}
         {/* TARJETA 1: REGISTRARME / UNIRME AL PROGRAMA */}
@@ -616,7 +618,7 @@ export default function Proposal3InteractiveCards() {
               </p>
 
               {/* Chips de Categorías */}
-              <div className="flex flex-wrap items-center justify-center gap-2 min-h-[64px] mb-9 sm:mb-10">
+              <div className="flex flex-wrap items-center justify-center gap-2 min-h-[102px] mb-9 sm:mb-10">
                 {['Colina', 'Montaña', 'Cordillera'].map((cat) => (
                   <span
                     key={cat}
@@ -790,7 +792,7 @@ export default function Proposal3InteractiveCards() {
               </p>
 
               {/* Chips de Plataformas disponibles (En 3 filas en desktop) */}
-              <div className="flex flex-col items-center justify-center gap-1.5 sm:gap-2 mb-9 sm:mb-10 w-full">
+              <div className="flex flex-col items-center justify-center min-h-[102px] gap-1.5 sm:gap-2 mb-9 sm:mb-10 w-full">
                 {/* Fila 1 */}
                 <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-1.5 max-w-full">
                   {['Shopify', 'WooCommerce', 'Bsale*'].map((p) => (
