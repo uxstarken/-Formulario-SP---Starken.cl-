@@ -127,7 +127,10 @@ export default function Proposal3InteractiveCards() {
       <div className="text-center max-w-[840px] mx-auto mb-5 sm:mb-8 lg:mb-9">
         {/* Versión Mobile */}
         <div className="block lg:hidden">
-          <h1 className="font-din text-[20px] text-main-title font-bold text-[#48185A] tracking-normal leading-tight mb-1.5">
+          <h1
+            className="font-din whitespace-nowrap font-bold text-[#48185A] tracking-tight leading-tight mb-1.5"
+            style={{ fontSize: 'clamp(15px, 4.7vw, 19px)' }}
+          >
             Únete al programa de pyme de Starken
           </h1>
           <p
