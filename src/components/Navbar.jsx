@@ -73,7 +73,7 @@ export default function Navbar({ onOpenForm, activeSegment = 'Emprendedores', on
             <img
               src="/logo.png"
               alt="Starken"
-              className="h-10 sm:h-12 w-auto object-contain"
+              className="w-[145px] h-[48px] object-contain md:w-auto md:h-12"
             />
           </a>
         </div>
@@ -139,7 +139,7 @@ export default function Navbar({ onOpenForm, activeSegment = 'Emprendedores', on
                 <img
                   src="/logo.png"
                   alt="Starken"
-                  className="h-10 w-auto object-contain"
+                  className="w-[145px] h-[48px] object-contain"
                 />
               </a>
               <button
