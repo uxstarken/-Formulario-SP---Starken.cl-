@@ -106,7 +106,7 @@ export default function Proposal2CardsView() {
 
               {/* Subtítulo */}
               <p className="font-nunito text-[14px] text-white/80 font-medium">
-                {!isApi ? 'Categorias' : 'Plataformas disponibles:'}
+                {!isApi ? 'Categorias' : 'Plataformas disponibles'}
               </p>
 
               {/* Tags / Pills de Categorías o Plataformas */}

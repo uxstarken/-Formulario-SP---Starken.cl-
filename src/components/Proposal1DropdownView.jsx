@@ -35,7 +35,7 @@ export default function Proposal1DropdownView() {
               </h1>
 
               <p className="font-nunito text-[14px] text-white/80 font-medium">
-                {selectedOption === 'benefits' ? 'Categorias:' : 'Plataformas disponibles:'}
+                {selectedOption === 'benefits' ? 'Categorias' : 'Plataformas disponibles'}
               </p>
 
               {/* Chips de Categorías o Plataformas (en 2 filas fijas para opción integraciones) */}

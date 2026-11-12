@@ -125,23 +125,14 @@ export default function Proposal3InteractiveCards() {
 
       {/* 2. ENCABEZADO PRINCIPAL CENTRADO (SEGÚN REFERENCIA) */}
       <div className="text-center max-w-[840px] mx-auto mb-5 sm:mb-8 lg:mb-9">
-        <h1
-          className="font-din text-[22px] text-title-22 font-bold text-[#48185A] tracking-normal leading-tight mb-1.5"
-          style={{ fontSize: '22px' }}
-        >
+        <h1 className="font-din text-[20px] lg:text-[28px] text-main-title font-bold text-[#48185A] tracking-normal leading-tight mb-1.5">
           Únete al programa de pymes y emprendedores más grande de Chile
         </h1>
         <p
-          className="font-nunito text-base text-[16px] text-bajada-16 font-semibold text-[#303030] tracking-wide mb-1.5"
+          className="font-nunito text-base text-[16px] text-bajada-16 font-semibold text-[#303030] tracking-wide"
           style={{ fontSize: '16px' }}
         >
           Y comienza a enviar tus pedidos con Starken
-        </p>
-        <p
-          className="font-nunito text-base text-[16px] text-bajada-16 font-bold text-[#009239]"
-          style={{ fontSize: '16px' }}
-        >
-          Conoce nuestras opciones
         </p>
       </div>
 
@@ -184,14 +175,17 @@ export default function Proposal3InteractiveCards() {
           >
             {/* Badge superior flotante */}
             <div className="flex justify-center -mt-9 mb-3">
-              <span className="px-5 py-1.5 rounded-xl bg-[#48185A] text-white font-nunito font-bold text-[13px] shadow-md tracking-wide">
+              <span className="px-5 py-1.5 rounded-full border-2 border-[#48185A] bg-white text-[#48185A] font-nunito font-bold text-[13px] shadow-sm tracking-wide select-none">
                 Unirme al programa
               </span>
             </div>
 
             {/* Título de la tarjeta centrado */}
             <div className="text-center mb-2.5">
-              <h2 className="font-din text-[21px] font-bold text-[#2b2e2c] leading-snug">
+              <h2
+                className="font-din text-[20px] text-card-title-20 font-bold text-[#2b2e2c] leading-snug"
+                style={{ fontSize: '20px' }}
+              >
                 Obtén descuentos por categorías
               </h2>
             </div>
@@ -262,14 +256,10 @@ export default function Proposal3InteractiveCards() {
               {/* Formulario móvil desplegado abajo SOLO cuando se presiona el botón */}
               {selectedCard === 'benefits' && (
                 <div ref={mobileFormRef} className="mt-5 pt-5 border-t border-gray-100 animate-fadeIn scroll-mt-24">
-                  <div className="mb-5 pb-3 border-b border-gray-100 flex items-center justify-between gap-3">
+                  <div className="mb-5 pb-3 border-b border-gray-100">
                     <h3 className="font-din text-[20px] font-bold text-[#48185A] leading-snug">
                       Formulario de registro
                     </h3>
-                    <div className="flex items-center gap-1 text-[11px] font-bold text-[#009239] bg-[#eafaf1] px-2.5 py-1 rounded-full flex-shrink-0">
-                      <CheckCircle2 className="w-3.5 h-3.5" />
-                      <span>Activa</span>
-                    </div>
                   </div>
                   <SoyStarkenForm optionType="benefits" />
                 </div>
@@ -332,42 +322,45 @@ export default function Proposal3InteractiveCards() {
           >
             {/* Badge superior flotante */}
             <div className="flex justify-center -mt-9 mb-3">
-              <span className="px-5 py-1.5 rounded-xl bg-[#48185A] text-white font-nunito font-bold text-[13px] shadow-md tracking-wide">
+              <span className="px-5 py-1.5 rounded-full border-2 border-[#48185A] bg-white text-[#48185A] font-nunito font-bold text-[13px] shadow-sm tracking-wide select-none">
                 Conectar mi página web
               </span>
             </div>
 
             {/* Título de la tarjeta centrado */}
             <div className="text-center mb-2.5">
-              <h2 className="font-din text-[21px] font-bold text-[#2b2e2c] leading-snug">
+              <h2
+                className="font-din text-[20px] text-card-title-20 font-bold text-[#2b2e2c] leading-snug"
+                style={{ fontSize: '20px' }}
+              >
                 Precios especiales por volumen
               </h2>
             </div>
 
             {/* Subtítulo Plataformas disponible siempre (contraída y expandida) */}
             <p className="font-nunito text-[13px] text-gray-500 font-medium text-center mb-2.5">
-              Plataformas disponibles:
+              Plataformas disponibles
             </p>
 
             {/* Chips de Plataformas visible siempre (contraída y expandida) */}
-            <div className="flex flex-col items-center gap-2 mb-2">
-              <div className="flex flex-wrap items-center justify-center gap-1.5">
-                {['Shopify', 'WooCommerce', 'Bsale*', 'Jumpseller*'].map((p) => (
+            <div className="flex flex-col items-center gap-1.5 mb-2 w-full">
+              <div className="flex flex-nowrap items-center justify-center gap-1.5 max-w-full">
+                {['Shopify', 'Magento', 'Bsale*', 'Jumpseller*'].map((p) => (
                   <span
                     key={p}
                     style={{ fontSize: '12px' }}
-                    className="px-2.5 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-xs text-badge-12 font-semibold shadow-2xs"
+                    className="whitespace-nowrap px-2.5 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-[12px] text-badge-12 font-semibold shadow-2xs"
                   >
                     {p}
                   </span>
                 ))}
               </div>
-              <div className="flex flex-wrap items-center justify-center gap-1.5">
-                {['PrestaShop', 'Magento', 'VTEX'].map((p) => (
+              <div className="flex flex-nowrap items-center justify-center gap-1.5 max-w-full">
+                {['PrestaShop', 'WooCommerce', 'VTEX'].map((p) => (
                   <span
                     key={p}
                     style={{ fontSize: '12px' }}
-                    className="px-2.5 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-xs text-badge-12 font-semibold shadow-2xs"
+                    className="whitespace-nowrap px-2.5 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-[12px] text-badge-12 font-semibold shadow-2xs"
                   >
                     {p}
                   </span>
@@ -423,19 +416,13 @@ export default function Proposal3InteractiveCards() {
               {/* Formulario móvil desplegado abajo SOLO cuando se presiona el botón */}
               {selectedCard === 'api' && (
                 <div ref={mobileFormRef} className="mt-5 pt-5 border-t border-gray-100 animate-fadeIn scroll-mt-24">
-                  <div className="mb-5 pb-3 border-b border-gray-100 flex items-start justify-between gap-3">
-                    <div>
-                      <h3 className="font-din text-[20px] font-bold text-[#48185A] leading-snug">
-                        Formulario de integración ecommerce
-                      </h3>
-                      <p className="font-nunito text-[13px] text-gray-500 mt-1">
-                        Completa los datos de tu empresa y plataforma web.
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-1 text-[11px] font-bold text-[#009239] bg-[#eafaf1] px-2.5 py-1 rounded-full flex-shrink-0">
-                      <CheckCircle2 className="w-3.5 h-3.5" />
-                      <span>Activa</span>
-                    </div>
+                  <div className="mb-5 pb-3 border-b border-gray-100">
+                    <h3 className="font-din text-[20px] font-bold text-[#48185A] leading-snug">
+                      Formulario de integración ecommerce
+                    </h3>
+                    <p className="font-nunito text-[13px] text-gray-500 mt-1">
+                      Completa los datos de tu empresa y plataforma web.
+                    </p>
                   </div>
                   <SoyStarkenForm optionType="api" />
                 </div>
@@ -491,7 +478,7 @@ export default function Proposal3InteractiveCards() {
         >
           {/* Badge superior flotante */}
           <div className="flex justify-center -mt-10 sm:-mt-11 mb-4">
-            <span className="px-6 py-2 rounded-xl bg-[#48185A] text-white font-nunito font-bold text-[14px] shadow-md tracking-wide select-none">
+            <span className="px-6 py-2 rounded-full border-2 border-[#48185A] bg-white text-[#48185A] font-nunito font-bold text-[14px] shadow-sm tracking-wide select-none">
               Unirme al programa
             </span>
           </div>
@@ -501,16 +488,10 @@ export default function Proposal3InteractiveCards() {
             <div className="w-full animate-fadeIn">
               {/* 1. FORMULARIO ARRIBA */}
               <div className="mb-8">
-                <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-gray-100">
-                  <div>
-                    <h3 className="font-din text-[24px] font-bold text-[#48185A]">
-                      Formulario de registro
-                    </h3>
-                  </div>
-                  <div className="self-start sm:self-auto flex items-center gap-1.5 text-xs font-bold text-[#009239] bg-[#eafaf1] px-3 py-1 rounded-full flex-shrink-0">
-                    <CheckCircle2 className="w-4 h-4" />
-                    <span>Opción Activa</span>
-                  </div>
+                <div className="mb-6 pb-3 border-b border-gray-100">
+                  <h3 className="font-din text-[24px] font-bold text-[#48185A]">
+                    Formulario de registro
+                  </h3>
                 </div>
                 <SoyStarkenForm optionType="benefits" />
               </div>
@@ -521,7 +502,10 @@ export default function Proposal3InteractiveCards() {
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-center">
                     {/* Sección 1 (Izquierda): Título, Subtítulo y Categorías */}
                     <div className="md:col-span-6 flex flex-col items-center md:items-start text-center md:text-left">
-                      <h4 className="font-din text-[22px] sm:text-[24px] font-bold text-[#2b2e2c] mb-1.5 leading-snug">
+                      <h4
+                        className="font-din text-[20px] text-card-title-20 font-bold text-[#2b2e2c] mb-1.5 leading-snug"
+                        style={{ fontSize: '20px' }}
+                      >
                         Obtén descuentos por categorías
                       </h4>
                       <p className="font-nunito text-[14px] text-gray-500 font-medium mb-3">
@@ -531,7 +515,7 @@ export default function Proposal3InteractiveCards() {
                         {['Colina', 'Montaña', 'Cordillera'].map((cat) => (
                           <span
                             key={cat}
-                            className="px-4 py-1.5 rounded-full border border-gray-200 bg-white text-[#48185A] font-nunito text-[13px] font-semibold shadow-2xs"
+                            className="px-4 py-1.5 rounded-full border border-gray-200 bg-white text-[#48185A] font-nunito text-[13px] lg:text-[14px] text-badge-desktop-14 font-semibold shadow-2xs whitespace-nowrap"
                           >
                             {cat}
                           </span>
@@ -564,7 +548,10 @@ export default function Proposal3InteractiveCards() {
             /* CASO B: SI NO ESTÁ SELECCIONADA -> MUESTRA DETALLES Y BOTÓN DE SELECCIÓN */
             <>
               {/* Título de la tarjeta */}
-              <h2 className="font-din text-[24px] font-bold text-[#2b2e2c] text-center mb-1 leading-snug">
+              <h2
+                className="font-din text-[20px] text-card-title-20 font-bold text-[#2b2e2c] text-center mb-1 leading-snug"
+                style={{ fontSize: '20px' }}
+              >
                 Obtén descuentos por categorías
               </h2>
 
@@ -574,11 +561,11 @@ export default function Proposal3InteractiveCards() {
               </p>
 
               {/* Chips de Categorías */}
-              <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
+              <div className="flex flex-wrap items-center justify-center gap-2 min-h-[64px] mb-9 sm:mb-10">
                 {['Colina', 'Montaña', 'Cordillera'].map((cat) => (
                   <span
                     key={cat}
-                    className="px-4 py-1.5 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-[13px] font-semibold shadow-2xs"
+                    className="px-4 py-1.5 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-[13px] lg:text-[14px] text-badge-desktop-14 font-semibold shadow-2xs whitespace-nowrap"
                   >
                     {cat}
                   </span>
@@ -586,7 +573,7 @@ export default function Proposal3InteractiveCards() {
               </div>
 
               {/* Lista de Viñetas Punteadas (Nunito 16px) */}
-              <ul className="space-y-3 mb-6">
+              <ul className="space-y-3.5 mb-10">
                 <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
                   <span>Alianza y beneficios</span>
@@ -601,7 +588,7 @@ export default function Proposal3InteractiveCards() {
                 </li>
               </ul>
 
-              <div className="pt-4 mt-auto">
+              <div className="mt-auto">
                 <button
                   type="button"
                   onClick={(e) => {
@@ -637,7 +624,7 @@ export default function Proposal3InteractiveCards() {
         >
           {/* Badge superior flotante */}
           <div className="flex justify-center -mt-10 sm:-mt-11 mb-4">
-            <span className="px-6 py-2 rounded-xl bg-[#48185A] text-white font-nunito font-bold text-[14px] shadow-md tracking-wide select-none">
+            <span className="px-6 py-2 rounded-full border-2 border-[#48185A] bg-white text-[#48185A] font-nunito font-bold text-[14px] shadow-sm tracking-wide select-none">
               Conectar mi página web
             </span>
           </div>
@@ -647,19 +634,13 @@ export default function Proposal3InteractiveCards() {
             <div className="w-full animate-fadeIn">
               {/* 1. FORMULARIO ARRIBA */}
               <div className="mb-8">
-                <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-gray-100">
-                  <div>
-                    <h3 className="font-din text-[24px] font-bold text-[#48185A]">
-                      Formulario de integración ecommerce
-                    </h3>
-                    <p className="font-nunito text-[16px] text-gray-500 mt-1">
-                      Completa los datos de tu empresa y plataforma web.
-                    </p>
-                  </div>
-                  <div className="self-start sm:self-auto flex items-center gap-1.5 text-xs font-bold text-[#009239] bg-[#eafaf1] px-3 py-1 rounded-full flex-shrink-0">
-                    <CheckCircle2 className="w-4 h-4" />
-                    <span>Opción Activa</span>
-                  </div>
+                <div className="mb-6 pb-3 border-b border-gray-100">
+                  <h3 className="font-din text-[24px] font-bold text-[#48185A]">
+                    Formulario de integración ecommerce
+                  </h3>
+                  <p className="font-nunito text-[16px] text-gray-500 mt-1">
+                    Completa los datos de tu empresa y plataforma web.
+                  </p>
                 </div>
                 <SoyStarkenForm optionType="api" />
               </div>
@@ -670,30 +651,33 @@ export default function Proposal3InteractiveCards() {
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-center">
                     {/* Sección 1 (Izquierda): Título, Subtítulo y Plataformas */}
                     <div className="md:col-span-6 flex flex-col items-center md:items-start text-center md:text-left">
-                      <h4 className="font-din text-[22px] sm:text-[24px] font-bold text-[#2b2e2c] mb-1.5 leading-snug">
+                      <h4
+                        className="font-din text-[20px] text-card-title-20 font-bold text-[#2b2e2c] mb-1.5 leading-snug"
+                        style={{ fontSize: '20px' }}
+                      >
                         Precios especiales por volumen
                       </h4>
                       <p className="font-nunito text-[14px] text-gray-500 font-medium mb-3">
-                        Plataformas disponibles:
+                        Plataformas disponibles
                       </p>
-                      <div className="flex flex-col items-center md:items-start gap-2">
+                      <div className="flex flex-col items-center md:items-start gap-1.5 sm:gap-2">
                         {/* Fila 1 */}
-                        <div className="flex flex-wrap items-center justify-center md:justify-start gap-1.5 sm:gap-2">
+                        <div className="flex flex-nowrap items-center justify-center md:justify-start gap-1 sm:gap-1.5">
                           {['Shopify', 'WooCommerce', 'Bsale*', 'Jumpseller*'].map((p) => (
                             <span
                               key={p}
-                              className="px-3 py-1 rounded-full border border-gray-200 bg-white text-[#48185A] font-nunito text-xs sm:text-[13px] font-semibold shadow-2xs"
+                              className="whitespace-nowrap px-2.5 py-1 rounded-full border border-gray-200 bg-white text-[#48185A] font-nunito text-[11.5px] sm:text-xs lg:text-[14px] text-badge-desktop-14 font-semibold shadow-2xs"
                             >
                               {p}
                             </span>
                           ))}
                         </div>
                         {/* Fila 2 */}
-                        <div className="flex flex-wrap items-center justify-center md:justify-start gap-1.5 sm:gap-2">
+                        <div className="flex flex-nowrap items-center justify-center md:justify-start gap-1 sm:gap-1.5">
                           {['PrestaShop', 'Magento', 'VTEX'].map((p) => (
                             <span
                               key={p}
-                              className="px-3 py-1 rounded-full border border-gray-200 bg-white text-[#48185A] font-nunito text-xs sm:text-[13px] font-semibold shadow-2xs"
+                              className="whitespace-nowrap px-2.5 py-1 rounded-full border border-gray-200 bg-white text-[#48185A] font-nunito text-[11.5px] sm:text-xs lg:text-[14px] text-badge-desktop-14 font-semibold shadow-2xs"
                             >
                               {p}
                             </span>
@@ -727,34 +711,37 @@ export default function Proposal3InteractiveCards() {
             /* CASO B: SI NO ESTÁ SELECCIONADA -> MUESTRA DETALLES Y BOTÓN DE SELECCIÓN */
             <>
               {/* Título de la tarjeta */}
-              <h2 className="font-din text-[24px] font-bold text-[#2b2e2c] text-center mb-1 leading-snug">
+              <h2
+                className="font-din text-[20px] text-card-title-20 font-bold text-[#2b2e2c] text-center mb-1 leading-snug"
+                style={{ fontSize: '20px' }}
+              >
                 Precios especiales por volumen
               </h2>
 
               {/* Subtítulo Plataformas disponibles */}
               <p className="font-nunito text-[14px] text-gray-500 font-medium text-center mb-2.5">
-                Plataformas disponibles:
+                Plataformas disponibles
               </p>
 
-              {/* Chips de Plataformas disponibles (En 2 filas según lineamientos) */}
-              <div className="flex flex-col items-center gap-2 mb-6">
+              {/* Chips de Plataformas disponibles (En 2 filas fijas horizontales) */}
+              <div className="flex flex-col items-center justify-center min-h-[64px] gap-1.5 sm:gap-2 mb-9 sm:mb-10 w-full">
                 {/* Fila 1 */}
-                <div className="flex flex-wrap items-center justify-center gap-2">
+                <div className="flex flex-nowrap items-center justify-center gap-1 sm:gap-1.5 max-w-full">
                   {['Shopify', 'WooCommerce', 'Bsale*', 'Jumpseller*'].map((p) => (
                     <span
                       key={p}
-                      className="px-3 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-xs sm:text-[13px] font-semibold shadow-2xs"
+                      className="whitespace-nowrap px-2.5 sm:px-3 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-xs sm:text-[12px] lg:text-[14px] text-badge-desktop-14 font-semibold shadow-2xs"
                     >
                       {p}
                     </span>
                   ))}
                 </div>
                 {/* Fila 2 */}
-                <div className="flex flex-wrap items-center justify-center gap-2">
+                <div className="flex flex-nowrap items-center justify-center gap-1 sm:gap-1.5 max-w-full">
                   {['PrestaShop', 'Magento', 'VTEX'].map((p) => (
                     <span
                       key={p}
-                      className="px-3 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-xs sm:text-[13px] font-semibold shadow-2xs"
+                      className="whitespace-nowrap px-2.5 sm:px-3 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-xs sm:text-[12px] lg:text-[14px] text-badge-desktop-14 font-semibold shadow-2xs"
                     >
                       {p}
                     </span>
@@ -763,7 +750,7 @@ export default function Proposal3InteractiveCards() {
               </div>
 
               {/* Lista de Viñetas Punteadas (Nunito 16px) */}
-              <ul className="space-y-3 mb-6">
+              <ul className="space-y-3.5 mb-10">
                 <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
                   <span>Integración vía API o Plugin</span>
@@ -778,7 +765,7 @@ export default function Proposal3InteractiveCards() {
                 </li>
               </ul>
 
-              <div className="pt-4 mt-auto">
+              <div className="mt-auto">
                 <button
                   type="button"
                   onClick={(e) => {
