@@ -260,7 +260,7 @@ export default function Proposal3InteractiveCards() {
           >
             {/* Badge superior flotante */}
             <div className="flex justify-center -mt-9 mb-3">
-              <span className="px-4 py-1 rounded-full border border-[#48185A]/50 bg-white text-[#48185A]/80 font-nunito font-semibold text-[12px] tracking-wide select-none">
+              <span className="px-4 py-1 rounded-full border border-[#F97316] bg-white text-[#F97316] font-nunito font-semibold text-[12px] tracking-wide select-none">
                 Unirme al programa
               </span>
             </div>
@@ -396,7 +396,7 @@ export default function Proposal3InteractiveCards() {
           >
             {/* Badge superior flotante */}
             <div className="flex justify-center -mt-9 mb-3">
-              <span className="px-4 py-1 rounded-full border border-[#48185A]/50 bg-white text-[#48185A]/80 font-nunito font-semibold text-[12px] tracking-wide select-none">
+              <span className="px-4 py-1 rounded-full border border-[#F97316] bg-white text-[#F97316] font-nunito font-semibold text-[12px] tracking-wide select-none">
                 Conectar mi página web
               </span>
             </div>
@@ -547,7 +547,7 @@ export default function Proposal3InteractiveCards() {
         >
           {/* Badge superior flotante centrado exactamente sobre la línea superior de la card */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-            <span className="whitespace-nowrap px-6 py-2 rounded-full border-2 border-[#48185A] bg-white text-[#48185A] font-nunito font-bold text-[14px] shadow-sm tracking-wide select-none">
+            <span className="whitespace-nowrap px-6 py-2 rounded-full border-2 border-[#F97316] bg-white text-[#F97316] font-nunito font-bold text-[14px] shadow-sm tracking-wide select-none">
               Unirme al programa
             </span>
           </div>
@@ -697,7 +697,7 @@ export default function Proposal3InteractiveCards() {
         >
           {/* Badge superior flotante centrado exactamente sobre la línea superior de la card */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-            <span className="whitespace-nowrap px-6 py-2 rounded-full border-2 border-[#48185A] bg-white text-[#48185A] font-nunito font-bold text-[14px] shadow-sm tracking-wide select-none">
+            <span className="whitespace-nowrap px-6 py-2 rounded-full border-2 border-[#F97316] bg-white text-[#F97316] font-nunito font-bold text-[14px] shadow-sm tracking-wide select-none">
               Conectar mi página web
             </span>
           </div>
