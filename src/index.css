@@ -145,6 +145,24 @@ body {
   }
 }
 
+/* Acordeón suave tipo spring sin rebote para despliegue de cards mobile */
+.smooth-accordion-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 480ms cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 380ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.smooth-accordion-wrapper.is-expanded {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.smooth-accordion-inner {
+  overflow: hidden;
+}
+
 @media (min-width: 1024px) {
   .text-badge-desktop-14 {
     font-size: 14px !important;

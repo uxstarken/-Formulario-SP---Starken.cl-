@@ -15,19 +15,19 @@ function BeneficiosToggle({ expanded, onToggle }) {
       }}
       aria-expanded={expanded}
       aria-label={expanded ? 'Contraer beneficios' : 'Desplegar beneficios'}
-      className={`mt-4 mx-auto flex items-center justify-center h-[46px] rounded-full bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white shadow-md cursor-pointer overflow-hidden transition-[width,background-color] duration-300 ease-out font-nunito font-bold text-[15px] select-none ${
-        expanded ? 'w-[46px] delay-150' : 'w-full'
+      className={`mt-4 mx-auto flex items-center justify-center h-[46px] rounded-full bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white shadow-md cursor-pointer overflow-hidden transition-[width,background-color] duration-450 ease-[cubic-bezier(0.22,1,0.36,1)] font-nunito font-bold text-[15px] select-none ${
+        expanded ? 'w-[46px] delay-75' : 'w-full'
       }`}
     >
       <span
-        className={`whitespace-nowrap overflow-hidden transition-all duration-200 ease-out ${
+        className={`whitespace-nowrap overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
           expanded ? 'max-w-0 opacity-0 mr-0' : 'max-w-[140px] opacity-100 mr-2'
         }`}
       >
         Beneficios
       </span>
       <ChevronDown
-        className={`w-5 h-5 flex-shrink-0 text-white transition-transform duration-300 ${
+        className={`w-5 h-5 flex-shrink-0 text-white transition-transform duration-450 ease-[cubic-bezier(0.22,1,0.36,1)] ${
           expanded ? 'rotate-180' : 'rotate-0'
         }`}
       />
@@ -240,7 +240,7 @@ export default function Proposal3InteractiveCards() {
               setMobileExpandedCard('benefits');
             }
           }}
-          className={`w-full bg-white rounded-3xl p-5 sm:p-6 border transition-all duration-300 relative select-none ${
+          className={`w-full bg-white rounded-3xl p-5 sm:p-6 border transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] relative select-none ${
             mobileExpandedCard !== 'benefits' ? 'cursor-pointer hover:border-[#48185A]/40' : ''
           } pb-5 sm:pb-6 ${
             selectedCard === 'benefits'
@@ -300,63 +300,69 @@ export default function Proposal3InteractiveCards() {
             />
           </div>
 
-          {/* Detalle desplegable: Viñetas + Botón de acción */}
-          {mobileExpandedCard === 'benefits' && (
-            <div className="pt-5 mt-5 border-t border-gray-100 animate-fadeIn">
-              {/* Lista de Viñetas Punteadas con más aire y separación */}
-              <ul className="space-y-3.5 mb-6">
-                <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0 mt-1" />
-                  <span>Alianza y beneficios</span>
-                </li>
-                <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0 mt-1" />
-                  <span>Atención especializada en canales digitales</span>
-                </li>
-                <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0 mt-1" />
-                  <span>Plan de difusión</span>
-                </li>
-              </ul>
+          {/* Detalle desplegable animado suavemente (tipo spring sin rebote) */}
+          <div
+            className={`smooth-accordion-wrapper ${
+              mobileExpandedCard === 'benefits' ? 'is-expanded' : ''
+            }`}
+          >
+            <div className="smooth-accordion-inner">
+              <div className="pt-5 mt-5 border-t border-gray-100">
+                {/* Lista de Viñetas Punteadas con más aire y separación */}
+                <ul className="space-y-3.5 mb-6">
+                  <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0 mt-1" />
+                    <span>Alianza y beneficios</span>
+                  </li>
+                  <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0 mt-1" />
+                    <span>Atención especializada en canales digitales</span>
+                  </li>
+                  <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0 mt-1" />
+                    <span>Plan de difusión</span>
+                  </li>
+                </ul>
 
-              {/* Botón de acción (aparece cuando la card está desplegada) con aire superior e inferior */}
-              <div className="pt-1 pb-3">
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleMobileSelectCard('benefits');
-                  }}
-                  className={`w-full py-3 px-5 rounded-full font-bold text-[14.5px] shadow-md transition-all duration-150 cursor-pointer text-center flex items-center justify-center gap-2 ${
-                    selectedCard === 'benefits'
-                      ? 'bg-[#009239] text-white shadow-[#009239]/20'
-                      : 'bg-[#48185A] hover:bg-[#381146] text-white'
-                  }`}
-                >
-                  {selectedCard === 'benefits' ? (
-                    <>
-                      <CheckCircle2 className="w-4 h-4" />
-                      <span>Opción Seleccionada</span>
-                    </>
-                  ) : (
-                    <span>Unirme al programa</span>
-                  )}
-                </button>
-              </div>
-
-              {/* Formulario móvil desplegado abajo SOLO cuando se presiona el botón */}
-              {selectedCard === 'benefits' && (
-                <div ref={mobileFormRef} className="mt-5 pt-5 border-t border-gray-100 animate-fadeIn scroll-mt-24">
-                  <div className="mb-5 pb-3 border-b border-gray-100">
-                    <h3 className="font-din text-[20px] font-bold text-[#48185A] leading-snug">
-                      Formulario de registro
-                    </h3>
-                  </div>
-                  <SoyStarkenForm optionType="benefits" />
+                {/* Botón de acción (aparece cuando la card está desplegada) con aire superior e inferior */}
+                <div className="pt-1 pb-3">
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleMobileSelectCard('benefits');
+                    }}
+                    className={`w-full py-3 px-5 rounded-full font-bold text-[14.5px] shadow-md transition-all duration-150 cursor-pointer text-center flex items-center justify-center gap-2 ${
+                      selectedCard === 'benefits'
+                        ? 'bg-[#009239] text-white shadow-[#009239]/20'
+                        : 'bg-[#48185A] hover:bg-[#381146] text-white'
+                    }`}
+                  >
+                    {selectedCard === 'benefits' ? (
+                      <>
+                        <CheckCircle2 className="w-4 h-4" />
+                        <span>Opción Seleccionada</span>
+                      </>
+                    ) : (
+                      <span>Unirme al programa</span>
+                    )}
+                  </button>
                 </div>
-              )}
+
+                {/* Formulario móvil desplegado abajo SOLO cuando se presiona el botón */}
+                {selectedCard === 'benefits' && (
+                  <div ref={mobileFormRef} className="mt-5 pt-5 border-t border-gray-100 animate-fadeIn scroll-mt-24">
+                    <div className="mb-5 pb-3 border-b border-gray-100">
+                      <h3 className="font-din text-[20px] font-bold text-[#48185A] leading-snug">
+                        Formulario de registro
+                      </h3>
+                    </div>
+                    <SoyStarkenForm optionType="benefits" />
+                  </div>
+                )}
+              </div>
             </div>
-          )}
+          </div>
         </div>
 
         {/* ========================================== */}
@@ -370,7 +376,7 @@ export default function Proposal3InteractiveCards() {
               setMobileExpandedCard('api');
             }
           }}
-          className={`w-full bg-white rounded-3xl p-5 sm:p-6 border transition-all duration-300 relative select-none ${
+          className={`w-full bg-white rounded-3xl p-5 sm:p-6 border transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] relative select-none ${
             mobileExpandedCard !== 'api' ? 'cursor-pointer hover:border-[#48185A]/40' : ''
           } pb-5 sm:pb-6 ${
             selectedCard === 'api'
@@ -443,66 +449,72 @@ export default function Proposal3InteractiveCards() {
             />
           </div>
 
-          {/* Detalle desplegable: Viñetas + Botón de acción */}
-          {mobileExpandedCard === 'api' && (
-            <div className="pt-5 mt-5 border-t border-gray-100 animate-fadeIn">
-              {/* Lista de Viñetas Punteadas con más aire y separación */}
-              <ul className="space-y-3.5 mb-6">
-                <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0 mt-1" />
-                  <span>Integración vía API o Plugin</span>
-                </li>
-                <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0 mt-1" />
-                  <span>Acompañamiento especializado</span>
-                </li>
-                <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0 mt-1" />
-                  <span>Vende y despacha desde un solo lugar</span>
-                </li>
-              </ul>
+          {/* Detalle desplegable animado suavemente (tipo spring sin rebote) */}
+          <div
+            className={`smooth-accordion-wrapper ${
+              mobileExpandedCard === 'api' ? 'is-expanded' : ''
+            }`}
+          >
+            <div className="smooth-accordion-inner">
+              <div className="pt-5 mt-5 border-t border-gray-100">
+                {/* Lista de Viñetas Punteadas con más aire y separación */}
+                <ul className="space-y-3.5 mb-6">
+                  <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0 mt-1" />
+                    <span>Integración vía API o Plugin</span>
+                  </li>
+                  <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0 mt-1" />
+                    <span>Acompañamiento especializado</span>
+                  </li>
+                  <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0 mt-1" />
+                    <span>Vende y despacha desde un solo lugar</span>
+                  </li>
+                </ul>
 
-              {/* Botón de acción (aparece cuando la card está desplegada) con aire superior e inferior */}
-              <div className="pt-1 pb-3">
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleMobileSelectCard('api');
-                  }}
-                  className={`w-full py-3 px-5 rounded-full font-bold text-[14.5px] shadow-md transition-all duration-150 cursor-pointer text-center flex items-center justify-center gap-2 ${
-                    selectedCard === 'api'
-                      ? 'bg-[#009239] text-white shadow-[#009239]/20'
-                      : 'bg-[#48185A] hover:bg-[#381146] text-white'
-                  }`}
-                >
-                  {selectedCard === 'api' ? (
-                    <>
-                      <CheckCircle2 className="w-4 h-4" />
-                      <span>Opción Seleccionada</span>
-                    </>
-                  ) : (
-                    <span>Contactar con ejecutivo</span>
-                  )}
-                </button>
-              </div>
-
-              {/* Formulario móvil desplegado abajo SOLO cuando se presiona el botón */}
-              {selectedCard === 'api' && (
-                <div ref={mobileFormRef} className="mt-5 pt-5 border-t border-gray-100 animate-fadeIn scroll-mt-24">
-                  <div className="mb-5 pb-3 border-b border-gray-100">
-                    <h3 className="font-din text-[20px] font-bold text-[#48185A] leading-snug">
-                      Formulario de integración ecommerce
-                    </h3>
-                    <p className="font-nunito text-[13px] text-gray-500 mt-1">
-                      Completa los datos de tu empresa y plataforma web.
-                    </p>
-                  </div>
-                  <SoyStarkenForm optionType="api" />
+                {/* Botón de acción (aparece cuando la card está desplegada) con aire superior e inferior */}
+                <div className="pt-1 pb-3">
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleMobileSelectCard('api');
+                    }}
+                    className={`w-full py-3 px-5 rounded-full font-bold text-[14.5px] shadow-md transition-all duration-150 cursor-pointer text-center flex items-center justify-center gap-2 ${
+                      selectedCard === 'api'
+                        ? 'bg-[#009239] text-white shadow-[#009239]/20'
+                        : 'bg-[#48185A] hover:bg-[#381146] text-white'
+                    }`}
+                  >
+                    {selectedCard === 'api' ? (
+                      <>
+                        <CheckCircle2 className="w-4 h-4" />
+                        <span>Opción Seleccionada</span>
+                      </>
+                    ) : (
+                      <span>Contactar con ejecutivo</span>
+                    )}
+                  </button>
                 </div>
-              )}
+
+                {/* Formulario móvil desplegado abajo SOLO cuando se presiona el botón */}
+                {selectedCard === 'api' && (
+                  <div ref={mobileFormRef} className="mt-5 pt-5 border-t border-gray-100 animate-fadeIn scroll-mt-24">
+                    <div className="mb-5 pb-3 border-b border-gray-100">
+                      <h3 className="font-din text-[20px] font-bold text-[#48185A] leading-snug">
+                        Formulario de integración ecommerce
+                      </h3>
+                      <p className="font-nunito text-[13px] text-gray-500 mt-1">
+                        Completa los datos de tu empresa y plataforma web.
+                      </p>
+                    </div>
+                    <SoyStarkenForm optionType="api" />
+                  </div>
+                )}
+              </div>
             </div>
-          )}
+          </div>
         </div>
       </div>
 
