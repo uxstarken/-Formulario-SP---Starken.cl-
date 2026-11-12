@@ -125,16 +125,32 @@ export default function Proposal3InteractiveCards() {
 
       {/* 2. ENCABEZADO PRINCIPAL CENTRADO (SEGÚN REFERENCIA) */}
       <div className="text-center max-w-[840px] mx-auto mb-5 sm:mb-8 lg:mb-9">
-        <h1 className="font-din text-[20px] lg:text-[28px] text-main-title font-bold text-[#48185A] tracking-normal leading-tight mb-1.5">
-          Únete al programa de pymes y emprendedores <br />
-          <span className="inline-block">más grande de Chile</span>
-        </h1>
-        <p
-          className="font-nunito text-base text-[16px] text-bajada-16 font-semibold text-[#303030] tracking-wide"
-          style={{ fontSize: '16px' }}
-        >
-          Y comienza a enviar tus pedidos con Starken
-        </p>
+        {/* Versión Mobile */}
+        <div className="block lg:hidden">
+          <h1 className="font-din text-[20px] text-main-title font-bold text-[#48185A] tracking-normal leading-tight mb-1.5">
+            Únete al programa de pyme de Starken
+          </h1>
+          <p
+            className="font-nunito text-base text-[16px] text-bajada-16 font-semibold text-[#303030] tracking-wide"
+            style={{ fontSize: '16px' }}
+          >
+            y haz crecer tu negocio.
+          </p>
+        </div>
+
+        {/* Versión Desktop */}
+        <div className="hidden lg:block">
+          <h1 className="font-din text-[28px] text-main-title font-bold text-[#48185A] tracking-normal leading-tight mb-1.5">
+            Únete al programa de pymes y emprendedores <br />
+            <span className="inline-block">más grande de Chile</span>
+          </h1>
+          <p
+            className="font-nunito text-base text-[16px] text-bajada-16 font-semibold text-[#303030] tracking-wide"
+            style={{ fontSize: '16px' }}
+          >
+            Y comienza a enviar tus pedidos con Starken
+          </p>
+        </div>
       </div>
 
       {/* ============================================================== */}
