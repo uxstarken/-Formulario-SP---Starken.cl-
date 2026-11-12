@@ -173,7 +173,7 @@ export default function Proposal3InteractiveCards() {
   }, [mobileExpandedCard]);
 
   return (
-    <div className="w-full font-nunito pb-12">
+    <div className="w-full font-nunito pb-0 lg:pb-8">
       {/* 1. BREADCRUMB (oculto en mobile) */}
       <div className="hidden lg:block mb-2">
         <Breadcrumb
@@ -220,7 +220,7 @@ export default function Proposal3InteractiveCards() {
       {/* ============================================================== */}
       {/* 3. VERSIÓN MOBILE: TARJETAS VERTICALES COMPACTAS PLEGABLES */}
       {/* ============================================================== */}
-      <div className="block lg:hidden mb-8 space-y-[40px] pt-4 pb-6">
+      <div className="block lg:hidden mb-2 space-y-[40px] pt-4 pb-2">
         {/* ========================================== */}
         {/* TARJETA 1 MOBILE: UNIRME AL PROGRAMA */}
         {/* ========================================== */}
