@@ -185,7 +185,7 @@ export default function Proposal3InteractiveCards() {
       </div>
 
       {/* 2. ENCABEZADO PRINCIPAL CENTRADO (SEGÚN REFERENCIA) */}
-      <div className="text-center max-w-[840px] mx-auto mb-3 sm:mb-8 lg:mb-9">
+      <div className="text-center max-w-[840px] mx-auto mb-3.5 sm:mb-8 lg:mb-9">
         {/* Versión Mobile */}
         <div className="block lg:hidden">
           <h1
@@ -220,7 +220,7 @@ export default function Proposal3InteractiveCards() {
       {/* ============================================================== */}
       {/* 3. VERSIÓN MOBILE: TARJETAS VERTICALES COMPACTAS PLEGABLES */}
       {/* ============================================================== */}
-      <div className="block lg:hidden mb-8 space-y-[40px] pt-1.5 pb-6">
+      <div className="block lg:hidden mb-8 space-y-[40px] pt-4 pb-6">
         {/* ========================================== */}
         {/* TARJETA 1 MOBILE: UNIRME AL PROGRAMA */}
         {/* ========================================== */}
