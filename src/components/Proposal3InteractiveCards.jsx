@@ -616,33 +616,36 @@ export default function Proposal3InteractiveCards() {
           ) : (
             /* CASO B: SI NO ESTÁ SELECCIONADA -> MUESTRA DETALLES Y BOTÓN DE SELECCIÓN */
             <>
-              {/* Título de la tarjeta */}
-              <h2
-                className="font-din text-[24px] text-card-title-desktop-24 font-bold text-[#2b2e2c] text-center mb-1 leading-snug"
-                style={{ fontSize: '24px' }}
-              >
-                Obtén descuentos por categorías
-              </h2>
+              {/* SECCIÓN 1: TÍTULO + BAJADA + BADGES */}
+              <div className="flex flex-col items-center mb-7 sm:mb-8">
+                {/* Título de la tarjeta */}
+                <h2
+                  className="font-din text-[24px] text-card-title-desktop-24 font-bold text-[#2b2e2c] text-center mb-1 leading-snug"
+                  style={{ fontSize: '24px' }}
+                >
+                  Obtén descuentos por categorías
+                </h2>
 
-              {/* Subtítulo Categorías */}
-              <p className="font-nunito text-[14px] text-gray-500 font-medium text-center mb-2.5">
-                Categorias
-              </p>
+                {/* Subtítulo Categorías */}
+                <p className="font-nunito text-[14px] text-gray-500 font-medium text-center mb-3">
+                  Categorias
+                </p>
 
-              {/* Chips de Categorías */}
-              <div className="flex flex-wrap items-center justify-center gap-2 min-h-[102px] mb-9 sm:mb-10">
-                {['Colina', 'Montaña', 'Cordillera'].map((cat) => (
-                  <span
-                    key={cat}
-                    className="px-4 py-1.5 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-[13px] lg:text-[14px] text-badge-desktop-14 font-semibold shadow-2xs whitespace-nowrap"
-                  >
-                    {cat}
-                  </span>
-                ))}
+                {/* Chips de Categorías */}
+                <div className="flex items-center justify-center gap-2 h-[66px] w-full">
+                  {['Colina', 'Montaña', 'Cordillera'].map((cat) => (
+                    <span
+                      key={cat}
+                      className="px-4 py-1.5 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-[13px] lg:text-[14px] text-badge-desktop-14 font-semibold shadow-2xs whitespace-nowrap"
+                    >
+                      {cat}
+                    </span>
+                  ))}
+                </div>
               </div>
 
-              {/* Lista de Viñetas Punteadas (Nunito 16px) */}
-              <ul className="space-y-3.5 mb-10">
+              {/* SECCIÓN 2: LISTA DE BENEFICIOS PUNTEADOS */}
+              <ul className="space-y-3.5 mb-7 sm:mb-8">
                 <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
                   <span>Alianza y beneficios</span>
@@ -657,7 +660,8 @@ export default function Proposal3InteractiveCards() {
                 </li>
               </ul>
 
-              <div className="mt-auto">
+              {/* SECCIÓN 3: BOTÓN DE ACCIÓN */}
+              <div>
                 <button
                   type="button"
                   onClick={(e) => {
@@ -732,7 +736,7 @@ export default function Proposal3InteractiveCards() {
                       <div className="flex flex-col items-center md:items-start gap-1.5 sm:gap-2">
                         {/* Fila 1 */}
                         <div className="flex flex-wrap items-center justify-center md:justify-start gap-1 sm:gap-1.5">
-                          {['Shopify', 'WooCommerce', 'Bsale*'].map((p) => (
+                          {['Shopify', 'WooCommerce', 'Bsale*', 'Jumpseller*'].map((p) => (
                             <span
                               key={p}
                               className="whitespace-nowrap px-2.5 py-1 rounded-full border border-gray-200 bg-white text-[#48185A] font-nunito text-[11.5px] sm:text-xs lg:text-[14px] text-badge-desktop-14 font-semibold shadow-2xs"
@@ -743,18 +747,7 @@ export default function Proposal3InteractiveCards() {
                         </div>
                         {/* Fila 2 */}
                         <div className="flex flex-wrap items-center justify-center md:justify-start gap-1 sm:gap-1.5">
-                          {['PrestaShop', 'Magento'].map((p) => (
-                            <span
-                              key={p}
-                              className="whitespace-nowrap px-2.5 py-1 rounded-full border border-gray-200 bg-white text-[#48185A] font-nunito text-[11.5px] sm:text-xs lg:text-[14px] text-badge-desktop-14 font-semibold shadow-2xs"
-                            >
-                              {p}
-                            </span>
-                          ))}
-                        </div>
-                        {/* Fila 3 */}
-                        <div className="flex flex-wrap items-center justify-center md:justify-start gap-1 sm:gap-1.5">
-                          {['Jumpseller*', 'VTEX'].map((p) => (
+                          {['PrestaShop', 'Magento', 'VTEX'].map((p) => (
                             <span
                               key={p}
                               className="whitespace-nowrap px-2.5 py-1 rounded-full border border-gray-200 bg-white text-[#48185A] font-nunito text-[11.5px] sm:text-xs lg:text-[14px] text-badge-desktop-14 font-semibold shadow-2xs"
@@ -790,58 +783,50 @@ export default function Proposal3InteractiveCards() {
           ) : (
             /* CASO B: SI NO ESTÁ SELECCIONADA -> MUESTRA DETALLES Y BOTÓN DE SELECCIÓN */
             <>
-              {/* Título de la tarjeta */}
-              <h2
-                className="font-din text-[24px] text-card-title-desktop-24 font-bold text-[#2b2e2c] text-center mb-1 leading-snug"
-                style={{ fontSize: '24px' }}
-              >
-                Precios especiales por volumen
-              </h2>
+              {/* SECCIÓN 1: TÍTULO + BAJADA + BADGES */}
+              <div className="flex flex-col items-center mb-7 sm:mb-8">
+                {/* Título de la tarjeta */}
+                <h2
+                  className="font-din text-[24px] text-card-title-desktop-24 font-bold text-[#2b2e2c] text-center mb-1 leading-snug"
+                  style={{ fontSize: '24px' }}
+                >
+                  Precios especiales por volumen
+                </h2>
 
-              {/* Subtítulo Plataformas disponibles */}
-              <p className="font-nunito text-[14px] text-gray-500 font-medium text-center mb-2.5">
-                Plataformas disponibles
-              </p>
+                {/* Subtítulo Plataformas disponibles */}
+                <p className="font-nunito text-[14px] text-gray-500 font-medium text-center mb-3">
+                  Plataformas disponibles
+                </p>
 
-              {/* Chips de Plataformas disponibles (En 3 filas en desktop) */}
-              <div className="flex flex-col items-center justify-center min-h-[102px] gap-1.5 sm:gap-2 mb-9 sm:mb-10 w-full">
-                {/* Fila 1 */}
-                <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-1.5 max-w-full">
-                  {['Shopify', 'WooCommerce', 'Bsale*'].map((p) => (
-                    <span
-                      key={p}
-                      className="whitespace-nowrap px-2.5 sm:px-3 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-xs sm:text-[12px] lg:text-[14px] text-badge-desktop-14 font-semibold shadow-2xs"
-                    >
-                      {p}
-                    </span>
-                  ))}
-                </div>
-                {/* Fila 2 */}
-                <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-1.5 max-w-full">
-                  {['PrestaShop', 'Magento'].map((p) => (
-                    <span
-                      key={p}
-                      className="whitespace-nowrap px-2.5 sm:px-3 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-xs sm:text-[12px] lg:text-[14px] text-badge-desktop-14 font-semibold shadow-2xs"
-                    >
-                      {p}
-                    </span>
-                  ))}
-                </div>
-                {/* Fila 3 */}
-                <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-1.5 max-w-full">
-                  {['Jumpseller*', 'VTEX'].map((p) => (
-                    <span
-                      key={p}
-                      className="whitespace-nowrap px-2.5 sm:px-3 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-xs sm:text-[12px] lg:text-[14px] text-badge-desktop-14 font-semibold shadow-2xs"
-                    >
-                      {p}
-                    </span>
-                  ))}
+                {/* Chips de Plataformas disponibles (En 2 filas horizontales en desktop) */}
+                <div className="flex flex-col items-center justify-center gap-1.5 h-[66px] w-full">
+                  {/* Fila 1 */}
+                  <div className="flex items-center justify-center gap-1.5 sm:gap-2 max-w-full">
+                    {['Shopify', 'WooCommerce', 'Bsale*', 'Jumpseller*'].map((p) => (
+                      <span
+                        key={p}
+                        className="whitespace-nowrap px-2.5 sm:px-3 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-xs sm:text-[12px] lg:text-[14px] text-badge-desktop-14 font-semibold shadow-2xs"
+                      >
+                        {p}
+                      </span>
+                    ))}
+                  </div>
+                  {/* Fila 2 */}
+                  <div className="flex items-center justify-center gap-1.5 sm:gap-2 max-w-full">
+                    {['PrestaShop', 'Magento', 'VTEX'].map((p) => (
+                      <span
+                        key={p}
+                        className="whitespace-nowrap px-2.5 sm:px-3 py-1 rounded-full border border-gray-200 bg-gray-50/80 text-[#48185A] font-nunito text-xs sm:text-[12px] lg:text-[14px] text-badge-desktop-14 font-semibold shadow-2xs"
+                      >
+                        {p}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
 
-              {/* Lista de Viñetas Punteadas (Nunito 16px) */}
-              <ul className="space-y-3.5 mb-10">
+              {/* SECCIÓN 2: LISTA DE BENEFICIOS PUNTEADOS */}
+              <ul className="space-y-3.5 mb-7 sm:mb-8">
                 <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
                   <span>Integración vía API o Plugin</span>
@@ -856,7 +841,8 @@ export default function Proposal3InteractiveCards() {
                 </li>
               </ul>
 
-              <div className="mt-auto">
+              {/* SECCIÓN 3: BOTÓN DE ACCIÓN */}
+              <div>
                 <button
                   type="button"
                   onClick={(e) => {
