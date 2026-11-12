@@ -124,9 +124,9 @@ export default function Proposal3InteractiveCards() {
       const isMobile = window.innerWidth < 1024;
       const timer = setTimeout(() => {
         if (isMobile && mobileFormRef.current) {
-          const navbarHeight = 62; // Top bar sticky mobile (46px) + aire; la parte blanca del header se esconde al bajar
+          const navbarHeight = 116; // Sticky navbar mobile total (46px + 70px)
           const elementTop = mobileFormRef.current.getBoundingClientRect().top;
-          const targetY = elementTop + window.pageYOffset - navbarHeight;
+          const targetY = elementTop + window.pageYOffset - (navbarHeight + 16);
 
           window.scrollTo({
             top: Math.max(0, targetY),
@@ -155,18 +155,26 @@ export default function Proposal3InteractiveCards() {
       if (!isMobile) return;
 
       const timer = setTimeout(() => {
-        const targetRef = mobileExpandedCard === 'api' ? mobileCard2Ref.current : mobileCard1Ref.current;
-        if (targetRef) {
-          const navbarHeight = 62; // Top bar sticky mobile (46px) + aire para el badge flotante
-          const elementTop = targetRef.getBoundingClientRect().top;
-          const targetY = elementTop + window.pageYOffset - navbarHeight;
+        if (mobileExpandedCard === 'api' && mobileCard2Ref.current) {
+          // Dejar Card 2 con su badge flotante visible y con aire bajo el navbar (116px)
+          // La caja blanca de Card 2 queda a ~175px del tope para coincidir exactamente con la referencia
+          const cardTop = mobileCard2Ref.current.getBoundingClientRect().top + window.pageYOffset;
+          const targetY = cardTop - 175;
+
+          window.scrollTo({
+            top: Math.max(0, targetY),
+            behavior: 'smooth'
+          });
+        } else if (mobileExpandedCard === 'benefits' && mobileCard1Ref.current) {
+          const cardTop = mobileCard1Ref.current.getBoundingClientRect().top + window.pageYOffset;
+          const targetY = cardTop - 175;
 
           window.scrollTo({
             top: Math.max(0, targetY),
             behavior: 'smooth'
           });
         }
-      }, 100);
+      }, 120);
 
       return () => clearTimeout(timer);
     }
