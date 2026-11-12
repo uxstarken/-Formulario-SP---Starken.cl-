@@ -21,6 +21,11 @@ export default function Proposal3InteractiveCards() {
 
   // Toggle para desplegar/contraer la información de una tarjeta en mobile
   const toggleMobileExpand = (cardKey) => {
+    // Al contraer una card que tenía el formulario abierto, se deselecciona para volver
+    // a la vista contraída normal (borde estándar y botón "Beneficios" visible)
+    if (mobileExpandedCard === cardKey && selectedCard === cardKey) {
+      setSelectedCard(null);
+    }
     setMobileExpandedCard((prev) => (prev === cardKey ? null : cardKey));
   };
 
