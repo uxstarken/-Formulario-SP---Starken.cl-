@@ -87,7 +87,7 @@ export default function Proposal3InteractiveCards() {
       const isMobile = window.innerWidth < 1024;
       const timer = setTimeout(() => {
         if (isMobile && mobileFormRef.current) {
-          const navbarHeight = 85; // Altura sticky navbar mobile
+          const navbarHeight = 62; // Top bar sticky mobile (46px) + aire; la parte blanca del header se esconde al bajar
           const elementTop = mobileFormRef.current.getBoundingClientRect().top;
           const targetY = elementTop + window.pageYOffset - navbarHeight;
 

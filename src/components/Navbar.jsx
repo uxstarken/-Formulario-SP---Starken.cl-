@@ -4,6 +4,7 @@ import { HelpCircle, ChevronDown, ChevronRight, Menu, X } from 'lucide-react';
 export default function Navbar({ onOpenForm, activeSegment = 'Emprendedores', onSelectSegment }) {
   const [currentSegment, setCurrentSegment] = useState(activeSegment);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [hideMainBar, setHideMainBar] = useState(false);
 
   const segments = ['Personas', 'Emprendedores', 'Empresas', 'Internacional'];
 
@@ -24,10 +25,43 @@ export default function Navbar({ onOpenForm, activeSegment = 'Emprendedores', on
     };
   }, [isMobileMenuOpen]);
 
+  // MOBILE: la parte blanca del header se esconde al bajar y reaparece al subir
+  useEffect(() => {
+    let lastY = window.scrollY;
+    let ticking = false;
+
+    const update = () => {
+      const y = Math.max(0, window.scrollY);
+      const isMobileViewport = window.innerWidth < 768;
+      const delta = y - lastY;
+
+      if (!isMobileViewport || y <= 10) {
+        setHideMainBar(false);
+      } else if (delta > 6 && y > 60) {
+        setHideMainBar(true);
+      } else if (delta < -6) {
+        setHideMainBar(false);
+      }
+
+      if (Math.abs(delta) > 6 || y <= 10) lastY = y;
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(update);
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 w-full bg-white shadow-xs font-['Nunito',sans-serif]">
+    <header className="sticky top-0 z-50 w-full font-['Nunito',sans-serif] pointer-events-none md:pointer-events-auto md:bg-white md:shadow-xs">
       {/* 1. TOP BAR CORPORATIVA (#303030) */}
-      <div className="bg-[#303030] text-white px-3 sm:px-4 lg:px-12 h-[46px] md:h-10 flex items-center justify-between text-[13px] font-medium select-none">
+      <div className="relative z-20 pointer-events-auto bg-[#303030] text-white px-3 sm:px-4 lg:px-12 h-[46px] md:h-10 flex items-center justify-between text-[13px] font-medium select-none">
         {/* Segmentos de clientes: distribuidos en mobile, alineados a la izquierda en desktop */}
         <div className="flex items-center justify-between md:justify-start w-full md:w-auto space-x-1 sm:space-x-3 h-full overflow-x-auto no-scrollbar">
           {segments.map((seg) => {
@@ -36,11 +70,10 @@ export default function Navbar({ onOpenForm, activeSegment = 'Emprendedores', on
               <button
                 key={seg}
                 onClick={() => handleSegmentClick(seg)}
-                className={`h-full px-2 sm:px-4 flex items-center relative transition-colors duration-150 cursor-pointer text-xs sm:text-[13px] whitespace-nowrap ${
-                  isActive
+                className={`h-full px-2 sm:px-4 flex items-center relative transition-colors duration-150 cursor-pointer text-xs sm:text-[13px] whitespace-nowrap ${isActive
                     ? 'text-white font-bold'
                     : 'text-gray-300 hover:text-white opacity-85 hover:opacity-100'
-                }`}
+                  }`}
               >
                 {seg}
                 {isActive && (
@@ -65,7 +98,12 @@ export default function Navbar({ onOpenForm, activeSegment = 'Emprendedores', on
         </div>
       </div>
 
-      {/* 2. MAIN NAV BAR (#ffffff, altura 80px en desktop, 70px en mobile) */}
+      {/* 2. MAIN NAV BAR (#ffffff, altura 80px en desktop, 70px en mobile). En mobile se esconde al bajar y reaparece al subir */}
+      <div
+        className={`relative z-10 pointer-events-auto bg-white transition-transform duration-300 ease-out md:translate-y-0 ${
+          hideMainBar ? '-translate-y-full' : 'translate-y-0 shadow-xs'
+        }`}
+      >
       <div className="max-w-[1240px] mx-auto px-4 lg:px-8 h-[70px] md:h-20 flex items-center justify-between">
         {/* Logo Starken */}
         <div className="flex items-center">
@@ -116,10 +154,11 @@ export default function Navbar({ onOpenForm, activeSegment = 'Emprendedores', on
           </button>
         </div>
       </div>
+      </div>
 
       {/* 3. MENÚ MOBILE LATERAL OFF-CANVAS CON EFECTO SLIDE-IN DESDE EL COSTADO */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-50 md:hidden">
+        <div className="fixed inset-0 z-50 md:hidden pointer-events-auto">
           {/* Backdrop oscuro translúcido con desenfoque suave (hacer clic aquí cierra el menú) */}
           <div
             onClick={() => setIsMobileMenuOpen(false)}
