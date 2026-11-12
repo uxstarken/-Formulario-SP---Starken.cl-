@@ -112,7 +112,7 @@ export default function Navbar({ onOpenForm, activeSegment = 'Emprendedores', on
             className="p-2 text-[#2b2e2c] hover:text-[#009D4E] focus:outline-none cursor-pointer"
             aria-label="Abrir menú"
           >
-            <Menu className="w-7 h-7 stroke-[2]" />
+            <Menu className="w-6 h-6 stroke-[2]" />
           </button>
         </div>
       </div>
