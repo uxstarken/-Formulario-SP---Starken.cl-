@@ -148,6 +148,30 @@ export default function Proposal3InteractiveCards() {
     }
   }, [selectedCard]);
 
+  // Auto-scroll en mobile al desplegar una card (por ejemplo al pulsar "Beneficios" en la card de abajo)
+  useEffect(() => {
+    if (mobileExpandedCard) {
+      const isMobile = window.innerWidth < 1024;
+      if (!isMobile) return;
+
+      const timer = setTimeout(() => {
+        const targetRef = mobileExpandedCard === 'api' ? mobileCard2Ref.current : mobileCard1Ref.current;
+        if (targetRef) {
+          const navbarHeight = 62; // Top bar sticky mobile (46px) + aire para el badge flotante
+          const elementTop = targetRef.getBoundingClientRect().top;
+          const targetY = elementTop + window.pageYOffset - navbarHeight;
+
+          window.scrollTo({
+            top: Math.max(0, targetY),
+            behavior: 'smooth'
+          });
+        }
+      }, 100);
+
+      return () => clearTimeout(timer);
+    }
+  }, [mobileExpandedCard]);
+
   return (
     <div className="w-full font-nunito pb-12">
       {/* 1. BREADCRUMB (oculto en mobile) */}
@@ -236,8 +260,8 @@ export default function Proposal3InteractiveCards() {
             {/* Título de la tarjeta centrado */}
             <div className="text-center mb-2.5">
               <h2
-                className="font-din text-[20px] text-card-title-20 font-bold text-[#2b2e2c] leading-snug"
-                style={{ fontSize: '20px' }}
+                className="font-din text-[18px] text-card-title-18 font-bold text-[#2b2e2c] leading-snug"
+                style={{ fontSize: '18px' }}
               >
                 Obtén descuentos por categorías
               </h2>
@@ -366,8 +390,8 @@ export default function Proposal3InteractiveCards() {
             {/* Título de la tarjeta centrado */}
             <div className="text-center mb-2.5">
               <h2
-                className="font-din text-[20px] text-card-title-20 font-bold text-[#2b2e2c] leading-snug"
-                style={{ fontSize: '20px' }}
+                className="font-din text-[18px] text-card-title-18 font-bold text-[#2b2e2c] leading-snug"
+                style={{ fontSize: '18px' }}
               >
                 Precios especiales por volumen
               </h2>
@@ -526,8 +550,8 @@ export default function Proposal3InteractiveCards() {
                     {/* Sección 1 (Izquierda): Título, Subtítulo y Categorías */}
                     <div className="md:col-span-6 flex flex-col items-center md:items-start text-center md:text-left">
                       <h4
-                        className="font-din text-[20px] text-card-title-20 font-bold text-[#2b2e2c] mb-1.5 leading-snug"
-                        style={{ fontSize: '20px' }}
+                        className="font-din text-[18px] text-card-title-18 font-bold text-[#2b2e2c] mb-1.5 leading-snug"
+                        style={{ fontSize: '18px' }}
                       >
                         Obtén descuentos por categorías
                       </h4>
@@ -572,8 +596,8 @@ export default function Proposal3InteractiveCards() {
             <>
               {/* Título de la tarjeta */}
               <h2
-                className="font-din text-[20px] text-card-title-20 font-bold text-[#2b2e2c] text-center mb-1 leading-snug"
-                style={{ fontSize: '20px' }}
+                className="font-din text-[18px] text-card-title-18 font-bold text-[#2b2e2c] text-center mb-1 leading-snug"
+                style={{ fontSize: '18px' }}
               >
                 Obtén descuentos por categorías
               </h2>
@@ -675,8 +699,8 @@ export default function Proposal3InteractiveCards() {
                     {/* Sección 1 (Izquierda): Título, Subtítulo y Plataformas */}
                     <div className="md:col-span-6 flex flex-col items-center md:items-start text-center md:text-left">
                       <h4
-                        className="font-din text-[20px] text-card-title-20 font-bold text-[#2b2e2c] mb-1.5 leading-snug"
-                        style={{ fontSize: '20px' }}
+                        className="font-din text-[18px] text-card-title-18 font-bold text-[#2b2e2c] mb-1.5 leading-snug"
+                        style={{ fontSize: '18px' }}
                       >
                         Precios especiales por volumen
                       </h4>
@@ -735,8 +759,8 @@ export default function Proposal3InteractiveCards() {
             <>
               {/* Título de la tarjeta */}
               <h2
-                className="font-din text-[20px] text-card-title-20 font-bold text-[#2b2e2c] text-center mb-1 leading-snug"
-                style={{ fontSize: '20px' }}
+                className="font-din text-[18px] text-card-title-18 font-bold text-[#2b2e2c] text-center mb-1 leading-snug"
+                style={{ fontSize: '18px' }}
               >
                 Precios especiales por volumen
               </h2>
