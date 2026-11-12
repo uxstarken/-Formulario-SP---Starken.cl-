@@ -217,7 +217,7 @@ export default function ConfirmationScreen({ formData, onReset, onGoHome }) {
           ) : (
             <button
               onClick={onGoHome}
-              className="w-full sm:w-auto px-6 py-3 bg-[#029E47] hover:bg-[#02853c] text-white rounded-xl text-sm font-bold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-6 py-3 bg-[#029E47] hover:bg-[#02853c] text-white rounded-full sm:rounded-[7px] text-sm font-bold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2"
             >
               <span>Ir al Home de Starken</span>
               <ArrowRight className="w-4 h-4" />
@@ -226,7 +226,7 @@ export default function ConfirmationScreen({ formData, onReset, onGoHome }) {
 
           <button
             onClick={onReset}
-            className="w-full sm:w-auto px-5 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl text-sm font-bold transition-all"
+            className="w-full sm:w-auto px-5 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full sm:rounded-[7px] text-sm font-bold transition-all"
           >
             Llenar otra solicitud
           </button>

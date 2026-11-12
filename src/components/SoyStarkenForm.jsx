@@ -359,7 +359,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
         </p>
         <button
           onClick={handleReset}
-          className="px-6 py-2.5 bg-[#F97316] text-white rounded-lg font-bold text-sm hover:bg-[#ea580c] transition-colors cursor-pointer shadow-md"
+          className="px-6 py-2.5 bg-[#F97316] text-white rounded-full sm:rounded-[7px] font-bold text-sm hover:bg-[#ea580c] transition-colors cursor-pointer shadow-md"
         >
           Llenar otro registro
         </button>
@@ -499,7 +499,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
           <div className="pt-4 flex justify-end">
             <button
               type="submit"
-              className="w-full sm:w-56 py-3.5 px-8 bg-[#F97316] hover:bg-[#ea580c] active:bg-[#c2410c] text-white font-bold text-sm rounded-lg shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer text-center"
+              className="w-full sm:w-56 py-3.5 px-8 bg-[#F97316] hover:bg-[#ea580c] active:bg-[#c2410c] text-white font-bold text-sm rounded-full sm:rounded-[7px] shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer text-center"
             >
               Enviar
             </button>
@@ -759,7 +759,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
           <div className="pt-10 sm:pt-11 flex justify-end">
             <button
               type="submit"
-              className="w-full sm:w-56 py-3.5 px-8 bg-[#F97316] hover:bg-[#ea580c] active:bg-[#c2410c] text-white font-bold text-sm rounded-lg shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer text-center"
+              className="w-full sm:w-56 py-3.5 px-8 bg-[#F97316] hover:bg-[#ea580c] active:bg-[#c2410c] text-white font-bold text-sm rounded-full sm:rounded-[7px] shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer text-center"
             >
               Enviar
             </button>

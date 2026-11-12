@@ -236,7 +236,7 @@ export default function Proposal3InteractiveCards() {
                     e.stopPropagation();
                     handleMobileSelectCard('benefits');
                   }}
-                  className={`w-full py-3 px-5 rounded-xl font-bold text-[14.5px] shadow-md transition-all duration-150 cursor-pointer text-center flex items-center justify-center gap-2 ${
+                  className={`w-full py-3 px-5 rounded-full font-bold text-[14.5px] shadow-md transition-all duration-150 cursor-pointer text-center flex items-center justify-center gap-2 ${
                     selectedCard === 'benefits'
                       ? 'bg-[#009239] text-white shadow-[#009239]/20'
                       : 'bg-[#48185A] hover:bg-[#381146] text-white'
@@ -396,7 +396,7 @@ export default function Proposal3InteractiveCards() {
                     e.stopPropagation();
                     handleMobileSelectCard('api');
                   }}
-                  className={`w-full py-3 px-5 rounded-xl font-bold text-[14.5px] shadow-md transition-all duration-150 cursor-pointer text-center flex items-center justify-center gap-2 ${
+                  className={`w-full py-3 px-5 rounded-full font-bold text-[14.5px] shadow-md transition-all duration-150 cursor-pointer text-center flex items-center justify-center gap-2 ${
                     selectedCard === 'api'
                       ? 'bg-[#009239] text-white shadow-[#009239]/20'
                       : 'bg-[#48185A] hover:bg-[#381146] text-white'
@@ -595,7 +595,7 @@ export default function Proposal3InteractiveCards() {
                     e.stopPropagation();
                     setSelectedCard('benefits');
                   }}
-                  className="w-full py-3.5 px-6 rounded-xl bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white font-bold text-[15px] shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer text-center"
+                  className="w-full py-3.5 px-6 rounded-[7px] bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white font-bold text-[15px] shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer text-center"
                 >
                   Unirme al programa
                 </button>
@@ -772,7 +772,7 @@ export default function Proposal3InteractiveCards() {
                     e.stopPropagation();
                     setSelectedCard('api');
                   }}
-                  className="w-full py-3.5 px-6 rounded-xl bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white font-bold text-[15px] shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer text-center"
+                  className="w-full py-3.5 px-6 rounded-[7px] bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white font-bold text-[15px] shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer text-center"
                 >
                   Contactar con ejecutivo
                 </button>

@@ -99,7 +99,7 @@ export default function Navbar({ onOpenForm, activeSegment = 'Emprendedores', on
         <div className="hidden md:flex items-center">
           <button
             type="button"
-            className="bg-[#009D4E] hover:bg-[#008743] active:bg-[#007439] text-white px-8 py-2.5 rounded-xl font-bold text-[14px] shadow-sm transition-all duration-150 cursor-pointer min-w-[130px] text-center"
+            className="bg-[#009D4E] hover:bg-[#008743] active:bg-[#007439] text-white px-8 py-2.5 rounded-[7px] font-bold text-[14px] shadow-sm transition-all duration-150 cursor-pointer min-w-[130px] text-center"
           >
             Ingresar
           </button>
