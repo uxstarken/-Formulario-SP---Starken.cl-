@@ -15,72 +15,144 @@ const ECOMMERCE_PLATFORMS = [
   'Otra'
 ];
 
-// Dropdown estilizado con línea selectora en tono morado suave (#FAF5FC / #F3E8F7)
+// Dropdown estilizado siguiendo el lineamiento de los demás inputs (#009239 en foco, bordes y tipografía consistentes)
 function CustomDropdown({ value, onChange, onBlur, options, placeholder, hasError, searchable = false }) {
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState('');
+  const [openUpward, setOpenUpward] = useState(false);
   const containerRef = useRef(null);
+  const inputRef = useRef(null);
 
+  // Calcular si debe abrirse hacia arriba según el espacio disponible en viewport
+  useEffect(() => {
+    if (isOpen && containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      const spaceBelow = window.innerHeight - rect.bottom;
+      // Si hay poco espacio abajo (< 250px) y suficiente espacio arriba (> 200px), abrir hacia arriba
+      if (spaceBelow < 250 && rect.top > 200) {
+        setOpenUpward(true);
+      } else {
+        setOpenUpward(false);
+      }
+    }
+  }, [isOpen]);
+
+  // Click outside para cerrar
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (containerRef.current && !containerRef.current.contains(e.target)) {
         if (isOpen) {
           setIsOpen(false);
+          setSearch('');
           if (onBlur) onBlur();
         }
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside, { passive: true });
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
   }, [isOpen, onBlur]);
 
   const filteredOptions = searchable && search
     ? options.filter((o) => o.toLowerCase().includes(search.toLowerCase()))
     : options;
 
+  const handleSelectOption = (opt) => {
+    onChange(opt);
+    setIsOpen(false);
+    setSearch('');
+    if (onBlur) onBlur();
+  };
+
   return (
-    <div ref={containerRef} className={`relative w-full ${isOpen ? 'z-30' : 'z-10'}`}>
-      <button
-        type="button"
-        onClick={() => {
-          setIsOpen(!isOpen);
-          if (isOpen && onBlur) onBlur();
-        }}
-        className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none flex items-center justify-between text-left transition-colors cursor-pointer ${
-          hasError
-            ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f] text-[#ff4d4f]'
-            : isOpen
-            ? 'border-[#48185A] ring-2 ring-[#48185A]/15'
-            : !value
-            ? 'border-[#d9d9d9] hover:border-[#b3b3b3] text-[#757575]'
-            : 'border-[#d9d9d9] hover:border-[#b3b3b3] text-[#333333]'
-        }`}
-      >
-        <span className="truncate">{value || placeholder}</span>
-        <ChevronDown
-          className={`w-4 h-4 text-[#999999] transition-transform duration-200 flex-shrink-0 ml-2 ${
-            isOpen ? 'rotate-180 text-[#48185A]' : ''
+    <div ref={containerRef} className={`relative w-full ${isOpen ? 'z-40' : 'z-10'}`}>
+      {searchable ? (
+        // Input integrado con búsqueda directa (sin input anidado adentro)
+        <div className="relative">
+          <input
+            ref={inputRef}
+            type="text"
+            value={isOpen ? search : (value || '')}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              if (!isOpen) setIsOpen(true);
+            }}
+            onFocus={() => {
+              setIsOpen(true);
+              setSearch('');
+            }}
+            placeholder={placeholder}
+            className={`w-full px-3.5 py-2.5 pr-10 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${
+              hasError
+                ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f] text-[#ff4d4f] placeholder:text-[#ff4d4f]/60'
+                : isOpen
+                ? 'border-[#009239] ring-2 ring-[#009239]/15 text-[#333333]'
+                : !value
+                ? 'border-[#d9d9d9] hover:border-[#b3b3b3] text-[#333333] placeholder:text-[#757575]'
+                : 'border-[#d9d9d9] hover:border-[#b3b3b3] text-[#333333]'
+            }`}
+          />
+          <button
+            type="button"
+            tabIndex={-1}
+            onClick={() => {
+              if (isOpen) {
+                setIsOpen(false);
+                setSearch('');
+                if (onBlur) onBlur();
+              } else {
+                setIsOpen(true);
+                setSearch('');
+                if (inputRef.current) inputRef.current.focus();
+              }
+            }}
+            className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#999999] hover:text-[#009239] transition-colors cursor-pointer"
+          >
+            <ChevronDown
+              className={`w-4 h-4 transition-transform duration-200 ${
+                isOpen ? 'rotate-180 text-[#009239]' : ''
+              }`}
+            />
+          </button>
+        </div>
+      ) : (
+        // Botón selector estándar para opciones fijas (ej. Plataformas)
+        <button
+          type="button"
+          onClick={() => {
+            setIsOpen(!isOpen);
+            if (isOpen && onBlur) onBlur();
+          }}
+          className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none flex items-center justify-between text-left transition-colors cursor-pointer ${
+            hasError
+              ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f] text-[#ff4d4f]'
+              : isOpen
+              ? 'border-[#009239] ring-2 ring-[#009239]/15 text-[#333333]'
+              : !value
+              ? 'border-[#d9d9d9] hover:border-[#b3b3b3] text-[#757575]'
+              : 'border-[#d9d9d9] hover:border-[#b3b3b3] text-[#333333]'
           }`}
-        />
-      </button>
+        >
+          <span className="truncate">{value || placeholder}</span>
+          <ChevronDown
+            className={`w-4 h-4 text-[#999999] transition-transform duration-200 flex-shrink-0 ml-2 ${
+              isOpen ? 'rotate-180 text-[#009239]' : ''
+            }`}
+          />
+        </button>
+      )}
 
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 mt-1.5 bg-white rounded-xl border border-[#48185A]/20 shadow-xl max-h-60 overflow-y-auto z-50 py-1.5 animate-fadeIn">
-          {searchable && (
-            <div className="p-2 border-b border-gray-100 sticky top-0 bg-white z-10">
-              <input
-                type="text"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Buscar comuna..."
-                className="w-full px-3 py-1.5 text-xs font-nunito rounded-lg border border-gray-200 outline-none focus:border-[#48185A]"
-                onClick={(e) => e.stopPropagation()}
-                autoFocus
-              />
-            </div>
-          )}
+        <div
+          className={`absolute left-0 right-0 bg-white rounded-xl border border-gray-200 shadow-xl max-h-56 overflow-y-auto z-50 py-1.5 animate-fadeIn ${
+            openUpward ? 'bottom-full mb-1.5' : 'top-full mt-1.5'
+          }`}
+        >
           {filteredOptions.length === 0 ? (
-            <div className="px-3.5 py-3 text-xs text-gray-400 font-nunito text-center">
+            <div className="px-3.5 py-3 text-xs md:text-sm text-gray-400 font-nunito text-center">
               No se encontraron opciones
             </div>
           ) : (
@@ -89,19 +161,15 @@ function CustomDropdown({ value, onChange, onBlur, options, placeholder, hasErro
               return (
                 <div
                   key={opt}
-                  onClick={() => {
-                    onChange(opt);
-                    setIsOpen(false);
-                    setSearch('');
-                  }}
+                  onClick={() => handleSelectOption(opt)}
                   className={`px-3.5 py-2.5 font-nunito text-[14px] md:text-[15px] cursor-pointer transition-colors duration-100 flex items-center justify-between ${
                     isSelected
-                      ? 'bg-[#F3E8F7] text-[#48185A] font-bold'
-                      : 'text-[#333333] hover:bg-[#FAF5FC] hover:text-[#48185A]'
+                      ? 'bg-[#009239]/10 text-[#009239] font-bold'
+                      : 'text-[#333333] hover:bg-gray-50 hover:text-[#009239]'
                   }`}
                 >
                   <span>{opt}</span>
-                  {isSelected && <Check className="w-4 h-4 text-[#48185A] flex-shrink-0" />}
+                  {isSelected && <Check className="w-4 h-4 text-[#009239] flex-shrink-0" />}
                 </div>
               );
             })

@@ -163,6 +163,10 @@ body {
   overflow: hidden;
 }
 
+.smooth-accordion-wrapper.is-expanded .smooth-accordion-inner {
+  overflow: visible;
+}
+
 @media (min-width: 1024px) {
   .text-badge-desktop-14 {
     font-size: 14px !important;
