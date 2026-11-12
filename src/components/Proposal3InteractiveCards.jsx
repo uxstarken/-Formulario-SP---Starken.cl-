@@ -178,11 +178,7 @@ export default function Proposal3InteractiveCards() {
           }}
           className={`w-full bg-white rounded-3xl p-5 sm:p-6 border transition-all duration-300 relative select-none ${
             mobileExpandedCard !== 'benefits' ? 'cursor-pointer hover:border-[#48185A]/40' : ''
-          } ${
-            mobileExpandedCard === 'benefits' && selectedCard !== 'benefits'
-              ? 'pb-9 sm:pb-10'
-              : 'pb-6 sm:pb-7'
-          } ${
+          } pb-5 sm:pb-6 ${
             selectedCard === 'benefits'
               ? 'border-2 border-[#48185A] shadow-xl ring-2 ring-[#48185A]/15 pb-6'
               : 'border-gray-200/90 shadow-md'
@@ -200,7 +196,7 @@ export default function Proposal3InteractiveCards() {
           >
             {/* Badge superior flotante */}
             <div className="flex justify-center -mt-9 mb-3">
-              <span className="px-5 py-1.5 rounded-full border-2 border-[#48185A] bg-white text-[#48185A] font-nunito font-bold text-[13px] shadow-sm tracking-wide select-none">
+              <span className="px-4 py-1 rounded-full border border-[#48185A]/50 bg-white text-[#48185A]/80 font-nunito font-semibold text-[12px] tracking-wide select-none">
                 Unirme al programa
               </span>
             </div>
@@ -232,6 +228,25 @@ export default function Proposal3InteractiveCards() {
                 </span>
               ))}
             </div>
+
+            {/* Botón principal "Beneficios" dentro de la card, ancho completo (jerarquía mayor que el badge superior) */}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleMobileExpand('benefits');
+              }}
+              aria-expanded={mobileExpandedCard === 'benefits'}
+              aria-label={mobileExpandedCard === 'benefits' ? 'Contraer beneficios' : 'Desplegar beneficios'}
+              className="w-full mt-4 py-3 px-5 rounded-full bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white flex items-center justify-center gap-2 shadow-md cursor-pointer transition-all font-nunito font-bold text-[15px] select-none"
+            >
+              <span>Beneficios</span>
+              {mobileExpandedCard === 'benefits' ? (
+                <ChevronUp className="w-5 h-5 text-white" />
+              ) : (
+                <ChevronDown className="w-5 h-5 text-white" />
+              )}
+            </button>
           </div>
 
           {/* Detalle desplegable: Viñetas + Botón de acción */}
@@ -291,26 +306,6 @@ export default function Proposal3InteractiveCards() {
               )}
             </div>
           )}
-
-          {/* Botón píldora morado con texto "Beneficios" y flecha. Desaparece cuando el formulario está desplegado */}
-          {selectedCard !== 'benefits' && (
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleMobileExpand('benefits');
-              }}
-              aria-label={mobileExpandedCard === 'benefits' ? 'Contraer beneficios' : 'Desplegar beneficios'}
-              className="absolute bottom-[-17px] left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white flex items-center justify-center gap-1.5 shadow-md cursor-pointer border-2 border-white transition-all z-10 font-nunito font-bold text-[13px] whitespace-nowrap select-none"
-            >
-              <span>Beneficios</span>
-              {mobileExpandedCard === 'benefits' ? (
-                <ChevronUp className="w-4 h-4 text-white" />
-              ) : (
-                <ChevronDown className="w-4 h-4 text-white" />
-              )}
-            </button>
-          )}
         </div>
 
         {/* ========================================== */}
@@ -326,11 +321,7 @@ export default function Proposal3InteractiveCards() {
           }}
           className={`w-full bg-white rounded-3xl p-5 sm:p-6 border transition-all duration-300 relative select-none ${
             mobileExpandedCard !== 'api' ? 'cursor-pointer hover:border-[#48185A]/40' : ''
-          } ${
-            mobileExpandedCard === 'api' && selectedCard !== 'api'
-              ? 'pb-9 sm:pb-10'
-              : 'pb-6 sm:pb-7'
-          } ${
+          } pb-5 sm:pb-6 ${
             selectedCard === 'api'
               ? 'border-2 border-[#48185A] shadow-xl ring-2 ring-[#48185A]/15 pb-6'
               : 'border-gray-200/90 shadow-md'
@@ -348,7 +339,7 @@ export default function Proposal3InteractiveCards() {
           >
             {/* Badge superior flotante */}
             <div className="flex justify-center -mt-9 mb-3">
-              <span className="px-5 py-1.5 rounded-full border-2 border-[#48185A] bg-white text-[#48185A] font-nunito font-bold text-[13px] shadow-sm tracking-wide select-none">
+              <span className="px-4 py-1 rounded-full border border-[#48185A]/50 bg-white text-[#48185A]/80 font-nunito font-semibold text-[12px] tracking-wide select-none">
                 Conectar mi página web
               </span>
             </div>
@@ -393,6 +384,25 @@ export default function Proposal3InteractiveCards() {
                 ))}
               </div>
             </div>
+
+            {/* Botón principal "Beneficios" dentro de la card, ancho completo (jerarquía mayor que el badge superior) */}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleMobileExpand('api');
+              }}
+              aria-expanded={mobileExpandedCard === 'api'}
+              aria-label={mobileExpandedCard === 'api' ? 'Contraer beneficios' : 'Desplegar beneficios'}
+              className="w-full mt-4 py-3 px-5 rounded-full bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white flex items-center justify-center gap-2 shadow-md cursor-pointer transition-all font-nunito font-bold text-[15px] select-none"
+            >
+              <span>Beneficios</span>
+              {mobileExpandedCard === 'api' ? (
+                <ChevronUp className="w-5 h-5 text-white" />
+              ) : (
+                <ChevronDown className="w-5 h-5 text-white" />
+              )}
+            </button>
           </div>
 
           {/* Detalle desplegable: Viñetas + Botón de acción */}
@@ -454,26 +464,6 @@ export default function Proposal3InteractiveCards() {
                 </div>
               )}
             </div>
-          )}
-
-          {/* Botón píldora morado con texto "Beneficios" y flecha. Desaparece cuando el formulario está desplegado */}
-          {selectedCard !== 'api' && (
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleMobileExpand('api');
-              }}
-              aria-label={mobileExpandedCard === 'api' ? 'Contraer beneficios' : 'Desplegar beneficios'}
-              className="absolute bottom-[-17px] left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white flex items-center justify-center gap-1.5 shadow-md cursor-pointer border-2 border-white transition-all z-10 font-nunito font-bold text-[13px] whitespace-nowrap select-none"
-            >
-              <span>Beneficios</span>
-              {mobileExpandedCard === 'api' ? (
-                <ChevronUp className="w-4 h-4 text-white" />
-              ) : (
-                <ChevronDown className="w-4 h-4 text-white" />
-              )}
-            </button>
           )}
         </div>
       </div>
