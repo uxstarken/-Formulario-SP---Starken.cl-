@@ -282,7 +282,7 @@ export default function Proposal3InteractiveCards() {
             className="font-nunito text-base text-[16px] text-bajada-16 font-semibold text-[#303030] tracking-wide"
             style={{ fontSize: '16px' }}
           >
-            Y comienza a enviar tus pedidos con Starken
+            y comienza a enviar tus pedidos con Starken
           </p>
         </div>
       </div>
