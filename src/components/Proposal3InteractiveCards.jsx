@@ -600,7 +600,7 @@ export default function Proposal3InteractiveCards() {
         {/* ============================================================== */}
         <div
           ref={cardBenefitsRef}
-          className={`w-full bg-white rounded-3xl p-6 sm:p-8 lg:p-9 border transition-all duration-300 ease-in-out flex flex-col relative ${
+          className={`w-full bg-white rounded-3xl p-6 sm:p-8 lg:py-11 lg:px-9 border transition-all duration-300 ease-in-out flex flex-col relative ${
             selectedCard === 'benefits'
               ? 'lg:w-[62%] border-2 border-[#48185A] shadow-xl ring-4 ring-[#48185A]/10 cursor-default'
               : selectedCard === 'api'
@@ -685,7 +685,7 @@ export default function Proposal3InteractiveCards() {
             /* CASO B: SI NO ESTÁ SELECCIONADA -> MUESTRA DETALLES Y BOTÓN DE SELECCIÓN */
             <>
               {/* SECCIÓN 1: TÍTULO + BAJADA + BADGES */}
-              <div className="flex flex-col items-center mb-7 sm:mb-8">
+              <div className="flex flex-col items-center mb-7 sm:mb-8 lg:mb-10">
                 {/* Título de la tarjeta */}
                 <h2
                   className="font-din text-[24px] text-card-title-desktop-24 font-bold text-[#2b2e2c] text-center mb-1 leading-snug"
@@ -700,7 +700,7 @@ export default function Proposal3InteractiveCards() {
                 </p>
 
                 {/* Chips de Categorías */}
-                <div className="flex items-center justify-center gap-2 h-[66px] w-full">
+                <div className="flex items-center justify-center gap-2 h-[70px] w-full">
                   {['Colina', 'Montaña', 'Cordillera'].map((cat) => (
                     <span
                       key={cat}
@@ -713,7 +713,7 @@ export default function Proposal3InteractiveCards() {
               </div>
 
               {/* SECCIÓN 2: LISTA DE BENEFICIOS PUNTEADOS */}
-              <ul className="space-y-3.5 mb-7 sm:mb-8">
+              <ul className="space-y-3.5 lg:space-y-4 mb-7 sm:mb-8 lg:mb-10">
                 <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
                   <span>Alianza y beneficios</span>
@@ -736,7 +736,7 @@ export default function Proposal3InteractiveCards() {
                     e.stopPropagation();
                     setSelectedCard('benefits');
                   }}
-                  className="w-full py-3.5 px-6 rounded-[7px] bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white font-bold text-[15px] shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer text-center"
+                  className="w-full py-3.5 lg:py-4 px-6 rounded-[7px] bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white font-bold text-[15px] shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer text-center"
                 >
                   Unirme al programa
                 </button>
@@ -750,7 +750,7 @@ export default function Proposal3InteractiveCards() {
         {/* ============================================================== */}
         <div
           ref={cardApiRef}
-          className={`w-full bg-white rounded-3xl p-6 sm:p-8 lg:p-9 border transition-all duration-300 ease-in-out flex flex-col relative ${
+          className={`w-full bg-white rounded-3xl p-6 sm:p-8 lg:py-11 lg:px-9 border transition-all duration-300 ease-in-out flex flex-col relative ${
             selectedCard === 'api'
               ? 'lg:w-[62%] border-2 border-[#48185A] shadow-xl ring-4 ring-[#48185A]/10 cursor-default'
               : selectedCard === 'benefits'
@@ -852,7 +852,7 @@ export default function Proposal3InteractiveCards() {
             /* CASO B: SI NO ESTÁ SELECCIONADA -> MUESTRA DETALLES Y BOTÓN DE SELECCIÓN */
             <>
               {/* SECCIÓN 1: TÍTULO + BAJADA + BADGES */}
-              <div className="flex flex-col items-center mb-7 sm:mb-8">
+              <div className="flex flex-col items-center mb-7 sm:mb-8 lg:mb-10">
                 {/* Título de la tarjeta */}
                 <h2
                   className="font-din text-[24px] text-card-title-desktop-24 font-bold text-[#2b2e2c] text-center mb-1 leading-snug"
@@ -867,7 +867,7 @@ export default function Proposal3InteractiveCards() {
                 </p>
 
                 {/* Chips de Plataformas disponibles (En 2 filas horizontales en desktop) */}
-                <div className="flex flex-col items-center justify-center gap-1.5 h-[66px] w-full">
+                <div className="flex flex-col items-center justify-center gap-1.5 h-[70px] w-full">
                   {/* Fila 1 */}
                   <div className="flex items-center justify-center gap-1.5 sm:gap-2 max-w-full">
                     {['Shopify', 'WooCommerce', 'Bsale*', 'Jumpseller*'].map((p) => (
@@ -894,7 +894,7 @@ export default function Proposal3InteractiveCards() {
               </div>
 
               {/* SECCIÓN 2: LISTA DE BENEFICIOS PUNTEADOS */}
-              <ul className="space-y-3.5 mb-7 sm:mb-8">
+              <ul className="space-y-3.5 lg:space-y-4 mb-7 sm:mb-8 lg:mb-10">
                 <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
                   <span>Integración vía API o Plugin</span>
@@ -917,7 +917,7 @@ export default function Proposal3InteractiveCards() {
                     e.stopPropagation();
                     setSelectedCard('api');
                   }}
-                  className="w-full py-3.5 px-6 rounded-[7px] bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white font-bold text-[15px] shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer text-center"
+                  className="w-full py-3.5 lg:py-4 px-6 rounded-[7px] bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white font-bold text-[15px] shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer text-center"
                 >
                   Contactar con ejecutivo
                 </button>

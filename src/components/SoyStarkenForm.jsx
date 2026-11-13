@@ -92,15 +92,14 @@ function CustomDropdown({ value, onChange, onBlur, options, placeholder, hasErro
               setSearch('');
             }}
             placeholder={placeholder}
-            className={`w-full px-3.5 py-2.5 pr-10 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${
-              hasError
+            className={`w-full px-3.5 py-2.5 pr-10 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${hasError
                 ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f] text-[#ff4d4f] placeholder:text-[#ff4d4f]/60'
                 : isOpen
-                ? 'border-[#009239] ring-2 ring-[#009239]/15 text-[#333333]'
-                : !value
-                ? 'border-[#d9d9d9] hover:border-[#b3b3b3] text-[#333333] placeholder:text-[#757575]'
-                : 'border-[#d9d9d9] hover:border-[#b3b3b3] text-[#333333]'
-            }`}
+                  ? 'border-[#009239] ring-2 ring-[#009239]/15 text-[#333333]'
+                  : !value
+                    ? 'border-[#d9d9d9] hover:border-[#b3b3b3] text-[#333333] placeholder:text-[#757575]'
+                    : 'border-[#d9d9d9] hover:border-[#b3b3b3] text-[#333333]'
+              }`}
           />
           <button
             type="button"
@@ -119,9 +118,8 @@ function CustomDropdown({ value, onChange, onBlur, options, placeholder, hasErro
             className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#999999] hover:text-[#009239] transition-colors cursor-pointer"
           >
             <ChevronDown
-              className={`w-4 h-4 transition-transform duration-200 ${
-                isOpen ? 'rotate-180 text-[#009239]' : ''
-              }`}
+              className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180 text-[#009239]' : ''
+                }`}
             />
           </button>
         </div>
@@ -133,21 +131,19 @@ function CustomDropdown({ value, onChange, onBlur, options, placeholder, hasErro
             setIsOpen(!isOpen);
             if (isOpen && onBlur) onBlur();
           }}
-          className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none flex items-center justify-between text-left transition-colors cursor-pointer ${
-            hasError
+          className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none flex items-center justify-between text-left transition-colors cursor-pointer ${hasError
               ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f] text-[#ff4d4f]'
               : isOpen
-              ? 'border-[#009239] ring-2 ring-[#009239]/15 text-[#333333]'
-              : !value
-              ? 'border-[#d9d9d9] hover:border-[#b3b3b3] text-[#757575]'
-              : 'border-[#d9d9d9] hover:border-[#b3b3b3] text-[#333333]'
-          }`}
+                ? 'border-[#009239] ring-2 ring-[#009239]/15 text-[#333333]'
+                : !value
+                  ? 'border-[#d9d9d9] hover:border-[#b3b3b3] text-[#757575]'
+                  : 'border-[#d9d9d9] hover:border-[#b3b3b3] text-[#333333]'
+            }`}
         >
           <span className="truncate">{value || placeholder}</span>
           <ChevronDown
-            className={`w-4 h-4 text-[#999999] transition-transform duration-200 flex-shrink-0 ml-2 ${
-              isOpen ? 'rotate-180 text-[#009239]' : ''
-            }`}
+            className={`w-4 h-4 text-[#999999] transition-transform duration-200 flex-shrink-0 ml-2 ${isOpen ? 'rotate-180 text-[#009239]' : ''
+              }`}
           />
         </button>
       )}
@@ -176,11 +172,10 @@ function CustomDropdown({ value, onChange, onBlur, options, placeholder, hasErro
                     e.stopPropagation();
                     handleSelectOption(opt);
                   }}
-                  className={`px-3.5 py-2.5 font-nunito text-[14px] md:text-[15px] cursor-pointer transition-colors duration-100 flex items-center justify-between ${
-                    isSelected
+                  className={`px-3.5 py-2.5 font-nunito text-[14px] md:text-[15px] cursor-pointer transition-colors duration-100 flex items-center justify-between ${isSelected
                       ? 'bg-[#009239]/10 text-[#009239] font-bold'
                       : 'text-[#333333] hover:bg-gray-50 hover:text-[#009239]'
-                  }`}
+                    }`}
                 >
                   <span>{opt}</span>
                   {isSelected && <Check className="w-4 h-4 text-[#009239] flex-shrink-0" />}
@@ -471,11 +466,10 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
                 onChange={(e) => handleForm1Change('nombre', e.target.value)}
                 onBlur={() => handleBlur('nombre')}
                 placeholder="Escribe tu nombre"
-                className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${
-                  showError('nombre')
+                className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('nombre')
                     ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
                     : 'border-[#d9d9d9] hover:border-[#b3b3b3] focus:border-[#009239]'
-                }`}
+                  }`}
               />
               {showError('nombre') && (
                 <p className="font-nunito text-xs text-[#ff4d4f] mt-1 font-normal">{errors1.nombre}</p>
@@ -493,11 +487,10 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
                 onChange={(e) => handleForm1Change('correo', e.target.value)}
                 onBlur={() => handleBlur('correo')}
                 placeholder="correo@correo.cl"
-                className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${
-                  showError('correo')
+                className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('correo')
                     ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
                     : 'border-[#d9d9d9] hover:border-[#b3b3b3] focus:border-[#009239]'
-                }`}
+                  }`}
               />
               {showError('correo') && (
                 <p className="font-nunito text-xs text-[#ff4d4f] mt-1 font-normal">{errors1.correo}</p>
@@ -519,11 +512,10 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
                 onChange={(e) => handleForm1Change('celular', e.target.value)}
                 onBlur={() => handleBlur('celular')}
                 placeholder="Ingresa n° de teléfono"
-                className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${
-                  showError('celular')
+                className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('celular')
                     ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
                     : 'border-[#d9d9d9] hover:border-[#b3b3b3] focus:border-[#009239]'
-                }`}
+                  }`}
               />
               {showError('celular') && (
                 <p className="font-nunito text-xs text-[#ff4d4f] mt-1 font-normal">{errors1.celular}</p>
@@ -541,11 +533,10 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
                 onChange={(e) => handleForm1Change('direccion', e.target.value)}
                 onBlur={() => handleBlur('direccion')}
                 placeholder="Dirección del negocio"
-                className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${
-                  showError('direccion')
+                className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('direccion')
                     ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
                     : 'border-[#d9d9d9] hover:border-[#b3b3b3] focus:border-[#009239]'
-                }`}
+                  }`}
               />
               {showError('direccion') && (
                 <p className="font-nunito text-xs text-[#ff4d4f] mt-1 font-normal">{errors1.direccion}</p>
@@ -595,241 +586,231 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
       {isApi && (
         <div className="flex flex-col justify-between min-h-[390px]">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-3.5">
-          {/* 1. Razón social * */}
-          <div>
-            <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#333333] mb-1.5">
-              Razón social
-            </label>
-            <input
-              type="text"
-              value={form2.razonSocial}
-              onChange={(e) => handleForm2Change('razonSocial', e.target.value)}
-              onBlur={() => handleBlur('razonSocial')}
-              placeholder="Ej: Inversiones y Servicios SpA"
-              className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${
-                showError('razonSocial')
-                  ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
-                  : 'border-[#d9d9d9] hover:border-[#b3b3b3] focus:border-[#009239]'
-              }`}
-            />
-            {showError('razonSocial') && (
-              <p className="font-nunito text-xs text-[#ff4d4f] mt-1 font-normal">{errors2.razonSocial}</p>
-            )}
-          </div>
-
-          {/* 2. Rut empresa * */}
-          <div>
-            <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#333333] mb-1.5">
-              Rut empresa
-            </label>
-            <input
-              type="text"
-              maxLength={12}
-              value={form2.rut}
-              onChange={(e) => handleForm2Change('rut', e.target.value)}
-              onBlur={() => handleBlur('rut')}
-              placeholder="123456789-0"
-              className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${
-                showError('rut')
-                  ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
-                  : 'border-[#d9d9d9] hover:border-[#b3b3b3] focus:border-[#009239]'
-              }`}
-            />
-            {showError('rut') && (
-              <p className="font-nunito text-xs text-[#ff4d4f] mt-1 font-normal">{errors2.rut}</p>
-            )}
-          </div>
-
-          {/* 3. ¿Cuentas con página web o ecommerce? */}
-          <div className="col-span-1 md:col-span-2 py-1">
-            <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#333333] mb-2">
-              ¿Cuentas con página web o ecommerce?
-            </label>
-            <div className="flex flex-wrap items-center gap-3">
-              <button
-                type="button"
-                onClick={() => handleForm2Change('tieneWeb', 'si')}
-                className={`px-5 py-2 rounded-xl border text-[14px] font-nunito font-bold flex items-center gap-2.5 transition-all duration-150 cursor-pointer ${
-                  form2.tieneWeb === 'si'
-                    ? 'bg-[#48185A] border-[#48185A] text-white shadow-sm'
-                    : 'bg-white border-gray-200 text-[#333333] hover:border-[#48185A]/40 hover:bg-[#FAF5FC]'
-                }`}
-              >
-                <span
-                  className={`w-3 h-3 rounded-full border transition-colors flex-shrink-0 ${
-                    form2.tieneWeb === 'si'
-                      ? 'border-white bg-[#F97316]'
-                      : 'border-gray-400 bg-white'
-                  }`}
-                />
-                <span>Sí</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => handleForm2Change('tieneWeb', 'no')}
-                className={`px-5 py-2 rounded-xl border text-[14px] font-nunito font-bold flex items-center gap-2.5 transition-all duration-150 cursor-pointer ${
-                  form2.tieneWeb === 'no'
-                    ? 'bg-[#48185A] border-[#48185A] text-white shadow-sm'
-                    : 'bg-white border-gray-200 text-[#333333] hover:border-[#48185A]/40 hover:bg-[#FAF5FC]'
-                }`}
-              >
-                <span
-                  className={`w-3 h-3 rounded-full border transition-colors flex-shrink-0 ${
-                    form2.tieneWeb === 'no'
-                      ? 'border-white bg-[#F97316]'
-                      : 'border-gray-400 bg-white'
-                  }`}
-                />
-                <span>No</span>
-              </button>
-            </div>
-          </div>
-
-          {/* 4. Página web * y 5. Plataforma de ecommerce * (Solo se despliegan si tieneWeb === 'si') */}
-          {form2.tieneWeb === 'si' && (
-            <>
-              <div>
-                <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#333333] mb-1.5">
-                  Página web
-                </label>
-                <input
-                  type="text"
-                  value={form2.paginaWeb}
-                  onChange={(e) => handleForm2Change('paginaWeb', e.target.value)}
-                  onBlur={() => handleBlur('paginaWeb')}
-                  placeholder="www.ejemplo.cl"
-                  className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${
-                    showError('paginaWeb')
-                      ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
-                      : 'border-[#d9d9d9] hover:border-[#b3b3b3] focus:border-[#009239]'
-                  }`}
-                />
-                {showError('paginaWeb') && (
-                  <p className="font-nunito text-xs text-[#ff4d4f] mt-1 font-normal">{errors2.paginaWeb}</p>
-                )}
-              </div>
-
-              <div>
-                <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#333333] mb-1.5">
-                  Plataforma de ecommerce
-                </label>
-                <CustomDropdown
-                  value={form2.plataforma}
-                  onChange={(val) => {
-                    handleForm2Change('plataforma', val);
-                    if (val !== 'Otra') {
-                      handleForm2Change('otraPlataforma', '');
-                    }
-                  }}
-                  onBlur={() => handleBlur('plataforma')}
-                  options={ECOMMERCE_PLATFORMS}
-                  placeholder="Selecciona tu plataforma"
-                  hasError={Boolean(showError('plataforma'))}
-                />
-                {showError('plataforma') && (
-                  <p className="font-nunito text-xs text-[#ff4d4f] mt-1 font-normal">{errors2.plataforma}</p>
-                )}
-
-                {/* Si selecciona "Otra", aparece abajo el input para especificar la plataforma */}
-                {form2.plataforma === 'Otra' && (
-                  <div className="mt-3.5 animate-fadeIn">
-                    <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#333333] mb-1.5">
-                      Tu plataforma
-                    </label>
-                    <input
-                      type="text"
-                      value={form2.otraPlataforma}
-                      onChange={(e) => handleForm2Change('otraPlataforma', e.target.value)}
-                      onBlur={() => handleBlur('otraPlataforma')}
-                      placeholder="Nombre de tu plataforma"
-                      className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${
-                        showError('otraPlataforma')
-                          ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
-                          : 'border-[#d9d9d9] hover:border-[#b3b3b3] focus:border-[#009239]'
-                      }`}
-                    />
-                    {showError('otraPlataforma') && (
-                      <p className="font-nunito text-xs text-[#ff4d4f] mt-1 font-normal">{errors2.otraPlataforma}</p>
-                    )}
-                  </div>
-                )}
-              </div>
-            </>
-          )}
-
-          {/* 5. Correo * */}
-          <div>
-            <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#333333] mb-1.5">
-              Correo
-            </label>
-            <input
-              type="email"
-              value={form2.correo}
-              onChange={(e) => handleForm2Change('correo', e.target.value)}
-              onBlur={() => handleBlur('correo')}
-              placeholder="ejemplo@starken.cl"
-              className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${
-                showError('correo')
-                  ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
-                  : 'border-[#d9d9d9] hover:border-[#b3b3b3] focus:border-[#009239]'
-              }`}
-            />
-            {showError('correo') && (
-              <p className="font-nunito text-xs text-[#ff4d4f] mt-1 font-normal">{errors2.correo}</p>
-            )}
-          </div>
-
-          {/* 6. Celular * */}
-          <div>
-            <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#333333] mb-1.5">
-              Celular
-            </label>
-            <input
-              type="tel"
-              inputMode="numeric"
-              pattern="[0-9]*"
-              maxLength={9}
-              value={form2.celular}
-              onKeyDown={handleNumericKeyDown}
-              onChange={(e) => handleForm2Change('celular', e.target.value)}
-              onBlur={() => handleBlur('celular')}
-              placeholder="912345678"
-              className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${
-                showError('celular')
-                  ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
-                  : 'border-[#d9d9d9] hover:border-[#b3b3b3] focus:border-[#009239]'
-              }`}
-            />
-            {showError('celular') && (
-              <p className="font-nunito text-xs text-[#ff4d4f] mt-1 font-normal">{errors2.celular}</p>
-            )}
-          </div>
-
-          {/* 7. Checkbox Términos y Condiciones */}
-          <div className="col-span-1 md:col-span-2 pt-1.5">
-            <label className="flex items-start gap-2.5 cursor-pointer select-none">
+            {/* 1. Razón social * */}
+            <div>
+              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#333333] mb-1.5">
+                Razón social
+              </label>
               <input
-                type="checkbox"
-                checked={form2.terminos}
-                onChange={(e) => handleForm2Change('terminos', e.target.checked)}
-                className="mt-0.5 w-4 h-4 rounded text-[#009239] border-gray-300 focus:ring-[#009239] cursor-pointer"
+                type="text"
+                value={form2.razonSocial}
+                onChange={(e) => handleForm2Change('razonSocial', e.target.value)}
+                onBlur={() => handleBlur('razonSocial')}
+                placeholder="Ej: Inversiones y Servicios SpA"
+                className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('razonSocial')
+                    ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
+                    : 'border-[#d9d9d9] hover:border-[#b3b3b3] focus:border-[#009239]'
+                  }`}
               />
-              <span className="font-nunito text-[14px] text-[#2b2e2c] leading-relaxed">
-                He leído y acepto los{' '}
-                <a
-                  href="#terminos"
-                  onClick={(e) => e.preventDefault()}
-                  className="text-[#6941C6] font-semibold underline hover:text-[#53389E]"
+              {showError('razonSocial') && (
+                <p className="font-nunito text-xs text-[#ff4d4f] mt-1 font-normal">{errors2.razonSocial}</p>
+              )}
+            </div>
+
+            {/* 2. Rut empresa * */}
+            <div>
+              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#333333] mb-1.5">
+                Rut empresa
+              </label>
+              <input
+                type="text"
+                maxLength={12}
+                value={form2.rut}
+                onChange={(e) => handleForm2Change('rut', e.target.value)}
+                onBlur={() => handleBlur('rut')}
+                placeholder="123456789-0"
+                className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('rut')
+                    ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
+                    : 'border-[#d9d9d9] hover:border-[#b3b3b3] focus:border-[#009239]'
+                  }`}
+              />
+              {showError('rut') && (
+                <p className="font-nunito text-xs text-[#ff4d4f] mt-1 font-normal">{errors2.rut}</p>
+              )}
+            </div>
+
+            {/* 3. ¿Cuentas con página web o ecommerce? */}
+            <div className="col-span-1 md:col-span-2 py-1">
+              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#333333] mb-2">
+                ¿Cuentas con página web o ecommerce?
+              </label>
+              <div className="flex flex-wrap items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => handleForm2Change('tieneWeb', 'si')}
+                  className={`px-5 py-2 rounded-xl border text-[14px] font-nunito font-bold flex items-center gap-2.5 transition-all duration-150 cursor-pointer ${form2.tieneWeb === 'si'
+                      ? 'bg-[#48185A] border-[#48185A] text-white shadow-sm'
+                      : 'bg-white border-gray-200 text-[#333333] hover:border-[#48185A]/40 hover:bg-[#FAF5FC]'
+                    }`}
                 >
-                  términos de uso y la política de privacidad.
-                </a>
-              </span>
-            </label>
-            {showError('terminos') && (
-              <p className="font-nunito text-xs text-[#ff4d4f] mt-1 font-normal">{errors2.terminos}</p>
+                  <span
+                    className={`w-3 h-3 rounded-full border transition-colors flex-shrink-0 ${form2.tieneWeb === 'si'
+                        ? 'border-white bg-[#F97316]'
+                        : 'border-gray-400 bg-white'
+                      }`}
+                  />
+                  <span>Sí</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => handleForm2Change('tieneWeb', 'no')}
+                  className={`px-5 py-2 rounded-xl border text-[14px] font-nunito font-bold flex items-center gap-2.5 transition-all duration-150 cursor-pointer ${form2.tieneWeb === 'no'
+                      ? 'bg-[#48185A] border-[#48185A] text-white shadow-sm'
+                      : 'bg-white border-gray-200 text-[#333333] hover:border-[#48185A]/40 hover:bg-[#FAF5FC]'
+                    }`}
+                >
+                  <span
+                    className={`w-3 h-3 rounded-full border transition-colors flex-shrink-0 ${form2.tieneWeb === 'no'
+                        ? 'border-white bg-[#F97316]'
+                        : 'border-gray-400 bg-white'
+                      }`}
+                  />
+                  <span>No</span>
+                </button>
+              </div>
+            </div>
+
+            {/* 4. Página web * y 5. Plataforma de ecommerce * (Solo se despliegan si tieneWeb === 'si') */}
+            {form2.tieneWeb === 'si' && (
+              <>
+                <div>
+                  <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#333333] mb-1.5">
+                    Página web
+                  </label>
+                  <input
+                    type="text"
+                    value={form2.paginaWeb}
+                    onChange={(e) => handleForm2Change('paginaWeb', e.target.value)}
+                    onBlur={() => handleBlur('paginaWeb')}
+                    placeholder="www.ejemplo.cl"
+                    className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('paginaWeb')
+                        ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
+                        : 'border-[#d9d9d9] hover:border-[#b3b3b3] focus:border-[#009239]'
+                      }`}
+                  />
+                  {showError('paginaWeb') && (
+                    <p className="font-nunito text-xs text-[#ff4d4f] mt-1 font-normal">{errors2.paginaWeb}</p>
+                  )}
+                </div>
+
+                <div>
+                  <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#333333] mb-1.5">
+                    Plataforma de ecommerce
+                  </label>
+                  <CustomDropdown
+                    value={form2.plataforma}
+                    onChange={(val) => {
+                      handleForm2Change('plataforma', val);
+                      if (val !== 'Otra') {
+                        handleForm2Change('otraPlataforma', '');
+                      }
+                    }}
+                    onBlur={() => handleBlur('plataforma')}
+                    options={ECOMMERCE_PLATFORMS}
+                    placeholder="Selecciona tu plataforma"
+                    hasError={Boolean(showError('plataforma'))}
+                  />
+                  {showError('plataforma') && (
+                    <p className="font-nunito text-xs text-[#ff4d4f] mt-1 font-normal">{errors2.plataforma}</p>
+                  )}
+
+                  {/* Si selecciona "Otra", aparece abajo el input para especificar la plataforma */}
+                  {form2.plataforma === 'Otra' && (
+                    <div className="mt-3.5 animate-fadeIn">
+                      <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#333333] mb-1.5">
+                        Tu plataforma
+                      </label>
+                      <input
+                        type="text"
+                        value={form2.otraPlataforma}
+                        onChange={(e) => handleForm2Change('otraPlataforma', e.target.value)}
+                        onBlur={() => handleBlur('otraPlataforma')}
+                        placeholder="Nombre de tu plataforma"
+                        className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('otraPlataforma')
+                            ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
+                            : 'border-[#d9d9d9] hover:border-[#b3b3b3] focus:border-[#009239]'
+                          }`}
+                      />
+                      {showError('otraPlataforma') && (
+                        <p className="font-nunito text-xs text-[#ff4d4f] mt-1 font-normal">{errors2.otraPlataforma}</p>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </>
             )}
-          </div>
+
+            {/* 5. Correo * */}
+            <div>
+              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#333333] mb-1.5">
+                Correo
+              </label>
+              <input
+                type="email"
+                value={form2.correo}
+                onChange={(e) => handleForm2Change('correo', e.target.value)}
+                onBlur={() => handleBlur('correo')}
+                placeholder="ejemplo@starken.cl"
+                className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('correo')
+                    ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
+                    : 'border-[#d9d9d9] hover:border-[#b3b3b3] focus:border-[#009239]'
+                  }`}
+              />
+              {showError('correo') && (
+                <p className="font-nunito text-xs text-[#ff4d4f] mt-1 font-normal">{errors2.correo}</p>
+              )}
+            </div>
+
+            {/* 6. Celular * */}
+            <div>
+              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#333333] mb-1.5">
+                Celular
+              </label>
+              <input
+                type="tel"
+                inputMode="numeric"
+                pattern="[0-9]*"
+                maxLength={9}
+                value={form2.celular}
+                onKeyDown={handleNumericKeyDown}
+                onChange={(e) => handleForm2Change('celular', e.target.value)}
+                onBlur={() => handleBlur('celular')}
+                placeholder="912345678"
+                className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('celular')
+                    ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
+                    : 'border-[#d9d9d9] hover:border-[#b3b3b3] focus:border-[#009239]'
+                  }`}
+              />
+              {showError('celular') && (
+                <p className="font-nunito text-xs text-[#ff4d4f] mt-1 font-normal">{errors2.celular}</p>
+              )}
+            </div>
+
+            {/* 7. Checkbox Términos y Condiciones */}
+            <div className="col-span-1 md:col-span-2 pt-1.5">
+              <label className="flex items-start gap-2.5 cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  checked={form2.terminos}
+                  onChange={(e) => handleForm2Change('terminos', e.target.checked)}
+                  className="mt-0.5 w-4 h-4 rounded text-[#009239] border-gray-300 focus:ring-[#009239] cursor-pointer"
+                />
+                <span className="font-nunito text-[14px] text-[#2b2e2c] leading-relaxed">
+                  He leído y acepto los{' '}
+                  <a
+                    href="#terminos"
+                    onClick={(e) => e.preventDefault()}
+                    className="text-[#6941C6] font-semibold underline hover:text-[#53389E]"
+                  >
+                    términos de uso y la política de privacidad.
+                  </a>
+                </span>
+              </label>
+              {showError('terminos') && (
+                <p className="font-nunito text-xs text-[#ff4d4f] mt-1 font-normal">{errors2.terminos}</p>
+              )}
+            </div>
 
             {/* Nota de campo obligatorio */}
             <div className="col-span-1 md:col-span-2 pt-0.5">
