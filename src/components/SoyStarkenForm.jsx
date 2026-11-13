@@ -92,13 +92,13 @@ function CustomDropdown({ value, onChange, onBlur, options, placeholder, hasErro
               setSearch('');
             }}
             placeholder={placeholder}
-            className={`w-full px-3.5 py-2.5 pr-10 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${hasError
+            className={`w-full px-3.5 py-2.5 pr-10 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors text-[#303030] placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] placeholder:text-[#94A3B8] ${hasError
                 ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f] text-[#ff4d4f] placeholder:text-[#ff4d4f]/60'
                 : isOpen
-                  ? 'border-[#009239] ring-2 ring-[#009239]/15 text-[#333333]'
+                  ? 'border-[#009239] ring-2 ring-[#009239]/15 text-[#303030]'
                   : !value
-                    ? 'border-[#d9d9d9] hover:border-[#b3b3b3] text-[#333333] placeholder:text-[#757575]'
-                    : 'border-[#d9d9d9] hover:border-[#b3b3b3] text-[#333333]'
+                    ? 'border-[#d9d9d9] hover:border-[#b3b3b3] text-[#303030] placeholder:text-[#94A3B8]'
+                    : 'border-[#d9d9d9] hover:border-[#b3b3b3] text-[#303030]'
               }`}
           />
           <button
@@ -134,10 +134,10 @@ function CustomDropdown({ value, onChange, onBlur, options, placeholder, hasErro
           className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none flex items-center justify-between text-left transition-colors cursor-pointer ${hasError
               ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f] text-[#ff4d4f]'
               : isOpen
-                ? 'border-[#009239] ring-2 ring-[#009239]/15 text-[#333333]'
+                ? 'border-[#009239] ring-2 ring-[#009239]/15 text-[#303030]'
                 : !value
-                  ? 'border-[#d9d9d9] hover:border-[#b3b3b3] text-[#757575]'
-                  : 'border-[#d9d9d9] hover:border-[#b3b3b3] text-[#333333]'
+                  ? 'border-[#d9d9d9] hover:border-[#b3b3b3] text-[#94A3B8]'
+                  : 'border-[#d9d9d9] hover:border-[#b3b3b3] text-[#303030]'
             }`}
         >
           <span className="truncate">{value || placeholder}</span>
@@ -174,7 +174,7 @@ function CustomDropdown({ value, onChange, onBlur, options, placeholder, hasErro
                   }}
                   className={`px-3.5 py-2.5 font-nunito text-[14px] md:text-[15px] cursor-pointer transition-colors duration-100 flex items-center justify-between ${isSelected
                       ? 'bg-[#009239]/10 text-[#009239] font-bold'
-                      : 'text-[#333333] hover:bg-gray-50 hover:text-[#009239]'
+                      : 'text-[#303030] hover:bg-gray-50 hover:text-[#009239]'
                     }`}
                 >
                   <span>{opt}</span>
@@ -456,7 +456,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-3.5">
             {/* 1. Nombre y apellido */}
             <div>
-              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#333333] mb-1.5">
+              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#303030] mb-1.5">
                 Nombre y apellido
               </label>
               <input
@@ -466,7 +466,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
                 onChange={(e) => handleForm1Change('nombre', e.target.value)}
                 onBlur={() => handleBlur('nombre')}
                 placeholder="Escribe tu nombre"
-                className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('nombre')
+                className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors text-[#303030] placeholder:text-[#94A3B8] placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('nombre')
                     ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
                     : 'border-[#d9d9d9] hover:border-[#b3b3b3] focus:border-[#009239]'
                   }`}
@@ -478,7 +478,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
 
             {/* 2. Correo */}
             <div>
-              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#333333] mb-1.5">
+              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#303030] mb-1.5">
                 Correo
               </label>
               <input
@@ -487,7 +487,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
                 onChange={(e) => handleForm1Change('correo', e.target.value)}
                 onBlur={() => handleBlur('correo')}
                 placeholder="correo@correo.cl"
-                className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('correo')
+                className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors text-[#303030] placeholder:text-[#94A3B8] placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('correo')
                     ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
                     : 'border-[#d9d9d9] hover:border-[#b3b3b3] focus:border-[#009239]'
                   }`}
@@ -499,7 +499,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
 
             {/* 3. Celular */}
             <div>
-              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#333333] mb-1.5">
+              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#303030] mb-1.5">
                 Celular
               </label>
               <input
@@ -512,7 +512,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
                 onChange={(e) => handleForm1Change('celular', e.target.value)}
                 onBlur={() => handleBlur('celular')}
                 placeholder="Ingresa n° de teléfono"
-                className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('celular')
+                className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors text-[#303030] placeholder:text-[#94A3B8] placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('celular')
                     ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
                     : 'border-[#d9d9d9] hover:border-[#b3b3b3] focus:border-[#009239]'
                   }`}
@@ -524,7 +524,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
 
             {/* 4. Dirección de tu negocio */}
             <div>
-              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#333333] mb-1.5">
+              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#303030] mb-1.5">
                 Dirección de tu negocio
               </label>
               <input
@@ -533,7 +533,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
                 onChange={(e) => handleForm1Change('direccion', e.target.value)}
                 onBlur={() => handleBlur('direccion')}
                 placeholder="Dirección del negocio"
-                className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('direccion')
+                className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors text-[#303030] placeholder:text-[#94A3B8] placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('direccion')
                     ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
                     : 'border-[#d9d9d9] hover:border-[#b3b3b3] focus:border-[#009239]'
                   }`}
@@ -545,7 +545,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
 
             {/* 5. Comuna */}
             <div className="md:col-span-2">
-              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#333333] mb-1.5">
+              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#303030] mb-1.5">
                 Comuna
               </label>
               <CustomDropdown
@@ -588,7 +588,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-3.5">
             {/* 1. Razón social * */}
             <div>
-              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#333333] mb-1.5">
+              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#303030] mb-1.5">
                 Razón social
               </label>
               <input
@@ -597,7 +597,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
                 onChange={(e) => handleForm2Change('razonSocial', e.target.value)}
                 onBlur={() => handleBlur('razonSocial')}
                 placeholder="Ej: Inversiones y Servicios SpA"
-                className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('razonSocial')
+                className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors text-[#303030] placeholder:text-[#94A3B8] placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('razonSocial')
                     ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
                     : 'border-[#d9d9d9] hover:border-[#b3b3b3] focus:border-[#009239]'
                   }`}
@@ -609,7 +609,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
 
             {/* 2. Rut empresa * */}
             <div>
-              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#333333] mb-1.5">
+              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#303030] mb-1.5">
                 Rut empresa
               </label>
               <input
@@ -619,7 +619,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
                 onChange={(e) => handleForm2Change('rut', e.target.value)}
                 onBlur={() => handleBlur('rut')}
                 placeholder="123456789-0"
-                className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('rut')
+                className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors text-[#303030] placeholder:text-[#94A3B8] placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('rut')
                     ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
                     : 'border-[#d9d9d9] hover:border-[#b3b3b3] focus:border-[#009239]'
                   }`}
@@ -631,7 +631,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
 
             {/* 3. ¿Cuentas con página web o ecommerce? */}
             <div className="col-span-1 md:col-span-2 py-1">
-              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#333333] mb-2">
+              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#303030] mb-2">
                 ¿Cuentas con página web o ecommerce?
               </label>
               <div className="flex flex-wrap items-center gap-3">
@@ -640,7 +640,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
                   onClick={() => handleForm2Change('tieneWeb', 'si')}
                   className={`px-5 py-2 rounded-xl border text-[14px] font-nunito font-bold flex items-center gap-2.5 transition-all duration-150 cursor-pointer ${form2.tieneWeb === 'si'
                       ? 'bg-[#48185A] border-[#48185A] text-white shadow-sm'
-                      : 'bg-white border-gray-200 text-[#333333] hover:border-[#48185A]/40 hover:bg-[#FAF5FC]'
+                      : 'bg-white border-gray-200 text-[#303030] hover:border-[#48185A]/40 hover:bg-[#FAF5FC]'
                     }`}
                 >
                   <span
@@ -657,7 +657,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
                   onClick={() => handleForm2Change('tieneWeb', 'no')}
                   className={`px-5 py-2 rounded-xl border text-[14px] font-nunito font-bold flex items-center gap-2.5 transition-all duration-150 cursor-pointer ${form2.tieneWeb === 'no'
                       ? 'bg-[#48185A] border-[#48185A] text-white shadow-sm'
-                      : 'bg-white border-gray-200 text-[#333333] hover:border-[#48185A]/40 hover:bg-[#FAF5FC]'
+                      : 'bg-white border-gray-200 text-[#303030] hover:border-[#48185A]/40 hover:bg-[#FAF5FC]'
                     }`}
                 >
                   <span
@@ -675,7 +675,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
             {form2.tieneWeb === 'si' && (
               <>
                 <div>
-                  <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#333333] mb-1.5">
+                  <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#303030] mb-1.5">
                     Página web
                   </label>
                   <input
@@ -684,7 +684,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
                     onChange={(e) => handleForm2Change('paginaWeb', e.target.value)}
                     onBlur={() => handleBlur('paginaWeb')}
                     placeholder="www.ejemplo.cl"
-                    className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('paginaWeb')
+                    className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors text-[#303030] placeholder:text-[#94A3B8] placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('paginaWeb')
                         ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
                         : 'border-[#d9d9d9] hover:border-[#b3b3b3] focus:border-[#009239]'
                       }`}
@@ -695,7 +695,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
                 </div>
 
                 <div>
-                  <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#333333] mb-1.5">
+                  <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#303030] mb-1.5">
                     Plataforma de ecommerce
                   </label>
                   <CustomDropdown
@@ -718,7 +718,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
                   {/* Si selecciona "Otra", aparece abajo el input para especificar la plataforma */}
                   {form2.plataforma === 'Otra' && (
                     <div className="mt-3.5 animate-fadeIn">
-                      <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#333333] mb-1.5">
+                      <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#303030] mb-1.5">
                         Tu plataforma
                       </label>
                       <input
@@ -727,7 +727,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
                         onChange={(e) => handleForm2Change('otraPlataforma', e.target.value)}
                         onBlur={() => handleBlur('otraPlataforma')}
                         placeholder="Nombre de tu plataforma"
-                        className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('otraPlataforma')
+                        className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors text-[#303030] placeholder:text-[#94A3B8] placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('otraPlataforma')
                             ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
                             : 'border-[#d9d9d9] hover:border-[#b3b3b3] focus:border-[#009239]'
                           }`}
@@ -743,7 +743,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
 
             {/* 5. Correo * */}
             <div>
-              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#333333] mb-1.5">
+              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#303030] mb-1.5">
                 Correo
               </label>
               <input
@@ -752,7 +752,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
                 onChange={(e) => handleForm2Change('correo', e.target.value)}
                 onBlur={() => handleBlur('correo')}
                 placeholder="ejemplo@starken.cl"
-                className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('correo')
+                className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors text-[#303030] placeholder:text-[#94A3B8] placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('correo')
                     ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
                     : 'border-[#d9d9d9] hover:border-[#b3b3b3] focus:border-[#009239]'
                   }`}
@@ -764,7 +764,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
 
             {/* 6. Celular * */}
             <div>
-              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#333333] mb-1.5">
+              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#303030] mb-1.5">
                 Celular
               </label>
               <input
@@ -777,7 +777,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
                 onChange={(e) => handleForm2Change('celular', e.target.value)}
                 onBlur={() => handleBlur('celular')}
                 placeholder="912345678"
-                className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('celular')
+                className={`w-full px-3.5 py-2.5 rounded-lg font-nunito text-[14px] md:text-[16px] bg-white border outline-none transition-colors text-[#303030] placeholder:text-[#94A3B8] placeholder:font-nunito placeholder:text-[14px] md:placeholder:text-[16px] ${showError('celular')
                     ? 'border-[#ff4d4f] shadow-[0_0_0_1px_#ff4d4f]'
                     : 'border-[#d9d9d9] hover:border-[#b3b3b3] focus:border-[#009239]'
                   }`}
