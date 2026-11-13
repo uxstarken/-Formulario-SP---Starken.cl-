@@ -456,7 +456,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-3.5">
             {/* 1. Nombre y apellido */}
             <div>
-              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#303030] mb-1.5">
+              <label className="block font-nunito text-[14px] font-semibold text-[#303030] mb-1.5">
                 Nombre y apellido
               </label>
               <input
@@ -478,7 +478,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
 
             {/* 2. Correo */}
             <div>
-              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#303030] mb-1.5">
+              <label className="block font-nunito text-[14px] font-semibold text-[#303030] mb-1.5">
                 Correo
               </label>
               <input
@@ -499,7 +499,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
 
             {/* 3. Celular */}
             <div>
-              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#303030] mb-1.5">
+              <label className="block font-nunito text-[14px] font-semibold text-[#303030] mb-1.5">
                 Celular
               </label>
               <input
@@ -524,7 +524,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
 
             {/* 4. Dirección de tu negocio */}
             <div>
-              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#303030] mb-1.5">
+              <label className="block font-nunito text-[14px] font-semibold text-[#303030] mb-1.5">
                 Dirección de tu negocio
               </label>
               <input
@@ -545,7 +545,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
 
             {/* 5. Comuna */}
             <div className="md:col-span-2">
-              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#303030] mb-1.5">
+              <label className="block font-nunito text-[14px] font-semibold text-[#303030] mb-1.5">
                 Comuna
               </label>
               <CustomDropdown
@@ -588,7 +588,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-3.5">
             {/* 1. Razón social * */}
             <div>
-              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#303030] mb-1.5">
+              <label className="block font-nunito text-[14px] font-semibold text-[#303030] mb-1.5">
                 Razón social
               </label>
               <input
@@ -609,7 +609,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
 
             {/* 2. Rut empresa * */}
             <div>
-              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#303030] mb-1.5">
+              <label className="block font-nunito text-[14px] font-semibold text-[#303030] mb-1.5">
                 Rut empresa
               </label>
               <input
@@ -631,7 +631,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
 
             {/* 3. ¿Cuentas con página web o ecommerce? */}
             <div className="col-span-1 md:col-span-2 py-1">
-              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#303030] mb-2">
+              <label className="block font-nunito text-[14px] font-semibold text-[#303030] mb-2">
                 ¿Cuentas con página web o ecommerce?
               </label>
               <div className="flex flex-wrap items-center gap-3">
@@ -675,7 +675,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
             {form2.tieneWeb === 'si' && (
               <>
                 <div>
-                  <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#303030] mb-1.5">
+                  <label className="block font-nunito text-[14px] font-semibold text-[#303030] mb-1.5">
                     Página web
                   </label>
                   <input
@@ -695,7 +695,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
                 </div>
 
                 <div>
-                  <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#303030] mb-1.5">
+                  <label className="block font-nunito text-[14px] font-semibold text-[#303030] mb-1.5">
                     Plataforma de ecommerce
                   </label>
                   <CustomDropdown
@@ -718,7 +718,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
                   {/* Si selecciona "Otra", aparece abajo el input para especificar la plataforma */}
                   {form2.plataforma === 'Otra' && (
                     <div className="mt-3.5 animate-fadeIn">
-                      <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#303030] mb-1.5">
+                      <label className="block font-nunito text-[14px] font-semibold text-[#303030] mb-1.5">
                         Tu plataforma
                       </label>
                       <input
@@ -743,7 +743,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
 
             {/* 5. Correo * */}
             <div>
-              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#303030] mb-1.5">
+              <label className="block font-nunito text-[14px] font-semibold text-[#303030] mb-1.5">
                 Correo
               </label>
               <input
@@ -764,7 +764,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
 
             {/* 6. Celular * */}
             <div>
-              <label className="block font-nunito text-[16px] md:text-[14px] font-semibold text-[#303030] mb-1.5">
+              <label className="block font-nunito text-[14px] font-semibold text-[#303030] mb-1.5">
                 Celular
               </label>
               <input
