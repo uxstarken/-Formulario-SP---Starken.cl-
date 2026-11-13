@@ -17,7 +17,7 @@ function BeneficiosToggle({ expanded, onToggle }) {
       }}
       aria-expanded={false}
       aria-label="Desplegar beneficios"
-      className="mt-4 mx-auto flex items-center justify-center h-[46px] w-full rounded-full bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white shadow-md cursor-pointer font-nunito font-bold text-[15px] select-none transition-colors duration-200 animate-fadeIn"
+      className="mt-5 mx-auto flex items-center justify-center h-[46px] w-full rounded-full bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white shadow-md cursor-pointer font-nunito font-bold text-[15px] select-none transition-colors duration-200 animate-fadeIn"
     >
       <span className="whitespace-nowrap mr-2">
         Beneficios
@@ -303,11 +303,10 @@ export default function Proposal3InteractiveCards() {
               toggleMobileExpand('benefits');
             }
           }}
-          className={`w-full bg-white rounded-3xl p-5 sm:p-6 border transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] relative select-none cursor-pointer pb-5 sm:pb-6 ${
-            selectedCard === 'benefits'
+          className={`w-full bg-white rounded-3xl p-5 sm:p-6 border transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] relative select-none cursor-pointer pb-5 sm:pb-6 ${selectedCard === 'benefits'
               ? 'border-2 border-[#48185A] shadow-xl ring-2 ring-[#48185A]/15 pb-6'
               : 'border-gray-200/90 shadow-md hover:border-[#48185A]/40'
-          }`}
+            }`}
         >
           {/* Cabecera / Área superior de la tarjeta */}
           <div>
@@ -355,9 +354,8 @@ export default function Proposal3InteractiveCards() {
 
           {/* Detalle desplegable animado suavemente (tipo spring sin rebote) */}
           <div
-            className={`smooth-accordion-wrapper ${
-              mobileExpandedCard === 'benefits' ? 'is-expanded' : ''
-            }`}
+            className={`smooth-accordion-wrapper ${mobileExpandedCard === 'benefits' ? 'is-expanded' : ''
+              }`}
           >
             <div className="smooth-accordion-inner">
               <div className="pt-4 mt-3 border-t border-gray-100">
@@ -385,11 +383,10 @@ export default function Proposal3InteractiveCards() {
                       e.stopPropagation();
                       handleMobileSelectCard('benefits');
                     }}
-                    className={`w-full py-3 px-5 rounded-full font-bold text-[14.5px] shadow-md transition-all duration-150 cursor-pointer text-center flex items-center justify-center gap-2 ${
-                      selectedCard === 'benefits'
+                    className={`w-full py-3 px-5 rounded-full font-bold text-[14.5px] shadow-md transition-all duration-150 cursor-pointer text-center flex items-center justify-center gap-2 ${selectedCard === 'benefits'
                         ? 'bg-[#009239] text-white shadow-[#009239]/20'
                         : 'bg-[#48185A] hover:bg-[#381146] text-white'
-                    }`}
+                      }`}
                   >
                     {selectedCard === 'benefits' ? (
                       <>
@@ -436,11 +433,10 @@ export default function Proposal3InteractiveCards() {
               toggleMobileExpand('api');
             }
           }}
-          className={`w-full bg-white rounded-3xl p-5 sm:p-6 border transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] relative select-none cursor-pointer pb-5 sm:pb-6 ${
-            selectedCard === 'api'
+          className={`w-full bg-white rounded-3xl p-5 sm:p-6 border transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] relative select-none cursor-pointer pb-5 sm:pb-6 ${selectedCard === 'api'
               ? 'border-2 border-[#48185A] shadow-xl ring-2 ring-[#48185A]/15 pb-6'
               : 'border-gray-200/90 shadow-md hover:border-[#48185A]/40'
-          }`}
+            }`}
         >
           {/* Cabecera / Área superior de la tarjeta */}
           <div>
@@ -501,9 +497,8 @@ export default function Proposal3InteractiveCards() {
 
           {/* Detalle desplegable animado suavemente (tipo spring sin rebote) */}
           <div
-            className={`smooth-accordion-wrapper ${
-              mobileExpandedCard === 'api' ? 'is-expanded' : ''
-            }`}
+            className={`smooth-accordion-wrapper ${mobileExpandedCard === 'api' ? 'is-expanded' : ''
+              }`}
           >
             <div className="smooth-accordion-inner">
               <div className="pt-4 mt-3 border-t border-gray-100">
@@ -531,11 +526,10 @@ export default function Proposal3InteractiveCards() {
                       e.stopPropagation();
                       handleMobileSelectCard('api');
                     }}
-                    className={`w-full py-3 px-5 rounded-full font-bold text-[14.5px] shadow-md transition-all duration-150 cursor-pointer text-center flex items-center justify-center gap-2 ${
-                      selectedCard === 'api'
+                    className={`w-full py-3 px-5 rounded-full font-bold text-[14.5px] shadow-md transition-all duration-150 cursor-pointer text-center flex items-center justify-center gap-2 ${selectedCard === 'api'
                         ? 'bg-[#009239] text-white shadow-[#009239]/20'
                         : 'bg-[#48185A] hover:bg-[#381146] text-white'
-                    }`}
+                      }`}
                   >
                     {selectedCard === 'api' ? (
                       <>
@@ -577,22 +571,20 @@ export default function Proposal3InteractiveCards() {
       {/* ============================================================== */}
       <div
         ref={scrollTargetRef}
-        className={`hidden lg:flex lg:flex-row gap-8 lg:gap-7 justify-center transition-all duration-300 ease-in-out pt-6 ${
-          selectedCard ? 'items-start' : 'items-stretch'
-        }`}
+        className={`hidden lg:flex lg:flex-row gap-8 lg:gap-7 justify-center transition-all duration-300 ease-in-out pt-6 ${selectedCard ? 'items-start' : 'items-stretch'
+          }`}
       >
         {/* ============================================================== */}
         {/* TARJETA 1: REGISTRARME / UNIRME AL PROGRAMA */}
         {/* ============================================================== */}
         <div
           ref={cardBenefitsRef}
-          className={`w-full bg-white rounded-3xl p-6 sm:p-8 lg:py-11 lg:px-9 border transition-all duration-300 ease-in-out flex flex-col relative ${
-            selectedCard === 'benefits'
+          className={`w-full bg-white rounded-3xl p-6 sm:p-8 lg:py-11 lg:px-9 border transition-all duration-300 ease-in-out flex flex-col relative ${selectedCard === 'benefits'
               ? 'lg:w-[62%] border-2 border-[#48185A] shadow-xl ring-4 ring-[#48185A]/10 cursor-default'
               : selectedCard === 'api'
-              ? 'lg:w-[38%] border-gray-200/90 shadow-md opacity-95 hover:opacity-100 hover:border-[#48185A]/40 cursor-pointer'
-              : 'lg:w-[50%] border-gray-200/90 shadow-lg hover:shadow-xl cursor-pointer'
-          }`}
+                ? 'lg:w-[38%] border-gray-200/90 shadow-md opacity-95 hover:opacity-100 hover:border-[#48185A]/40 cursor-pointer'
+                : 'lg:w-[50%] border-gray-200/90 shadow-lg hover:shadow-xl cursor-pointer'
+            }`}
           onClick={() => {
             if (!selectedCard) {
               setSelectedCard('benefits');
@@ -736,13 +728,12 @@ export default function Proposal3InteractiveCards() {
         {/* ============================================================== */}
         <div
           ref={cardApiRef}
-          className={`w-full bg-white rounded-3xl p-6 sm:p-8 lg:py-11 lg:px-9 border transition-all duration-300 ease-in-out flex flex-col relative ${
-            selectedCard === 'api'
+          className={`w-full bg-white rounded-3xl p-6 sm:p-8 lg:py-11 lg:px-9 border transition-all duration-300 ease-in-out flex flex-col relative ${selectedCard === 'api'
               ? 'lg:w-[62%] border-2 border-[#48185A] shadow-xl ring-4 ring-[#48185A]/10 cursor-default'
               : selectedCard === 'benefits'
-              ? 'lg:w-[38%] border-gray-200/90 shadow-md opacity-95 hover:opacity-100 hover:border-[#48185A]/40 cursor-pointer'
-              : 'lg:w-[50%] border-gray-200/90 shadow-lg hover:shadow-xl cursor-pointer'
-          }`}
+                ? 'lg:w-[38%] border-gray-200/90 shadow-md opacity-95 hover:opacity-100 hover:border-[#48185A]/40 cursor-pointer'
+                : 'lg:w-[50%] border-gray-200/90 shadow-lg hover:shadow-xl cursor-pointer'
+            }`}
           onClick={() => {
             if (!selectedCard) {
               setSelectedCard('api');
