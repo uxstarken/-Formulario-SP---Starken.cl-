@@ -319,7 +319,7 @@ export default function Proposal3InteractiveCards() {
             </div>
 
             {/* Título de la tarjeta centrado */}
-            <div className="text-center mb-2.5">
+            <div className="text-center mb-1">
               <h2
                 className="font-din text-[18px] text-card-title-18 font-bold text-[#303030] leading-snug"
                 style={{ fontSize: '18px' }}
@@ -329,7 +329,7 @@ export default function Proposal3InteractiveCards() {
             </div>
 
             {/* Subtítulo Categorías visible siempre (contraída y expandida) */}
-            <p className="font-nunito text-[13px] text-[#505050] font-medium text-center mb-2.5" style={{ color: '#505050' }}>
+            <p className="font-nunito text-[13px] text-[#505050] font-medium text-center mb-1.5" style={{ color: '#505050' }}>
               Categorias
             </p>
 
@@ -452,7 +452,7 @@ export default function Proposal3InteractiveCards() {
             </div>
 
             {/* Título de la tarjeta centrado */}
-            <div className="text-center mb-2.5">
+            <div className="text-center mb-1">
               <h2
                 className="font-din text-[18px] text-card-title-18 font-bold text-[#303030] leading-snug"
                 style={{ fontSize: '18px' }}
@@ -462,7 +462,7 @@ export default function Proposal3InteractiveCards() {
             </div>
 
             {/* Subtítulo Plataformas disponible siempre (contraída y expandida) */}
-            <p className="font-nunito text-[13px] text-[#505050] font-medium text-center mb-2.5" style={{ color: '#505050' }}>
+            <p className="font-nunito text-[13px] text-[#505050] font-medium text-center mb-1.5" style={{ color: '#505050' }}>
               Plataformas disponibles
             </p>
 
@@ -626,12 +626,12 @@ export default function Proposal3InteractiveCards() {
                     {/* Sección 1 (Izquierda): Título, Subtítulo y Categorías */}
                     <div className="md:col-span-6 flex flex-col items-center md:items-start text-center md:text-left">
                       <h4
-                        className="font-din text-[24px] text-card-title-desktop-24 font-bold text-[#303030] mb-1.5 leading-snug"
+                        className="font-din text-[24px] text-card-title-desktop-24 font-bold text-[#303030] mb-1 leading-snug"
                         style={{ fontSize: '24px' }}
                       >
                         Obtén descuentos por categorías
                       </h4>
-                      <p className="font-nunito text-[14px] text-[#505050] font-medium mb-3" style={{ color: '#505050' }}>
+                      <p className="font-nunito text-[14px] text-[#505050] font-medium mb-1.5" style={{ color: '#505050' }}>
                         Categorias
                       </p>
                       <div className="flex flex-wrap items-center justify-center md:justify-start gap-2">
@@ -681,12 +681,12 @@ export default function Proposal3InteractiveCards() {
                 </h2>
 
                 {/* Subtítulo Categorías */}
-                <p className="font-nunito text-[14px] text-[#505050] font-medium text-center mb-3" style={{ color: '#505050' }}>
+                <p className="font-nunito text-[14px] text-[#505050] font-medium text-center mb-1.5" style={{ color: '#505050' }}>
                   Categorias
                 </p>
 
                 {/* Chips de Categorías */}
-                <div className="flex items-center justify-center gap-2 h-[70px] w-full">
+                <div className="flex items-start justify-center gap-2 pt-1 h-[70px] w-full">
                   {['Colina', 'Montaña', 'Cordillera'].map((cat) => (
                     <span
                       key={cat}
@@ -779,12 +779,12 @@ export default function Proposal3InteractiveCards() {
                     {/* Sección 1 (Izquierda): Título, Subtítulo y Plataformas */}
                     <div className="md:col-span-6 flex flex-col items-center md:items-start text-center md:text-left">
                       <h4
-                        className="font-din text-[24px] text-card-title-desktop-24 font-bold text-[#303030] mb-1.5 leading-snug"
+                        className="font-din text-[24px] text-card-title-desktop-24 font-bold text-[#303030] mb-1 leading-snug"
                         style={{ fontSize: '24px' }}
                       >
                         Precios especiales por volumen
                       </h4>
-                      <p className="font-nunito text-[14px] text-[#505050] font-medium mb-3" style={{ color: '#505050' }}>
+                      <p className="font-nunito text-[14px] text-[#505050] font-medium mb-1.5" style={{ color: '#505050' }}>
                         Plataformas disponibles
                       </p>
                       <div className="flex flex-col items-center md:items-start gap-1.5 sm:gap-2">
@@ -848,12 +848,12 @@ export default function Proposal3InteractiveCards() {
                 </h2>
 
                 {/* Subtítulo Plataformas disponibles */}
-                <p className="font-nunito text-[14px] text-[#505050] font-medium text-center mb-3" style={{ color: '#505050' }}>
+                <p className="font-nunito text-[14px] text-[#505050] font-medium text-center mb-1.5" style={{ color: '#505050' }}>
                   Plataformas disponibles
                 </p>
 
                 {/* Chips de Plataformas disponibles (En 2 filas horizontales en desktop) */}
-                <div className="flex flex-col items-center justify-center gap-1.5 h-[70px] w-full">
+                <div className="flex flex-col items-center justify-start gap-1.5 pt-1 h-[70px] w-full">
                   {/* Fila 1 */}
                   <div className="flex items-center justify-center gap-1.5 sm:gap-2 max-w-full">
                     {['Shopify', 'WooCommerce', 'Bsale*', 'Jumpseller*'].map((p) => (
