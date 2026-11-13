@@ -21,15 +21,24 @@ export default function Proposal3InteractiveCards() {
   const cardBenefitsRef = useRef(null);
   const cardApiRef = useRef(null);
   const prevSelectedCardRef = useRef(null);
+  const prevMobileExpandedRef = useRef(null);
 
   // Toggle para desplegar/contraer la información de una tarjeta en mobile
   const toggleMobileExpand = (cardKey) => {
-    // Al contraer una card que tenía el formulario abierto, se deselecciona para volver
-    // a la vista contraída normal (borde estándar y botón "Beneficios" visible)
-    if (mobileExpandedCard === cardKey && selectedCard === cardKey) {
-      setSelectedCard(null);
+    // Al contraer una card que tenía el formulario abierto o los beneficios desplegados,
+    // se deselecciona y siempre se hace auto-scroll a la parte superior de la web
+    if (mobileExpandedCard === cardKey) {
+      if (selectedCard === cardKey) {
+        setSelectedCard(null);
+      }
+      setMobileExpandedCard(null);
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    } else {
+      setMobileExpandedCard(cardKey);
     }
-    setMobileExpandedCard((prev) => (prev === cardKey ? null : cardKey));
   };
 
   // Manejar click en botón de acción en mobile
@@ -114,12 +123,10 @@ export default function Proposal3InteractiveCards() {
         if (isMobile) {
           setMobileExpandedCard(null);
           setSelectedCard(null);
-          if (window.pageYOffset > 80) {
-            window.scrollTo({
-              top: 0,
-              behavior: 'smooth'
-            });
-          }
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
         } else {
           setSelectedCard(null);
           window.scrollTo({
@@ -147,7 +154,7 @@ export default function Proposal3InteractiveCards() {
   }, [selectedCard, mobileExpandedCard]);
 
   // Auto-centrar suavemente en el formulario / tarjetas cuando se selecciona una opción
-  // o autoscrollear a la parte superior cuando se contraen las tarjetas en desktop
+  // o autoscrollear a la parte superior de la web cuando se contraen las tarjetas (mobile y desktop)
   useEffect(() => {
     const isMobile = window.innerWidth < 1024;
 
@@ -178,16 +185,35 @@ export default function Proposal3InteractiveCards() {
       }, 100);
 
       return () => clearTimeout(timer);
-    } else if (prevSelectedCardRef.current && !selectedCard && !isMobile) {
-      // Cuando se deselecciona y se contraen las tarjetas en desktop, autoscrollear arriba
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
+    } else {
+      // Cuando se deselecciona o se contraen las tarjetas a la vista inicial comprimida
+      const wasSelected = Boolean(prevSelectedCardRef.current);
+      const wasExpanded = Boolean(prevMobileExpandedRef.current);
+
+      if ((wasSelected || wasExpanded) && !selectedCard && !mobileExpandedCard) {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+
+        // Verificación de seguridad: tras la transición de repliegue de la card,
+        // asegurar que la vista no quede atrapada en el footer
+        const timer = setTimeout(() => {
+          if (window.pageYOffset > 0) {
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+            });
+          }
+        }, 300);
+
+        return () => clearTimeout(timer);
+      }
     }
 
     prevSelectedCardRef.current = selectedCard;
-  }, [selectedCard]);
+    prevMobileExpandedRef.current = mobileExpandedCard;
+  }, [selectedCard, mobileExpandedCard]);
 
   // Auto-scroll en mobile al desplegar una card (por ejemplo al pulsar la flecha en la card de abajo)
   useEffect(() => {
