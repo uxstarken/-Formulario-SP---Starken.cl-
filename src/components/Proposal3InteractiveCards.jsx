@@ -328,7 +328,7 @@ export default function Proposal3InteractiveCards() {
           >
             {/* Badge superior flotante */}
             <div className="flex justify-center -mt-9 mb-3">
-              <span className="px-4 py-1 rounded-full border border-[#48185A] bg-white text-[#48185A] font-nunito font-semibold text-[12px] tracking-wide select-none">
+              <span className="px-4 py-1 rounded-full border border-[#F97316] bg-white text-[#EA580C] font-nunito font-semibold text-[12px] tracking-wide select-none">
                 Unirme al programa
               </span>
             </div>
@@ -403,7 +403,7 @@ export default function Proposal3InteractiveCards() {
                     className={`w-full py-3 px-5 rounded-full font-bold text-[14.5px] shadow-md transition-all duration-150 cursor-pointer text-center flex items-center justify-center gap-2 ${
                       selectedCard === 'benefits'
                         ? 'bg-[#009239] text-white shadow-[#009239]/20'
-                        : 'bg-[#EA580C] hover:bg-[#c2410c] active:bg-[#9a3412] text-white'
+                        : 'bg-[#48185A] hover:bg-[#381146] text-white'
                     }`}
                   >
                     {selectedCard === 'benefits' ? (
@@ -464,7 +464,7 @@ export default function Proposal3InteractiveCards() {
           >
             {/* Badge superior flotante */}
             <div className="flex justify-center -mt-9 mb-3">
-              <span className="px-4 py-1 rounded-full border border-[#48185A] bg-white text-[#48185A] font-nunito font-semibold text-[12px] tracking-wide select-none">
+              <span className="px-4 py-1 rounded-full border border-[#F97316] bg-white text-[#EA580C] font-nunito font-semibold text-[12px] tracking-wide select-none">
                 Conectar mi página web
               </span>
             </div>
@@ -552,7 +552,7 @@ export default function Proposal3InteractiveCards() {
                     className={`w-full py-3 px-5 rounded-full font-bold text-[14.5px] shadow-md transition-all duration-150 cursor-pointer text-center flex items-center justify-center gap-2 ${
                       selectedCard === 'api'
                         ? 'bg-[#009239] text-white shadow-[#009239]/20'
-                        : 'bg-[#EA580C] hover:bg-[#c2410c] active:bg-[#9a3412] text-white'
+                        : 'bg-[#48185A] hover:bg-[#381146] text-white'
                     }`}
                   >
                     {selectedCard === 'api' ? (
@@ -573,7 +573,7 @@ export default function Proposal3InteractiveCards() {
                       <h3 className="font-din text-[20px] font-bold text-[#48185A] leading-snug">
                         Formulario de integración ecommerce
                       </h3>
-                      <p className="font-nunito text-[13px] text-gray-500 mt-1">
+                      <p className="font-nunito text-[13px] text-[#505050] mt-1" style={{ color: '#505050' }}>
                         Completa los datos de tu empresa y plataforma web.
                       </p>
                     </div>
@@ -615,7 +615,7 @@ export default function Proposal3InteractiveCards() {
         >
           {/* Badge superior flotante centrado exactamente sobre la línea superior de la card */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-            <span className="whitespace-nowrap px-6 py-2 rounded-full border-2 border-[#48185A] bg-white text-[#48185A] font-nunito font-bold text-[14px] shadow-sm tracking-wide select-none">
+            <span className="whitespace-nowrap px-6 py-2 rounded-full border-2 border-[#F97316] bg-white text-[#EA580C] font-nunito font-bold text-[14px] shadow-sm tracking-wide select-none">
               Unirme al programa
             </span>
           </div>
@@ -736,7 +736,7 @@ export default function Proposal3InteractiveCards() {
                     e.stopPropagation();
                     setSelectedCard('benefits');
                   }}
-                  className="w-full py-3.5 lg:py-4 px-6 rounded-[7px] bg-[#EA580C] hover:bg-[#c2410c] active:bg-[#9a3412] text-white font-bold text-[15px] shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer text-center"
+                  className="w-full py-3.5 lg:py-4 px-6 rounded-[7px] bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white font-bold text-[15px] shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer text-center"
                 >
                   Unirme al programa
                 </button>
@@ -765,7 +765,7 @@ export default function Proposal3InteractiveCards() {
         >
           {/* Badge superior flotante centrado exactamente sobre la línea superior de la card */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-            <span className="whitespace-nowrap px-6 py-2 rounded-full border-2 border-[#48185A] bg-white text-[#48185A] font-nunito font-bold text-[14px] shadow-sm tracking-wide select-none">
+            <span className="whitespace-nowrap px-6 py-2 rounded-full border-2 border-[#F97316] bg-white text-[#EA580C] font-nunito font-bold text-[14px] shadow-sm tracking-wide select-none">
               Conectar mi página web
             </span>
           </div>
@@ -779,7 +779,7 @@ export default function Proposal3InteractiveCards() {
                   <h3 className="font-din text-[24px] font-bold text-[#48185A]">
                     Formulario de integración ecommerce
                   </h3>
-                  <p className="font-nunito text-[16px] text-gray-500 mt-1">
+                  <p className="font-nunito text-[16px] text-[#505050] mt-1" style={{ color: '#505050' }}>
                     Completa los datos de tu empresa y plataforma web.
                   </p>
                 </div>
@@ -917,7 +917,7 @@ export default function Proposal3InteractiveCards() {
                     e.stopPropagation();
                     setSelectedCard('api');
                   }}
-                  className="w-full py-3.5 lg:py-4 px-6 rounded-[7px] bg-[#EA580C] hover:bg-[#c2410c] active:bg-[#9a3412] text-white font-bold text-[15px] shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer text-center"
+                  className="w-full py-3.5 lg:py-4 px-6 rounded-[7px] bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white font-bold text-[15px] shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer text-center"
                 >
                   Contactar con ejecutivo
                 </button>

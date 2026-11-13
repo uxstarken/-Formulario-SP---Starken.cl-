@@ -564,7 +564,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
 
             {/* Nota de campo obligatorio (pegado a Comuna en Opción 1, baja en Opción 2 con el checkbox) */}
             <div className="col-span-1 md:col-span-2 pt-0.5">
-              <p className="font-nunito text-[14px] text-[#666666]">Todos los campos son obligatorios</p>
+              <p className="font-nunito text-[14px] text-[#505050]">Todos los campos son obligatorios</p>
             </div>
           </div>
 
@@ -814,7 +814,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
 
             {/* Nota de campo obligatorio */}
             <div className="col-span-1 md:col-span-2 pt-0.5">
-              <p className="font-nunito text-[14px] text-[#666666]">Todos los campos son obligatorios</p>
+              <p className="font-nunito text-[14px] text-[#505050]">Todos los campos son obligatorios</p>
             </div>
           </div>
 
