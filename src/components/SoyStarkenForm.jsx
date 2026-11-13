@@ -796,7 +796,7 @@ export default function SoyStarkenForm({ optionType = 'benefits', onSubmitted })
                   onChange={(e) => handleForm2Change('terminos', e.target.checked)}
                   className="mt-0.5 w-4 h-4 rounded text-[#009239] border-gray-300 focus:ring-[#009239] cursor-pointer"
                 />
-                <span className="font-nunito text-[14px] text-[#2b2e2c] leading-relaxed">
+                <span className="font-nunito text-[14px] text-[#303030] leading-relaxed">
                   He leído y acepto los{' '}
                   <a
                     href="#terminos"
