@@ -1,31 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SoyStarkenForm from './SoyStarkenForm';
 import Breadcrumb from './Breadcrumb';
-import { CheckCircle2, ChevronDown } from 'lucide-react';
-
-// Botón "Beneficios" (mobile): visible SOLO en estado contraído.
-// Al expandir la tarjeta, desaparece completamente (no queda círculo ni flecha).
-function BeneficiosToggle({ expanded, onToggle }) {
-  if (expanded) return null;
-
-  return (
-    <button
-      type="button"
-      onClick={(e) => {
-        e.stopPropagation();
-        onToggle();
-      }}
-      aria-expanded={false}
-      aria-label="Desplegar beneficios"
-      className="mt-5 mx-auto flex items-center justify-center h-[46px] w-full rounded-full bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white shadow-md cursor-pointer font-nunito font-bold text-[15px] select-none transition-colors duration-200 animate-fadeIn"
-    >
-      <span className="whitespace-nowrap mr-2">
-        Beneficios
-      </span>
-      <ChevronDown className="w-5 h-5 flex-shrink-0 text-white" />
-    </button>
-  );
-}
+import { ChevronDown } from 'lucide-react';
 
 export default function Proposal3InteractiveCards() {
   // null = ambas tarjetas en modo comparativo inicial
@@ -40,6 +16,8 @@ export default function Proposal3InteractiveCards() {
   const mobileFormRef = useRef(null);
   const mobileCard1Ref = useRef(null);
   const mobileCard2Ref = useRef(null);
+  const mobileBullets1Ref = useRef(null);
+  const mobileBullets2Ref = useRef(null);
   const cardBenefitsRef = useRef(null);
   const cardApiRef = useRef(null);
   const prevSelectedCardRef = useRef(null);
@@ -175,15 +153,18 @@ export default function Proposal3InteractiveCards() {
 
     if (selectedCard) {
       const timer = setTimeout(() => {
-        if (isMobile && mobileFormRef.current) {
-          const navbarHeight = 116; // Sticky navbar mobile total (46px + 70px)
-          const elementTop = mobileFormRef.current.getBoundingClientRect().top;
-          const targetY = elementTop + window.pageYOffset - (navbarHeight + 16);
+        if (isMobile) {
+          const targetRef = selectedCard === 'benefits' ? mobileBullets1Ref.current : mobileBullets2Ref.current;
+          if (targetRef) {
+            const navbarHeight = 116; // Sticky navbar mobile total (46px + 70px)
+            const elementTop = targetRef.getBoundingClientRect().top;
+            const targetY = elementTop + window.pageYOffset - (navbarHeight + 16);
 
-          window.scrollTo({
-            top: Math.max(0, targetY),
-            behavior: 'smooth'
-          });
+            window.scrollTo({
+              top: Math.max(0, targetY),
+              behavior: 'smooth'
+            });
+          }
         } else if (!isMobile && scrollTargetRef.current) {
           const navbarHeight = 125; // Altura sticky navbar desktop
           const elementTop = scrollTargetRef.current.getBoundingClientRect().top;
@@ -194,7 +175,7 @@ export default function Proposal3InteractiveCards() {
             behavior: 'smooth'
           });
         }
-      }, 90);
+      }, 100);
 
       return () => clearTimeout(timer);
     } else if (prevSelectedCardRef.current && !selectedCard && !isMobile) {
@@ -208,9 +189,9 @@ export default function Proposal3InteractiveCards() {
     prevSelectedCardRef.current = selectedCard;
   }, [selectedCard]);
 
-  // Auto-scroll en mobile al desplegar una card (por ejemplo al pulsar "Beneficios" en la card de abajo)
+  // Auto-scroll en mobile al desplegar una card (por ejemplo al pulsar la flecha en la card de abajo)
   useEffect(() => {
-    if (mobileExpandedCard) {
+    if (mobileExpandedCard && !selectedCard) {
       const isMobile = window.innerWidth < 1024;
       if (!isMobile) return;
 
@@ -238,7 +219,7 @@ export default function Proposal3InteractiveCards() {
 
       return () => clearTimeout(timer);
     }
-  }, [mobileExpandedCard]);
+  }, [mobileExpandedCard, selectedCard]);
 
   return (
     <div className="w-full font-nunito pb-0 lg:pb-8">
@@ -303,8 +284,8 @@ export default function Proposal3InteractiveCards() {
               toggleMobileExpand('benefits');
             }
           }}
-          className={`w-full bg-white rounded-3xl p-5 sm:p-6 border transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] relative select-none cursor-pointer pb-5 sm:pb-6 ${selectedCard === 'benefits'
-              ? 'border-2 border-[#48185A] shadow-xl ring-2 ring-[#48185A]/15 pb-6'
+          className={`w-full bg-white rounded-3xl p-5 sm:p-6 border transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] relative select-none cursor-pointer pb-7 sm:pb-8 ${selectedCard === 'benefits'
+              ? 'border-2 border-[#48185A] shadow-xl ring-2 ring-[#48185A]/15 pb-7'
               : 'border-gray-200/90 shadow-md hover:border-[#48185A]/40'
             }`}
         >
@@ -345,11 +326,19 @@ export default function Proposal3InteractiveCards() {
               ))}
             </div>
 
-            {/* Botón principal "Beneficios": visible solo cuando está contraída */}
-            <BeneficiosToggle
-              expanded={mobileExpandedCard === 'benefits'}
-              onToggle={() => toggleMobileExpand('benefits')}
-            />
+            {/* Botón principal CTA en card contraída */}
+            {mobileExpandedCard !== 'benefits' && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleMobileSelectCard('benefits');
+                }}
+                className="mt-5 mx-auto flex items-center justify-center h-[46px] w-full rounded-full bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white shadow-md cursor-pointer font-nunito font-bold text-[15px] select-none transition-colors duration-200 animate-fadeIn"
+              >
+                Unirme al programa
+              </button>
+            )}
           </div>
 
           {/* Detalle desplegable animado suavemente (tipo spring sin rebote) */}
@@ -358,7 +347,7 @@ export default function Proposal3InteractiveCards() {
               }`}
           >
             <div className="smooth-accordion-inner">
-              <div className="pt-4 mt-3 border-t border-gray-100">
+              <div ref={mobileBullets1Ref} className="pt-4 mt-3 border-t border-gray-100 scroll-mt-28">
                 {/* Lista de Viñetas Punteadas con más aire y separación */}
                 <ul className="space-y-3.5 mb-6">
                   <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#303030] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
@@ -375,29 +364,21 @@ export default function Proposal3InteractiveCards() {
                   </li>
                 </ul>
 
-                {/* Botón de acción (aparece cuando la card está desplegada) con aire superior e inferior */}
-                <div className="pt-1 pb-3">
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleMobileSelectCard('benefits');
-                    }}
-                    className={`w-full py-3 px-5 rounded-full font-bold text-[14.5px] shadow-md transition-all duration-150 cursor-pointer text-center flex items-center justify-center gap-2 ${selectedCard === 'benefits'
-                        ? 'bg-[#009239] text-white shadow-[#009239]/20'
-                        : 'bg-[#48185A] hover:bg-[#381146] text-white'
-                      }`}
-                  >
-                    {selectedCard === 'benefits' ? (
-                      <>
-                        <CheckCircle2 className="w-4 h-4" />
-                        <span>Opción Seleccionada</span>
-                      </>
-                    ) : (
-                      <span>Unirme al programa</span>
-                    )}
-                  </button>
-                </div>
+                {/* Botón de acción (solo visible cuando los beneficios están expandidos pero el formulario NO está abierto aún) */}
+                {selectedCard !== 'benefits' && (
+                  <div className="pt-1 pb-3">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleMobileSelectCard('benefits');
+                      }}
+                      className="w-full py-3 px-5 rounded-full font-bold text-[14.5px] shadow-md transition-all duration-150 cursor-pointer text-center flex items-center justify-center gap-2 bg-[#48185A] hover:bg-[#381146] text-white"
+                    >
+                      Unirme al programa
+                    </button>
+                  </div>
+                )}
 
                 {/* Formulario móvil desplegado abajo SOLO cuando se presiona el botón */}
                 {selectedCard === 'benefits' && (
@@ -417,6 +398,23 @@ export default function Proposal3InteractiveCards() {
               </div>
             </div>
           </div>
+
+          {/* Botón circular con flecha (expandir / contraer) - Mitad dentro, mitad fuera */}
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleMobileExpand('benefits');
+            }}
+            aria-expanded={mobileExpandedCard === 'benefits'}
+            aria-label={mobileExpandedCard === 'benefits' ? 'Contraer beneficios' : 'Desplegar beneficios'}
+            className="absolute bottom-[-18px] left-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white flex items-center justify-center shadow-md cursor-pointer border-2 border-white transition-all z-20"
+          >
+            <ChevronDown
+              className={`w-5 h-5 text-white transition-transform duration-300 ${mobileExpandedCard === 'benefits' ? 'rotate-180' : 'rotate-0'
+                }`}
+            />
+          </button>
         </div>
 
         {/* ========================================== */}
@@ -433,8 +431,8 @@ export default function Proposal3InteractiveCards() {
               toggleMobileExpand('api');
             }
           }}
-          className={`w-full bg-white rounded-3xl p-5 sm:p-6 border transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] relative select-none cursor-pointer pb-5 sm:pb-6 ${selectedCard === 'api'
-              ? 'border-2 border-[#48185A] shadow-xl ring-2 ring-[#48185A]/15 pb-6'
+          className={`w-full bg-white rounded-3xl p-5 sm:p-6 border transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] relative select-none cursor-pointer pb-7 sm:pb-8 ${selectedCard === 'api'
+              ? 'border-2 border-[#48185A] shadow-xl ring-2 ring-[#48185A]/15 pb-7'
               : 'border-gray-200/90 shadow-md hover:border-[#48185A]/40'
             }`}
         >
@@ -488,11 +486,19 @@ export default function Proposal3InteractiveCards() {
               </div>
             </div>
 
-            {/* Botón principal "Beneficios": visible solo cuando está contraída */}
-            <BeneficiosToggle
-              expanded={mobileExpandedCard === 'api'}
-              onToggle={() => toggleMobileExpand('api')}
-            />
+            {/* Botón principal CTA en card contraída */}
+            {mobileExpandedCard !== 'api' && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleMobileSelectCard('api');
+                }}
+                className="mt-5 mx-auto flex items-center justify-center h-[46px] w-full rounded-full bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white shadow-md cursor-pointer font-nunito font-bold text-[15px] select-none transition-colors duration-200 animate-fadeIn"
+              >
+                Contactar con ejecutivo
+              </button>
+            )}
           </div>
 
           {/* Detalle desplegable animado suavemente (tipo spring sin rebote) */}
@@ -501,7 +507,7 @@ export default function Proposal3InteractiveCards() {
               }`}
           >
             <div className="smooth-accordion-inner">
-              <div className="pt-4 mt-3 border-t border-gray-100">
+              <div ref={mobileBullets2Ref} className="pt-4 mt-3 border-t border-gray-100 scroll-mt-28">
                 {/* Lista de Viñetas Punteadas con más aire y separación */}
                 <ul className="space-y-3.5 mb-6">
                   <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#303030] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
@@ -518,29 +524,21 @@ export default function Proposal3InteractiveCards() {
                   </li>
                 </ul>
 
-                {/* Botón de acción (aparece cuando la card está desplegada) con aire superior e inferior */}
-                <div className="pt-1 pb-3">
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleMobileSelectCard('api');
-                    }}
-                    className={`w-full py-3 px-5 rounded-full font-bold text-[14.5px] shadow-md transition-all duration-150 cursor-pointer text-center flex items-center justify-center gap-2 ${selectedCard === 'api'
-                        ? 'bg-[#009239] text-white shadow-[#009239]/20'
-                        : 'bg-[#48185A] hover:bg-[#381146] text-white'
-                      }`}
-                  >
-                    {selectedCard === 'api' ? (
-                      <>
-                        <CheckCircle2 className="w-4 h-4" />
-                        <span>Opción Seleccionada</span>
-                      </>
-                    ) : (
-                      <span>Contactar con ejecutivo</span>
-                    )}
-                  </button>
-                </div>
+                {/* Botón de acción (solo visible cuando los beneficios están expandidos pero el formulario NO está abierto aún) */}
+                {selectedCard !== 'api' && (
+                  <div className="pt-1 pb-3">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleMobileSelectCard('api');
+                      }}
+                      className="w-full py-3 px-5 rounded-full font-bold text-[14.5px] shadow-md transition-all duration-150 cursor-pointer text-center flex items-center justify-center gap-2 bg-[#48185A] hover:bg-[#381146] text-white"
+                    >
+                      Contactar con ejecutivo
+                    </button>
+                  </div>
+                )}
 
                 {/* Formulario móvil desplegado abajo SOLO cuando se presiona el botón */}
                 {selectedCard === 'api' && (
@@ -563,6 +561,23 @@ export default function Proposal3InteractiveCards() {
               </div>
             </div>
           </div>
+
+          {/* Botón circular con flecha (expandir / contraer) - Mitad dentro, mitad fuera */}
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleMobileExpand('api');
+            }}
+            aria-expanded={mobileExpandedCard === 'api'}
+            aria-label={mobileExpandedCard === 'api' ? 'Contraer beneficios' : 'Desplegar beneficios'}
+            className="absolute bottom-[-18px] left-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-[#48185A] hover:bg-[#381146] active:bg-[#2b0c36] text-white flex items-center justify-center shadow-md cursor-pointer border-2 border-white transition-all z-20"
+          >
+            <ChevronDown
+              className={`w-5 h-5 text-white transition-transform duration-300 ${mobileExpandedCard === 'api' ? 'rotate-180' : 'rotate-0'
+                }`}
+            />
+          </button>
         </div>
       </div>
 
