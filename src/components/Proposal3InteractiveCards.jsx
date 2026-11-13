@@ -50,6 +50,7 @@ export default function Proposal3InteractiveCards() {
   const mobileCard2Ref = useRef(null);
   const cardBenefitsRef = useRef(null);
   const cardApiRef = useRef(null);
+  const prevSelectedCardRef = useRef(null);
 
   // Toggle para desplegar/contraer la información de una tarjeta en mobile
   const toggleMobileExpand = (cardKey) => {
@@ -145,6 +146,10 @@ export default function Proposal3InteractiveCards() {
           }
         } else {
           setSelectedCard(null);
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
         }
       }
     };
@@ -166,9 +171,11 @@ export default function Proposal3InteractiveCards() {
   }, [selectedCard, mobileExpandedCard]);
 
   // Auto-centrar suavemente en el formulario / tarjetas cuando se selecciona una opción
+  // o autoscrollear a la parte superior cuando se contraen las tarjetas en desktop
   useEffect(() => {
+    const isMobile = window.innerWidth < 1024;
+
     if (selectedCard) {
-      const isMobile = window.innerWidth < 1024;
       const timer = setTimeout(() => {
         if (isMobile && mobileFormRef.current) {
           const navbarHeight = 116; // Sticky navbar mobile total (46px + 70px)
@@ -192,7 +199,15 @@ export default function Proposal3InteractiveCards() {
       }, 90);
 
       return () => clearTimeout(timer);
+    } else if (prevSelectedCardRef.current && !selectedCard && !isMobile) {
+      // Cuando se deselecciona y se contraen las tarjetas en desktop, autoscrollear arriba
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     }
+
+    prevSelectedCardRef.current = selectedCard;
   }, [selectedCard]);
 
   // Auto-scroll en mobile al desplegar una card (por ejemplo al pulsar "Beneficios" en la card de abajo)
