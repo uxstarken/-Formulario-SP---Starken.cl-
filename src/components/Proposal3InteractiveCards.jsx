@@ -83,6 +83,11 @@ export default function Proposal3InteractiveCards() {
     let lastTriggerTime = 0;
 
     const checkInside = (target) => {
+      // Si el elemento ya no está en el DOM (fue desmontado por una acción interna, ej: seleccionar opción de dropdown), se considera interno
+      if (!target || !document.body.contains(target)) {
+        return true;
+      }
+
       const isMobile = window.innerWidth < 1024;
       if (isMobile) {
         const card1 = mobileCard1Ref.current;
@@ -110,9 +115,10 @@ export default function Proposal3InteractiveCards() {
       const now = Date.now();
       if (now - lastTriggerTime < 250) return;
 
-      // Si el gesto comenzó dentro de la card, ignorar
+      // Si el gesto comenzó dentro de la card, ignorar y marcar tiempo para ignorar clicks sintéticos posteriores
       if (startedInside) {
         startedInside = false;
+        lastTriggerTime = now;
         return;
       }
 

@@ -19,20 +19,27 @@ const ECOMMERCE_PLATFORMS = [
 function CustomDropdown({ value, onChange, onBlur, options, placeholder, hasError, searchable = false }) {
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState('');
-  const [openUpward, setOpenUpward] = useState(false);
   const containerRef = useRef(null);
   const inputRef = useRef(null);
 
-  // Calcular si debe abrirse hacia arriba según el espacio disponible en viewport
+  // Auto-scroll en mobile al abrir el dropdown para posicionar el input arriba (~210px) y desplegar la lista amplia abajo
   useEffect(() => {
-    if (isOpen && containerRef.current) {
-      const rect = containerRef.current.getBoundingClientRect();
-      const spaceBelow = window.innerHeight - rect.bottom;
-      // Si hay poco espacio abajo (< 250px) y suficiente espacio arriba (> 200px), abrir hacia arriba
-      if (spaceBelow < 250 && rect.top > 200) {
-        setOpenUpward(true);
-      } else {
-        setOpenUpward(false);
+    if (isOpen) {
+      const isMobile = window.innerWidth < 1024;
+      if (isMobile && containerRef.current) {
+        setTimeout(() => {
+          if (!containerRef.current) return;
+          const rect = containerRef.current.getBoundingClientRect();
+          const currentY = window.pageYOffset;
+          // Altura ideal: ~210px del tope (debajo de Dirección de tu negocio y con navbar de 116px)
+          const desiredViewportTop = 210;
+          const targetY = currentY + rect.top - desiredViewportTop;
+
+          window.scrollTo({
+            top: Math.max(0, targetY),
+            behavior: 'smooth'
+          });
+        }, 50);
       }
     }
   }, [isOpen]);
@@ -147,12 +154,13 @@ function CustomDropdown({ value, onChange, onBlur, options, placeholder, hasErro
 
       {isOpen && (
         <div
-          className={`absolute left-0 right-0 bg-white rounded-xl border border-gray-200 shadow-xl max-h-56 overflow-y-auto z-50 py-1.5 animate-fadeIn ${
-            openUpward ? 'bottom-full mb-1.5' : 'top-full mt-1.5'
-          }`}
+          onPointerDown={(e) => e.stopPropagation()}
+          onTouchStart={(e) => e.stopPropagation()}
+          onMouseDown={(e) => e.stopPropagation()}
+          className="absolute left-0 right-0 top-full mt-1.5 bg-white rounded-xl border border-gray-200 shadow-2xl max-h-[340px] overflow-y-auto z-50 py-1.5 animate-fadeIn"
         >
           {filteredOptions.length === 0 ? (
-            <div className="px-3.5 py-3 text-xs md:text-sm text-gray-400 font-nunito text-center">
+            <div className="px-3.5 py-4 text-xs md:text-sm text-gray-400 font-nunito text-center">
               No se encontraron opciones
             </div>
           ) : (
@@ -161,7 +169,13 @@ function CustomDropdown({ value, onChange, onBlur, options, placeholder, hasErro
               return (
                 <div
                   key={opt}
-                  onClick={() => handleSelectOption(opt)}
+                  onPointerDown={(e) => e.stopPropagation()}
+                  onTouchStart={(e) => e.stopPropagation()}
+                  onMouseDown={(e) => e.stopPropagation()}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleSelectOption(opt);
+                  }}
                   className={`px-3.5 py-2.5 font-nunito text-[14px] md:text-[15px] cursor-pointer transition-colors duration-100 flex items-center justify-between ${
                     isSelected
                       ? 'bg-[#009239]/10 text-[#009239] font-bold'
