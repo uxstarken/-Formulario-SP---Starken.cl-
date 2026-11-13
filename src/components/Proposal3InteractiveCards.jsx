@@ -344,7 +344,7 @@ export default function Proposal3InteractiveCards() {
             </div>
 
             {/* Subtítulo Categorías visible siempre (contraída y expandida) */}
-            <p className="font-nunito text-[13px] text-gray-500 font-medium text-center mb-2.5">
+            <p className="font-nunito text-[13px] text-[#505050] font-medium text-center mb-2.5" style={{ color: '#505050' }}>
               Categorias
             </p>
 
@@ -480,7 +480,7 @@ export default function Proposal3InteractiveCards() {
             </div>
 
             {/* Subtítulo Plataformas disponible siempre (contraída y expandida) */}
-            <p className="font-nunito text-[13px] text-gray-500 font-medium text-center mb-2.5">
+            <p className="font-nunito text-[13px] text-[#505050] font-medium text-center mb-2.5" style={{ color: '#505050' }}>
               Plataformas disponibles
             </p>
 
@@ -645,7 +645,7 @@ export default function Proposal3InteractiveCards() {
                       >
                         Obtén descuentos por categorías
                       </h4>
-                      <p className="font-nunito text-[14px] text-gray-500 font-medium mb-3">
+                      <p className="font-nunito text-[14px] text-[#505050] font-medium mb-3" style={{ color: '#505050' }}>
                         Categorias
                       </p>
                       <div className="flex flex-wrap items-center justify-center md:justify-start gap-2">
@@ -695,7 +695,7 @@ export default function Proposal3InteractiveCards() {
                 </h2>
 
                 {/* Subtítulo Categorías */}
-                <p className="font-nunito text-[14px] text-gray-500 font-medium text-center mb-3">
+                <p className="font-nunito text-[14px] text-[#505050] font-medium text-center mb-3" style={{ color: '#505050' }}>
                   Categorias
                 </p>
 
@@ -798,7 +798,7 @@ export default function Proposal3InteractiveCards() {
                       >
                         Precios especiales por volumen
                       </h4>
-                      <p className="font-nunito text-[14px] text-gray-500 font-medium mb-3">
+                      <p className="font-nunito text-[14px] text-[#505050] font-medium mb-3" style={{ color: '#505050' }}>
                         Plataformas disponibles
                       </p>
                       <div className="flex flex-col items-center md:items-start gap-1.5 sm:gap-2">
@@ -862,7 +862,7 @@ export default function Proposal3InteractiveCards() {
                 </h2>
 
                 {/* Subtítulo Plataformas disponibles */}
-                <p className="font-nunito text-[14px] text-gray-500 font-medium text-center mb-3">
+                <p className="font-nunito text-[14px] text-[#505050] font-medium text-center mb-3" style={{ color: '#505050' }}>
                   Plataformas disponibles
                 </p>
 
