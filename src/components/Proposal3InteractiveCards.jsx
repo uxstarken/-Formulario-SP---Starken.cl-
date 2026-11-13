@@ -378,15 +378,15 @@ export default function Proposal3InteractiveCards() {
               <div className="pt-5 mt-5 border-t border-gray-100">
                 {/* Lista de Viñetas Punteadas con más aire y separación */}
                 <ul className="space-y-3.5 mb-6">
-                  <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
+                  <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#303030] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
                     <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0 mt-1" />
                     <span>Alianza y beneficios</span>
                   </li>
-                  <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
+                  <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#303030] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
                     <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0 mt-1" />
                     <span>Atención especializada en canales digitales</span>
                   </li>
-                  <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
+                  <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#303030] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
                     <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0 mt-1" />
                     <span>Plan de difusión</span>
                   </li>
@@ -527,15 +527,15 @@ export default function Proposal3InteractiveCards() {
               <div className="pt-5 mt-5 border-t border-gray-100">
                 {/* Lista de Viñetas Punteadas con más aire y separación */}
                 <ul className="space-y-3.5 mb-6">
-                  <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
+                  <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#303030] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
                     <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0 mt-1" />
                     <span>Integración vía API o Plugin</span>
                   </li>
-                  <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
+                  <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#303030] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
                     <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0 mt-1" />
                     <span>Acompañamiento especializado</span>
                   </li>
-                  <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#2b2e2c] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
+                  <li className="flex items-start gap-3 font-nunito text-sm text-bullet-14 text-[#303030] font-medium leading-relaxed" style={{ fontSize: '14px' }}>
                     <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0 mt-1" />
                     <span>Vende y despacha desde un solo lugar</span>
                   </li>
@@ -663,15 +663,15 @@ export default function Proposal3InteractiveCards() {
                     {/* Sección 2 (Derecha): Viñetas en la misma línea horizontal */}
                     <div className="md:col-span-6 md:border-l md:border-[#48185A]/15 md:pl-6 lg:pl-8">
                       <ul className="space-y-3">
-                        <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                        <li className="flex items-center gap-3 font-nunito text-[16px] text-[#303030] font-medium leading-relaxed">
                           <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
                           <span>Alianza y beneficios</span>
                         </li>
-                        <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                        <li className="flex items-center gap-3 font-nunito text-[16px] text-[#303030] font-medium leading-relaxed">
                           <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
                           <span>Atención especializada en canales digitales</span>
                         </li>
-                        <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                        <li className="flex items-center gap-3 font-nunito text-[16px] text-[#303030] font-medium leading-relaxed">
                           <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
                           <span>Plan de difusión</span>
                         </li>
@@ -714,15 +714,15 @@ export default function Proposal3InteractiveCards() {
 
               {/* SECCIÓN 2: LISTA DE BENEFICIOS PUNTEADOS */}
               <ul className="space-y-3.5 lg:space-y-4 mb-7 sm:mb-8 lg:mb-10">
-                <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                <li className="flex items-center gap-3 font-nunito text-[16px] text-[#303030] font-medium leading-relaxed">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
                   <span>Alianza y beneficios</span>
                 </li>
-                <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                <li className="flex items-center gap-3 font-nunito text-[16px] text-[#303030] font-medium leading-relaxed">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
                   <span>Atención especializada en canales digitales</span>
                 </li>
-                <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                <li className="flex items-center gap-3 font-nunito text-[16px] text-[#303030] font-medium leading-relaxed">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
                   <span>Plan de difusión</span>
                 </li>
@@ -830,15 +830,15 @@ export default function Proposal3InteractiveCards() {
                     {/* Sección 2 (Derecha): Viñetas en la misma línea horizontal */}
                     <div className="md:col-span-6 md:border-l md:border-[#48185A]/15 md:pl-6 lg:pl-8">
                       <ul className="space-y-3">
-                        <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                        <li className="flex items-center gap-3 font-nunito text-[16px] text-[#303030] font-medium leading-relaxed">
                           <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
                           <span>Integración vía API o Plugin</span>
                         </li>
-                        <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                        <li className="flex items-center gap-3 font-nunito text-[16px] text-[#303030] font-medium leading-relaxed">
                           <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
                           <span>Acompañamiento especializado</span>
                         </li>
-                        <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                        <li className="flex items-center gap-3 font-nunito text-[16px] text-[#303030] font-medium leading-relaxed">
                           <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
                           <span>Vende y despacha desde un solo lugar</span>
                         </li>
@@ -895,15 +895,15 @@ export default function Proposal3InteractiveCards() {
 
               {/* SECCIÓN 2: LISTA DE BENEFICIOS PUNTEADOS */}
               <ul className="space-y-3.5 lg:space-y-4 mb-7 sm:mb-8 lg:mb-10">
-                <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                <li className="flex items-center gap-3 font-nunito text-[16px] text-[#303030] font-medium leading-relaxed">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
                   <span>Integración vía API o Plugin</span>
                 </li>
-                <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                <li className="flex items-center gap-3 font-nunito text-[16px] text-[#303030] font-medium leading-relaxed">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
                   <span>Acompañamiento especializado</span>
                 </li>
-                <li className="flex items-center gap-3 font-nunito text-[16px] text-[#2b2e2c] font-medium leading-relaxed">
+                <li className="flex items-center gap-3 font-nunito text-[16px] text-[#303030] font-medium leading-relaxed">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#F97316] flex-shrink-0" />
                   <span>Vende y despacha desde un solo lugar</span>
                 </li>
