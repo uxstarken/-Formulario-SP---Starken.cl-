@@ -173,12 +173,12 @@ function CustomDropdown({ value, onChange, onBlur, options, placeholder, hasErro
                     handleSelectOption(opt);
                   }}
                   className={`px-3.5 py-2.5 font-nunito text-[14px] md:text-[15px] cursor-pointer transition-colors duration-100 flex items-center justify-between ${isSelected
-                      ? 'bg-[#009239]/10 text-[#009239] font-bold'
-                      : 'text-[#303030] hover:bg-gray-50 hover:text-[#009239]'
+                      ? 'bg-[#F97316]/10 text-[#F97316] font-bold'
+                      : 'text-[#303030] hover:bg-[#F97316]/5 hover:text-[#F97316]'
                     }`}
                 >
                   <span>{opt}</span>
-                  {isSelected && <Check className="w-4 h-4 text-[#009239] flex-shrink-0" />}
+                  {isSelected && <Check className="w-4 h-4 text-[#F97316] flex-shrink-0" />}
                 </div>
               );
             })
